@@ -29,6 +29,8 @@ python -m norm_k.cli k-probe --count 100 --encoder hash --output outputs/offline
 - Four-point scalar distribution SVG successfully generated.
 - Each K operation group now also includes a percentile bootstrap 95% interval
   for its mean (a descriptive interval; it does not account for shared templates).
+- Packaging smoke: `python -m pip wheel . --no-deps --no-build-isolation`
+  succeeded and generated a `norm_k-0.1.0-py3-none-any.whl` locally.
 
 The actual figures in this report are from the **hashing-control-v1-d256**
 encoder. It hashes word unigrams and bigrams, and is *not* a trained semantic
