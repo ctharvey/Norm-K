@@ -2,6 +2,8 @@
 
 **Experimental geometry for contradiction detection in text embeddings.**
 
+**Start here:** [Full research rationale, decisions, present evidence, and phased engineering handoff](docs/handoff.md).
+
 ‖K‖ (“Norm K”) is a research project exploring whether vector arithmetic, local geometric transformations, and lightweight learned projections can distinguish contradictions from paraphrases, compatible facts, unrelated statements, and ordinary changes over time.
 
 The name comes from the norm of a four-point interaction residual:
