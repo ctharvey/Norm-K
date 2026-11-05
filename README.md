@@ -18,7 +18,24 @@ Here E embeds text, N negates a statement, and P applies a controlled transforma
 
 ## Status
 
-**Research planning — no implementation or validated results yet.**
+**Offline research scaffold implemented and tested; no validated semantic results yet.**
+
+The first implementation includes a five-class synthetic dataset generator, frozen-embedding geometry functions, four-point K experiments, a capped opt-in API adapter, SQLite cache, review-budget scoring, a small linear-probe control, SVG charts, and 22 passing tests.
+
+### Run the offline smoke test
+
+~~~bash
+python -m pip install -e '.[research]'
+python -m unittest discover -s tests -v
+python -m norm_k.cli generate --per-label 600 --seed 42
+python -m norm_k.cli evaluate --pairs data/generated/pairs.jsonl --encoder hash --output outputs/offline_baseline
+python -m norm_k.cli k-probe --count 100 --encoder hash --output outputs/offline_k
+~~~
+
+**The hash encoder is a lexical smoke-test control, not a trained semantic embedding.** Its high synthetic classifier scores are not evidence of contradiction-detection quality. Using a real API requires an explicit `--encoder openai --max-new N` invocation and configured credentials; the default cap is zero.
+
+- [What could not be completed (BLOCKERS.md)](BLOCKERS.md)
+- [Verified offline run (engineering only)](reports/offline-smoke.md)
 
 This project is independent of [Menhir](https://github.com/Archolith/menhir) while the hypotheses are tested. Potential downstream integration belongs to [Menhir issue #511](https://github.com/Archolith/menhir/issues/511) (belief-shaped contradiction detection) and is contingent on evidence from reproducible experiments.
 
