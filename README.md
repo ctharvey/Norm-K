@@ -20,7 +20,7 @@ Here E embeds text, N negates a statement, and P applies a controlled transforma
 
 **Offline research scaffold implemented and tested; no validated semantic results yet.**
 
-The first implementation includes a five-class synthetic dataset generator, frozen-embedding geometry functions, four-point K experiments, a capped opt-in API adapter, SQLite cache, review-budget scoring, a small linear-probe control, SVG charts, subject- and template-held-out low-rank probes, bootstrap intervals, and 27 passing tests.
+The first implementation includes a five-class synthetic dataset generator, frozen-embedding geometry functions, four-point K experiments, a capped opt-in API adapter, SQLite cache, review-budget scoring, a small linear-probe control, SVG charts, subject-, template-, and relation-held-out low-rank probes, explicit pair-level counterfactual K ablations, dataset leakage auditing, bootstrap intervals, and 40 passing tests.
 
 ### Run the offline smoke test
 
@@ -28,14 +28,18 @@ The first implementation includes a five-class synthetic dataset generator, froz
 python -m pip install -e '.[research]'
 python -m unittest discover -s tests -v
 python -m norm_k.cli generate --per-label 600 --seed 42
+python -m norm_k.cli audit --pairs data/generated/pairs.jsonl
 python -m norm_k.cli evaluate --pairs data/generated/pairs.jsonl --encoder hash --output outputs/offline_baseline
 python -m norm_k.cli k-probe --count 100 --encoder hash --output outputs/offline_k
+python -m norm_k.cli k-ablate --pairs data/generated/pairs.jsonl --encoder hash --operation both
 ~~~
 
 **The hash encoder is a lexical smoke-test control, not a trained semantic embedding.** Its high synthetic classifier scores are not evidence of contradiction-detection quality. Using a real API requires an explicit `--encoder openai --max-new N` invocation and configured credentials; the default cap is zero.
 
 - [What could not be completed (BLOCKERS.md)](BLOCKERS.md)
 - [Verified offline run (engineering only)](reports/offline-smoke.md)
+- [Pair-level K math and restrictions](docs/pair-level-k.md)
+- [Counterfactual ablation results (synthetic control)](reports/offline-ablation.md)
 
 This project is independent of [Menhir](https://github.com/Archolith/menhir) while the hypotheses are tested. Potential downstream integration belongs to [Menhir issue #511](https://github.com/Archolith/menhir/issues/511) (belief-shaped contradiction detection) and is contingent on evidence from reproducible experiments.
 
