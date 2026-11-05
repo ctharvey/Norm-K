@@ -20,7 +20,7 @@ Here E embeds text, N negates a statement, and P applies a controlled transforma
 
 **Offline research scaffold implemented and tested; no validated semantic results yet.**
 
-The first implementation includes a five-class synthetic dataset generator, frozen-embedding geometry functions, four-point K experiments, a capped opt-in API adapter, SQLite cache, review-budget scoring, a small linear-probe control, SVG charts, subject-, template-, and relation-held-out low-rank probes, explicit pair-level counterfactual K ablations, dataset leakage auditing, bootstrap intervals, and 40 passing tests.
+The first implementation includes a five-class synthetic dataset generator, frozen-embedding geometry functions, four-point K experiments, a capped opt-in API adapter, SQLite cache, review-budget scoring, a small linear-probe control, SVG charts, subject-, template-, and relation-held-out low-rank probes, explicit pair-level counterfactual K ablations, dataset leakage auditing, bootstrap intervals, a blind local annotation UI, provenance-preserving benchmark intake, two-reviewer consensus, and 50 passing tests.
 
 ### Run the offline smoke test
 
@@ -34,12 +34,25 @@ python -m norm_k.cli k-probe --count 100 --encoder hash --output outputs/offline
 python -m norm_k.cli k-ablate --pairs data/generated/pairs.jsonl --encoder hash --operation both
 ~~~
 
+### Prepare independent human reviews
+
+~~~bash
+python -m norm_k.cli prepare-review --pairs data/generated/pairs.jsonl --per-label 20
+python -m norm_k.cli annotate --queue data/review/queue.jsonl --annotations data/annotations/reviews.jsonl
+# After at least two reviewers have worked:
+python -m norm_k.cli export-reviews --queue data/review/queue.jsonl --annotations data/annotations/reviews.jsonl
+~~~
+
+The browser UI runs only at `http://127.0.0.1:8765` **on the same computer as the command**. Reference labels are withheld and reviews are append-only. See the [annotation protocol](docs/annotation-protocol.md) for definitions and a safe CSV/TSV/JSONL benchmark import example. Generated review data and imported corpora are git-ignored.
+
 **The hash encoder is a lexical smoke-test control, not a trained semantic embedding.** Its high synthetic classifier scores are not evidence of contradiction-detection quality. Using a real API requires an explicit `--encoder openai --max-new N` invocation and configured credentials; the default cap is zero.
 
 - [What could not be completed (BLOCKERS.md)](BLOCKERS.md)
 - [Verified offline run (engineering only)](reports/offline-smoke.md)
 - [Pair-level K math and restrictions](docs/pair-level-k.md)
 - [Counterfactual ablation results (synthetic control)](reports/offline-ablation.md)
+- [Blind annotation protocol and CLI](docs/annotation-protocol.md)
+- [Annotation/import engineering smoke test](reports/offline-labeling-smoke.md)
 
 This project is independent of [Menhir](https://github.com/Archolith/menhir) while the hypotheses are tested. Potential downstream integration belongs to [Menhir issue #511](https://github.com/Archolith/menhir/issues/511) (belief-shaped contradiction detection) and is contingent on evidence from reproducible experiments.
 
