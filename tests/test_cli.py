@@ -34,6 +34,35 @@ class CLITests(unittest.TestCase):
             self.assertTrue((ablation_output / "k_ablation.json").exists())
             self.assertTrue((ablation_output / "pair_k_negation.svg").exists())
 
+            queue = base / "review_queue.jsonl"
+            reviews = base / "reviews.jsonl"
+            consensus = base / "consensus.json"
+            self.assertEqual(main(["prepare-review", "--pairs", str(pairs),
+                                   "--per-label", "2", "--output", str(queue)]), 0)
+            from norm_k.review import AnnotationLog, load_items
+            items = load_items(queue)
+            self.assertEqual(len(items), 10)
+            log = AnnotationLog(reviews, [item.id for item in items])
+            log.add(items[0].id, "alpha", "contradiction")
+            log.add(items[0].id, "beta", "contradiction")
+            self.assertEqual(main(["export-reviews", "--queue", str(queue),
+                                   "--annotations", str(reviews), "--output", str(consensus)]), 0)
+            self.assertTrue(consensus.exists())
+            with self.assertRaises(FileExistsError):
+                main(["prepare-review", "--pairs", str(pairs), "--output", str(queue)])
+
+            external = base / "external.tsv"
+            external.write_text("premise\thypothesis\tgold_label\n"
+                                "A door is open\tA door is closed\tcontradiction\n",
+                                encoding="utf-8")
+            imported = base / "imported.jsonl"
+            self.assertEqual(main(["import-benchmark", "--input", str(external),
+                                   "--source", "test", "--a-field", "premise",
+                                   "--b-field", "hypothesis", "--label-field", "gold_label",
+                                   "--output", str(imported)]), 0)
+            self.assertEqual(len(load_items(imported)), 1)
+            self.assertTrue((base / "imported.manifest.json").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

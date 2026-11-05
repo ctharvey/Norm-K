@@ -19,6 +19,10 @@ from .geometry import cosine, difference, k_norm, k_relative
 from .probes import low_rank_probe
 from .ablation import counterfactual_features, run_k_ablation
 from .audit import audit_pairs, purged_indices
+from .review import (AnnotationLog, consensus_report, load_items, queue_from_pairs,
+                     save_items)
+from .review_server import serve_review_ui
+from .importers import import_benchmark
 from .schema import load_pairs, save_pairs
 from .statistics import bootstrap_mean_interval
 
@@ -35,6 +39,11 @@ def _write_json(path: Path, payload: dict) -> None:
                     encoding="utf-8")
 
 
+def _require_new_path(path: str | Path) -> None:
+    if Path(path).exists():
+        raise FileExistsError(f"Refusing to replace existing file: {path}; choose a new output path")
+
+
 def _generate(args: argparse.Namespace) -> None:
     pairs = generate_pairs(args.per_label, args.seed)
     save_pairs(args.output, pairs)
@@ -47,6 +56,52 @@ def _audit(args: argparse.Namespace) -> None:
     _write_json(Path(args.output), report)
     print(f"Dataset audit written to {args.output}: {report['pair_count']} pairs, "
           f"{report['duplicate_text_pairs']} duplicate text pairs")
+
+
+def _prepare_review(args: argparse.Namespace) -> None:
+    _require_new_path(args.output)
+    pairs = load_pairs(args.pairs)
+    items = queue_from_pairs(pairs, args.per_label, args.seed)
+    save_items(args.output, items)
+    print(f"Prepared {len(items)} blind review items in {args.output}; source labels are not shown in the UI")
+
+
+def _import_benchmark(args: argparse.Namespace) -> None:
+    _require_new_path(args.output)
+    manifest_file = str(Path(args.output).with_suffix(".manifest.json"))
+    _require_new_path(manifest_file)
+    mapping = None
+    if args.label_map:
+        mapping = json.loads(Path(args.label_map).read_text(encoding="utf-8"))
+        if not isinstance(mapping, dict) or any(not isinstance(k, str) or not isinstance(v, str)
+                                                for k, v in mapping.items()):
+            raise ValueError("--label-map must be a JSON object with string keys and values")
+    items, manifest = import_benchmark(
+        args.input, source=args.source, a_field=args.a_field, b_field=args.b_field,
+        label_field=args.label_field, label_map=mapping, split_field=args.split_field,
+        source_url=args.source_url, license_name=args.license, max_rows=args.max_rows,
+    )
+    save_items(args.output, items)
+    _write_json(Path(manifest_file), manifest)
+    print(f"Imported {len(items)} benchmark rows into {args.output}; original label mapping was explicit only")
+
+
+def _annotate(args: argparse.Namespace) -> None:
+    items = load_items(args.queue)
+    if not items:
+        raise ValueError("Review queue is empty")
+    serve_review_ui(items, args.annotations, args.port)
+
+
+def _export_reviews(args: argparse.Namespace) -> None:
+    _require_new_path(args.output)
+    items = load_items(args.queue)
+    log = AnnotationLog(args.annotations, [item.id for item in items])
+    report = consensus_report(items, log.read_all(), minimum_reviewers=args.minimum_reviewers)
+    _write_json(Path(args.output), report)
+    print(f"Consensus export: {len(report['resolved'])} unanimous, "
+          f"{len(report['disagreement'])} disputed, {len(report['ambiguous'])} ambiguous; "
+          f"saved {args.output}")
 
 
 def _evaluate(args: argparse.Namespace) -> None:
@@ -208,6 +263,39 @@ def build_parser() -> argparse.ArgumentParser:
     audit.add_argument("--seed", type=int, default=42)
     audit.add_argument("--output", default="outputs/dataset_audit.json")
     audit.set_defaults(func=_audit)
+    prepare = sub.add_parser("prepare-review", help="Create a blind, balanced review queue")
+    prepare.add_argument("--pairs", default="data/generated/pairs.jsonl")
+    prepare.add_argument("--per-label", type=int, default=20)
+    prepare.add_argument("--seed", type=int, default=42)
+    prepare.add_argument("--output", default="data/review/queue.jsonl")
+    prepare.set_defaults(func=_prepare_review)
+
+    importer = sub.add_parser("import-benchmark", help="Import local CSV/TSV/JSONL with explicit label mapping")
+    importer.add_argument("--input", required=True)
+    importer.add_argument("--source", required=True)
+    importer.add_argument("--a-field", default="text_a")
+    importer.add_argument("--b-field", default="text_b")
+    importer.add_argument("--label-field")
+    importer.add_argument("--label-map", help="Path to explicit raw-label -> Norm-K label JSON map")
+    importer.add_argument("--split-field")
+    importer.add_argument("--source-url")
+    importer.add_argument("--license", default="UNVERIFIED")
+    importer.add_argument("--max-rows", type=int, default=100000)
+    importer.add_argument("--output", default="data/imported/benchmark_queue.jsonl")
+    importer.set_defaults(func=_import_benchmark)
+
+    annotate = sub.add_parser("annotate", help="Start local-only blind review UI at 127.0.0.1")
+    annotate.add_argument("--queue", default="data/review/queue.jsonl")
+    annotate.add_argument("--annotations", default="data/annotations/reviews.jsonl")
+    annotate.add_argument("--port", type=int, default=8765)
+    annotate.set_defaults(func=_annotate)
+
+    exporter = sub.add_parser("export-reviews", help="Summarize append-only review consensus")
+    exporter.add_argument("--queue", default="data/review/queue.jsonl")
+    exporter.add_argument("--annotations", default="data/annotations/reviews.jsonl")
+    exporter.add_argument("--minimum-reviewers", type=int, default=2)
+    exporter.add_argument("--output", default="outputs/review_consensus.json")
+    exporter.set_defaults(func=_export_reviews)
     for name, handler in (("evaluate", _evaluate), ("k-probe", _k_probe),
                           ("k-ablate", _k_ablate)):
         command = sub.add_parser(name)

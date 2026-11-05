@@ -9,5 +9,9 @@ dist/
 .norm_k_cache/
 outputs/
 data/generated/
+data/review/
+data/annotations/
+data/external/
+data/imported/
 *.env
 

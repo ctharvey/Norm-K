@@ -28,6 +28,9 @@ separate from the build plan so no unperformed research looks completed.
 - The small Menhir #392 fixture and SemAntoNeg should be used as evaluation
   references, never as the sole benchmark or as training data.
 - Do not publish genuine user memories or personally identifying test content.
+- **Tooling is now available:** an offline blind-review UI, append-only reviewer
+  log, two-reviewer consensus, pairwise kappa, and a local CSV/TSV/JSONL importer.
+  Actual independent human labeling and source/license checks have not happened.
 
 ### 3. Menhir belief graph and real conflict distribution — **BLOCKED: safe test data required**
 
@@ -67,6 +70,13 @@ separate from the build plan so no unperformed research looks completed.
       incomplete, especially for purchase/negation and different-subject pairs.
 - [ ] Upgrade paired K ablations to preregistered tests using real embeddings,
       realistic grouped holdouts, and multiple-comparison controls.
+- [ ] Run the local annotation UI on the reviewer's own computer; the interface
+      has been API-tested but not visually checked in a real browser here.
+- [ ] Obtain an appropriately licensed external benchmark file and verify its
+      original label semantics before any canonical mapping. The importer is
+      implemented, but no external dataset has been ingested in this workspace.
+- [ ] Commission independent reviewers and adjudicate ambiguous or disputed
+      cases; no human-reviewed benchmark labels have been collected.
 - [ ] Build read-only typed-belief comparisons and pure ViewKind prototype after
       safe Menhir data access is arranged.
 - [ ] Add hosted CI once workflow permissions and intended runner use are confirmed;
@@ -89,10 +99,17 @@ separate from the build plan so no unperformed research looks completed.
   uncertainty, and a pair-level scatter chart.
 - Dataset fingerprint audit, symmetric duplicate detection, subject-safe
   generation, mechanical split leakage checks, and exact-statement purging.
-- 40 passing unittest cases, including an end-to-end offline CLI test.
+- Blind stratified review queues, 127.0.0.1-only review UI, append-only
+  corrections, two-reviewer consensus, Cohen's kappa, and CSV/TSV/JSONL import
+  with explicit mapping and provenance manifest.
+- 50 passing unittest cases, including localhost API security and annotation
+  workflow tests.
 
 See [the offline run record](reports/offline-smoke.md) for the exact commands and
 their limits.
 
 See [the pair-level K ablation](reports/offline-ablation.md) for a concrete
 example of why a favorable simple split is not sufficient evidence of transfer.
+
+See [the labeling protocol](docs/annotation-protocol.md) for instructions,
+label definitions, and scientific safeguards.
