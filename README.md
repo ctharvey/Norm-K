@@ -20,7 +20,7 @@ Here E embeds text, N negates a statement, and P applies a controlled transforma
 
 **Offline research scaffold implemented and tested; no validated semantic results yet.**
 
-The first implementation includes a five-class synthetic dataset generator, frozen-embedding geometry functions, four-point K experiments, a capped opt-in API adapter, SQLite cache, review-budget scoring, a small linear-probe control, SVG charts, and 22 passing tests.
+The first implementation includes a five-class synthetic dataset generator, frozen-embedding geometry functions, four-point K experiments, a capped opt-in API adapter, SQLite cache, review-budget scoring, a small linear-probe control, SVG charts, subject- and template-held-out low-rank probes, bootstrap intervals, and 27 passing tests.
 
 ### Run the offline smoke test
 
