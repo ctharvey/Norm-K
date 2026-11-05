@@ -1,0 +1,67 @@
+# ‖K‖ — Norm K
+
+**Experimental geometry for contradiction detection in text embeddings.**
+
+‖K‖ (“Norm K”) is a research project exploring whether vector arithmetic, local geometric transformations, and lightweight learned projections can distinguish contradictions from paraphrases, compatible facts, unrelated statements, and ordinary changes over time.
+
+The name comes from the norm of a four-point interaction residual:
+
+\[
+K(s) = E(s) + E(N(P(s))) - E(N(s)) - E(P(s))
+\]
+
+\[
+\|K(s)\|
+\]
+
+Here E embeds text, N negates a statement, and P applies a controlled transformation such as changing its subject. The residual measures departure from additive independence of those transformations. **A high ‖K‖ is not itself proof of contradiction.** Testing whether it supplies useful signal is one of the central research questions.
+
+## Status
+
+**Research planning — no implementation or validated results yet.**
+
+This project is independent of [Menhir](https://github.com/Archolith/menhir) while the hypotheses are tested. Potential downstream integration belongs to [Menhir issue #511](https://github.com/Archolith/menhir/issues/511) (belief-shaped contradiction detection) and is contingent on evidence from reproducible experiments.
+
+## Objectives
+
+1. Determine whether contradiction-sensitive information can be recovered from **frozen** embedding vectors.
+2. Test difference vectors, sparsity, local projection geometry, and four-point interaction residuals.
+3. Separate **same fact?**, **incompatible values?**, and **legitimate update?** instead of treating every semantic change as a contradiction.
+4. Quantify generalization to unseen subjects, attributes, templates, and relation types.
+5. Measure improvement at a fixed downstream review budget against cosine, token heuristics, NLI, and an LLM judge.
+
+## Research phases
+
+| Phase | Research work | Exit result |
+| --- | --- | --- |
+| 1. Laboratory | Reproducible datasets, embedding cache, frozen encoder, labeling | Audited dataset and test harness |
+| 2. Baselines | Cosine, Euclidean, vector differences, sparsity, NLI, plots | Initial benchmark and geometry atlas |
+| 3. ‖K‖ | Controlled transformations and second-order finite differences | Statistical test of interaction signal |
+| 4. Projections | Regularized probes and low-rank contradiction-sensitive subspaces | Out-of-distribution generalization report |
+| 5. Beliefs | Subject/attribute/value/scope matching and temporal updates | Read-only belief-aware prototype |
+| 6. Decision | Ablation, cost/latency, shadow evaluation, integration decision | Ship/iterate/stop report |
+
+The first **two-week gate** covers phases 1–3. Proceed to learned models only if the simple baselines leave room and the mathematical signal survives held-out tests.
+
+## Read the specs
+
+- [Phased build and test plan](docs/research-plan.md)
+- [Mathematics, visualization experiments, and prior art](docs/research-notes.md)
+
+## Scientific guardrails
+
+- Start with Menhir's existing text-embedding-3-small encoder, frozen. Evaluate entity names **separately** from complete statements.
+- Preserve a truly unseen holdout; the [#392 fixture](https://github.com/Archolith/menhir/pull/392) is a small regression/evaluation set, not training data.
+- Train/test splits must hold out *templates, subjects, and relation types*, not just random rows.
+- Compare each proposed feature to an ablation without that feature.
+- Report uncertainty, per-category false negatives, calibration, and recall at a fixed review budget.
+- Do not assume frozen embeddings encode unstated time, exclusive cardinality, or factual truth.
+- A useful negative result is a valid outcome. No production integration is promised.
+
+## Naming
+
+**‖K‖ / Norm K** is a provisional research title, not a cleared company or product trademark.
+
+---
+
+*Research plan established November 5, 2026. No experimental scores in this repository should be interpreted as measured until a reproducible run is linked.*
