@@ -1,9 +1,11 @@
 import tempfile
 import unittest
+import re
 from collections import Counter
 from pathlib import Path
 
-from norm_k.dataset import LABEL_ORDER, generate_pairs, generate_quads, split_subject, split_template
+from norm_k.dataset import (LABEL_ORDER, NAMES, generate_pairs, generate_quads, split_relation,
+                            split_subject, split_template)
 from norm_k.schema import Pair, load_pairs, save_pairs
 
 
@@ -44,6 +46,12 @@ class DatasetTests(unittest.TestCase):
         self.assertEqual({split_subject(name) for name in names}, {"train", "validation", "test"})
         self.assertTrue(all(split_subject(name, 42) == split_subject(name, 42) for name in names))
 
+    def test_secondary_people_do_not_leak_across_subject_split(self):
+        for pair in generate_pairs(100):
+            for name in NAMES:
+                if re.search(r"\b" + re.escape(name) + r"\b", pair.text_a + " " + pair.text_b):
+                    self.assertEqual(split_subject(name), split_subject(pair.subject))
+
     def test_template_split_holds_out_entire_family(self):
         pairs = generate_pairs(100)
         assignments = {}
@@ -53,6 +61,16 @@ class DatasetTests(unittest.TestCase):
                 self.assertEqual(split, assignments[pair.template_family])
             assignments[pair.template_family] = split
         self.assertEqual(set(assignments.values()), {"train", "validation", "test"})
+
+    def test_relation_split_holds_out_entire_family(self):
+        pairs = generate_pairs(100)
+        assignments = {}
+        for pair in pairs:
+            split = split_relation(pair.relation_family)
+            self.assertEqual(assignments.setdefault(pair.relation_family, split), split)
+        self.assertEqual(set(assignments.values()), {"train", "validation", "test"})
+        self.assertEqual(split_relation("residence"), "test")
+        self.assertEqual(split_relation("numeric"), "validation")
 
     def test_quads_have_correct_subject_swaps(self):
         quads = generate_quads(25)

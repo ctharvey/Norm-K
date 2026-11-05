@@ -8,18 +8,27 @@
 ~~~bash
 python -m unittest discover -s tests -v
 python -m norm_k.cli generate --per-label 600 --seed 42
+python -m norm_k.cli audit --pairs data/generated/pairs.jsonl --output outputs/dataset_audit.json
 python -m norm_k.cli evaluate --pairs data/generated/pairs.jsonl --encoder hash --output outputs/offline_baseline
 python -m norm_k.cli k-probe --count 100 --encoder hash --output outputs/offline_k
+python -m norm_k.cli k-ablate --pairs data/generated/pairs.jsonl --encoder hash --operation both --output outputs/offline_k_ablation
 ~~~
 
 ## Observed results
 
-- **27 / 27 tests passed**, including an end-to-end test that generates pairs,
+- **40 / 40 tests passed**, including an end-to-end test that generates pairs,
   evaluates them, creates SVG charts, and computes K distributions.
 - Generated **3,000 pairs**: 600 each for contradiction, equivalence, compatible
   facts, temporal updates, and unrelated facts; deterministic seed 42.
-- Subject-held-out split in this run: **2,089 train / 424 validation / 487 test**.
-- Template-held-out split: **1,478 train / 748 validation / 774 test**.
+- Subject-held-out split in this run: **2,059 train / 450 validation / 491 test**.
+- Template-held-out split: **1,478 train / 747 validation / 775 test** before purging.
+- Relation-held-out split: evaluated separately; 60 overlapping source records
+  were purged, leaving 2,940 pairs.
+- Dataset SHA-256 fingerprint:
+  `9019892a92003d4569131d47db860dabf3b1e1d0bf8cf5abe7a0570c041a1fde`.
+- No duplicate text pairs or cross-split group assignments remained; exact
+  statement overlaps were eliminated from evaluation via purge (0 subject, 54
+  template, and 60 relation records removed).
 - Baseline report and pair scatter successfully generated.
 - Trained a regularized tabular lexical/geometry baseline on held-out subjects
   and held-out templates; ran a low-rank PCA(|Δ|) probe at ranks 2–128 and
@@ -27,6 +36,9 @@ python -m norm_k.cli k-probe --count 100 --encoder hash --output outputs/offline
 - Four-point probe completed **100 squares**, 25 each for negation×subject,
   negation×value, subject×value, and time×value.
 - Four-point scalar distribution SVG successfully generated.
+- Pair-level K ablation completed on supported grammatical transformations,
+  including negation and subject substitution; details in
+  [offline-ablation.md](offline-ablation.md).
 - Each K operation group now also includes a percentile bootstrap 95% interval
   for its mean (a descriptive interval; it does not account for shared templates).
 - Packaging smoke: `python -m pip wheel . --no-deps --no-build-isolation`

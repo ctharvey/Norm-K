@@ -30,7 +30,12 @@ def _different(rng: random.Random, items: tuple[str, ...], previous: str) -> str
 
 def _make(label: str, index: int, rng: random.Random) -> Pair:
     name = rng.choice(NAMES)
-    other = _different(rng, NAMES, name)
+    # Keep secondary subjects inside the same subject split. Otherwise a
+    # 'subject-held-out' test name may appear in a train pair as the second
+    # person, leaking identity even if pair.subject itself is disjoint.
+    same_group = tuple(candidate for candidate in NAMES
+                       if candidate != name and split_subject(candidate) == split_subject(name))
+    other = rng.choice(same_group)
     city = rng.choice(CITIES)
     city2 = _different(rng, CITIES, city)
     item = rng.choice(ITEMS)
@@ -150,7 +155,9 @@ def generate_pairs(per_label: int = 600, seed: int = 42) -> list[Pair]:
                 raise RuntimeError(f"Exhausted unique synthetic examples for {label}")
             pair = _make(label, attempts, rng)
             attempts += 1
-            texts = (pair.text_a, pair.text_b)
+            # Contradiction and equivalence are symmetric labels; a reversed
+            # pair must not silently appear as a distinct training example.
+            texts = tuple(sorted((pair.text_a, pair.text_b)))
             if texts in seen:
                 continue
             seen.add(texts)
@@ -189,6 +196,22 @@ def split_template(template_family: str, seed: int = 42) -> str:
     except ValueError:
         pass
     return split_subject(template_family, seed)
+
+
+def split_relation(relation_family: str, seed: int = 42) -> str:
+    """Predeclared relation OOD smoke split (not a universal taxonomy).
+
+    Training excludes residences/ownership; evaluation asks whether learned
+    patterns transfer from state, purchase, and relationships. These groups
+    are intentionally imbalanced and need per-class support reporting.
+    """
+    if relation_family in {"residence", "residence_work", "ownership"}:
+        return "test"
+    if relation_family in {"numeric", "occupation"}:
+        return "validation"
+    if relation_family in {"state", "purchase", "relationship", "cross_relation"}:
+        return "train"
+    return split_subject(relation_family, seed)
 
 
 @dataclass(frozen=True)

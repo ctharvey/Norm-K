@@ -184,3 +184,30 @@ def plot_dimension_curve(results: dict[str, dict], path: str) -> None:
     fig.tight_layout()
     fig.savefig(path, format="svg")
     plt.close(fig)
+
+
+def plot_pair_k_scatter(rows: Sequence[tuple[str, float, float]], path: str) -> None:
+    """Render cosine vs pair-level K for the *eligible* transformation cohort."""
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    os.environ.setdefault("MPLCONFIGDIR", str(Path(path).parent / ".mplconfig"))
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    colors = {
+        "contradiction": "#d62728", "equivalent": "#2ca02c", "compatible": "#1f77b4",
+        "temporal_update": "#ff7f0e", "unrelated": "#9467bd",
+    }
+    fig, ax = plt.subplots(figsize=(9, 6))
+    for label, color in colors.items():
+        selected = [(c, k) for t, c, k in rows if t == label]
+        if selected:
+            ax.scatter([c for c, _ in selected], [k for _, k in selected],
+                       c=color, alpha=0.4, s=15, label=f"{label} ({len(selected)})")
+    ax.set(xlabel="Cosine(E(A), E(B))", ylabel="‖E(A) + E(T(B)) − E(T(A)) − E(B)‖",
+           title="Pair-level counterfactual K (supported transformations only)")
+    ax.grid(alpha=0.2)
+    ax.legend(fontsize=8)
+    fig.tight_layout()
+    fig.savefig(path, format="svg")
+    plt.close(fig)
