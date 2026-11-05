@@ -14,15 +14,21 @@ python -m norm_k.cli k-probe --count 100 --encoder hash --output outputs/offline
 
 ## Observed results
 
-- **22 / 22 tests passed**, including an end-to-end test that generates pairs,
+- **27 / 27 tests passed**, including an end-to-end test that generates pairs,
   evaluates them, creates SVG charts, and computes K distributions.
 - Generated **3,000 pairs**: 600 each for contradiction, equivalence, compatible
   facts, temporal updates, and unrelated facts; deterministic seed 42.
 - Subject-held-out split in this run: **2,089 train / 424 validation / 487 test**.
+- Template-held-out split: **1,478 train / 748 validation / 774 test**.
 - Baseline report and pair scatter successfully generated.
+- Trained a regularized tabular lexical/geometry baseline on held-out subjects
+  and held-out templates; ran a low-rank PCA(|Δ|) probe at ranks 2–128 and
+  produced a dimension-versus-recall SVG. This is a methodological test only.
 - Four-point probe completed **100 squares**, 25 each for negation×subject,
   negation×value, subject×value, and time×value.
 - Four-point scalar distribution SVG successfully generated.
+- Each K operation group now also includes a percentile bootstrap 95% interval
+  for its mean (a descriptive interval; it does not account for shared templates).
 
 The actual figures in this report are from the **hashing-control-v1-d256**
 encoder. It hashes word unigrams and bigrams, and is *not* a trained semantic

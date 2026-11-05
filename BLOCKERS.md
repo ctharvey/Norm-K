@@ -58,10 +58,12 @@ separate from the build plan so no unperformed research looks completed.
 - [ ] Add a trained local NLI cross-encoder and measure GPU contention with LLM server.
 - [ ] Add randomized-interaction controls and confidence intervals for K, rather
       than only comparing four controlled syntactic transformation families.
-- [ ] Add PCA arrow plots, rank-vs-recall curves, and cross-encoder comparisons.
-- [ ] Implement template-held-out and relation-held-out splits in addition to the
-      working subject-held-out smoke split.
-- [ ] Learn and ablate low-rank projections, with significance testing.
+- [ ] Add PCA arrow plots and cross-encoder comparisons (dimension-vs-recall
+      graph is implemented for the offline control).
+- [ ] Implement **relation-held-out and vocabulary-held-out** splits (both
+      subject-held-out and template-held-out smoke splits now work).
+- [ ] Add explicit K-feature ablations, relation-transfer tests, and paired
+      significance testing to the working low-rank projection scaffold.
 - [ ] Build read-only typed-belief comparisons and pure ViewKind prototype after
       safe Menhir data access is arranged.
 - [ ] Add hosted CI once workflow permissions and intended runner use are confirmed;
@@ -77,7 +79,9 @@ separate from the build plan so no unperformed research looks completed.
 - Cosine/difference/distance/Hoyer and K/relative-K numerical primitives.
 - Baseline report, linear-probe smoke comparison, review-budget scoring.
 - SVG pair scatter and K distribution, generated locally.
-- 22 passing unittest cases, including an end-to-end offline CLI test.
+- Subject- and template-held-out linear baselines, PCA(|Δ|) low-rank logistic
+  probes, dimension-vs-recall SVG, and bootstrap mean intervals for K groups.
+- 27 passing unittest cases, including an end-to-end offline CLI test.
 
 See [the offline run record](reports/offline-smoke.md) for the exact commands and
 their limits.

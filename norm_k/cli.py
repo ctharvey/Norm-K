@@ -10,11 +10,14 @@ from pathlib import Path
 
 import numpy as np
 
-from .dataset import generate_pairs, generate_quads, split_subject
+from .dataset import generate_pairs, generate_quads, split_subject, split_template
 from .embeddings import EmbeddingCache, HashingEncoder, OpenAIEncoder
-from .evaluation import baseline_report, features_for_pairs, plot_k_distribution, plot_scatter, train_linear_probe
+from .evaluation import (baseline_report, features_for_pairs, plot_dimension_curve,
+                         plot_k_distribution, plot_scatter, train_linear_probe)
 from .geometry import cosine, difference, k_norm, k_relative
+from .probes import low_rank_probe
 from .schema import load_pairs, save_pairs
+from .statistics import bootstrap_mean_interval
 
 
 def _encoder(args: argparse.Namespace):
@@ -44,14 +47,22 @@ def _evaluate(args: argparse.Namespace) -> None:
                                               batch_size=args.batch_size)))
     feature_rows = features_for_pairs(pairs, vectors)
     splits = [split_subject(pair.subject, args.seed) for pair in pairs]
+    template_splits = [split_template(pair.template_family, args.seed) for pair in pairs]
+    rank_runs = {
+        "subject-held-out": low_rank_probe(pairs, vectors, splits, args.seed),
+        "template-held-out": low_rank_probe(pairs, vectors, template_splits, args.seed),
+    }
     report = {
         "experiment": "phase2_baselines", "date": date.today().isoformat(),
         "encoder": encoder.name, "encoder_dimensions": encoder.dimensions,
         "synthetic_labels_not_audited": all(p.generated for p in pairs),
         "scientific_conclusion_supported": False,
         "split_counts": dict(Counter(splits)),
+        "template_split_counts": dict(Counter(template_splits)),
         "baselines": baseline_report(pairs, feature_rows),
         "subject_held_out_linear_probe": train_linear_probe(pairs, feature_rows, splits, args.seed),
+        "template_held_out_linear_probe": train_linear_probe(pairs, feature_rows, template_splits, args.seed),
+        "low_rank_probes": rank_runs,
         "seed": args.seed,
     }
     output = Path(args.output)
@@ -59,6 +70,7 @@ def _evaluate(args: argparse.Namespace) -> None:
     _write_json(output / "baseline.json", report)
     if not args.no_plots:
         plot_scatter(pairs, feature_rows, str(output / "pair_scatter.svg"))
+        plot_dimension_curve(rank_runs, str(output / "dimensions.svg"))
     print(f"Baseline report written to {output / 'baseline.json'} (smoke result, not validation)")
 
 
@@ -88,7 +100,9 @@ def _k_probe(args: argparse.Namespace) -> None:
         "encoder": encoder.name, "encoder_dimensions": encoder.dimensions,
         "count": len(quads), "seed": args.seed,
         "operation_pairs": {name: {"count": len(group), "k_mean": float(np.mean(group)),
-                                   "k_std": float(np.std(group)), "k_median": float(np.median(group))}
+                                   "k_std": float(np.std(group)), "k_median": float(np.median(group)),
+                                   "k_mean_bootstrap_ci_95": list(bootstrap_mean_interval(group, seed=args.seed))
+                                   if len(group) >= 2 else None}
                             for name, group in by_operation.items()},
         "k_mean": float(np.mean(values)), "k_median": float(np.median(values)),
         "k_std": float(np.std(values)), "k_min": float(np.min(values)),

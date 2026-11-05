@@ -161,3 +161,26 @@ def plot_k_distribution(groups: dict[str, Sequence[float]], path: str) -> None:
     fig.tight_layout()
     fig.savefig(path, format="svg")
     plt.close(fig)
+
+
+def plot_dimension_curve(results: dict[str, dict], path: str) -> None:
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    os.environ.setdefault("MPLCONFIGDIR", str(Path(path).parent / ".mplconfig"))
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, ax = plt.subplots(figsize=(8, 5))
+    for label, result in results.items():
+        runs = result.get("ranks", [])
+        if runs:
+            ax.plot([row["dimensions"] for row in runs],
+                    [row["review_budgets"][1]["recall"] for row in runs],
+                    marker="o", label=label)
+    ax.set(xlabel="PCA projection dimension", ylabel="Contradiction recall @ 10% review budget",
+           ylim=(0, 1), title="Low-rank synthetic smoke only — not semantic validation")
+    ax.grid(alpha=0.2)
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(path, format="svg")
+    plt.close(fig)

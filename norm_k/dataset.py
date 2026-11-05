@@ -176,6 +176,21 @@ def split_subject(subject: str, seed: int = 42) -> str:
     return "train" if bucket < 70 else "validation" if bucket < 85 else "test"
 
 
+def split_template(template_family: str, seed: int = 42) -> str:
+    """Hold out an entire template mode across every synthetic label class.
+
+    Generated families end with -0 through -3. The map is intentionally
+    deterministic and **does not** constitute a relation-family holdout.
+    """
+    try:
+        family, number = template_family.rsplit("-", 1)
+        if family and number in {"0", "1", "2", "3"}:
+            return {"0": "test", "1": "validation", "2": "train", "3": "train"}[number]
+    except ValueError:
+        pass
+    return split_subject(template_family, seed)
+
+
 @dataclass(frozen=True)
 class Quad:
     base: str

@@ -3,7 +3,7 @@ import unittest
 from collections import Counter
 from pathlib import Path
 
-from norm_k.dataset import LABEL_ORDER, generate_pairs, generate_quads, split_subject
+from norm_k.dataset import LABEL_ORDER, generate_pairs, generate_quads, split_subject, split_template
 from norm_k.schema import Pair, load_pairs, save_pairs
 
 
@@ -43,6 +43,16 @@ class DatasetTests(unittest.TestCase):
         names = [p.subject for p in generate_pairs(100)]
         self.assertEqual({split_subject(name) for name in names}, {"train", "validation", "test"})
         self.assertTrue(all(split_subject(name, 42) == split_subject(name, 42) for name in names))
+
+    def test_template_split_holds_out_entire_family(self):
+        pairs = generate_pairs(100)
+        assignments = {}
+        for pair in pairs:
+            split = split_template(pair.template_family)
+            if pair.template_family in assignments:
+                self.assertEqual(split, assignments[pair.template_family])
+            assignments[pair.template_family] = split
+        self.assertEqual(set(assignments.values()), {"train", "validation", "test"})
 
     def test_quads_have_correct_subject_swaps(self):
         quads = generate_quads(25)
