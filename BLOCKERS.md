@@ -11,6 +11,7 @@
 | Exploratory, v2's transformed-sentence gain | Found the untrained flip score | [exploratory-flip-signal-v2.md](reports/exploratory-flip-signal-v2.md) |
 | v4, flip score vs neutral edits, fresh pairs, two encoders | REPLICATES, NEGATION-SPECIFIC | [flip-placebo-v4.md](reports/flip-placebo-v4.md) |
 | v5, flip score vs size-matched edits, two encoders | SURVIVES-MATCHING; cheap gate fails | [flip-matched-v5.md](reports/flip-matched-v5.md) |
+| Exploratory, score mutations on v5's saved vectors | No mutation beats flip | [exploratory-mutations-v5.md](reports/exploratory-mutations-v5.md) |
 
 The flip score, not K, is the current focus. On unit vectors K's size is a function of
 pairwise scores the fair baseline already holds, so K can add little beyond repackaging.
@@ -48,17 +49,26 @@ production Menhir data or code has been touched.
 
 ## Next research, in order
 
-1. One out-of-domain test on NaN-NLI, as v5's frozen plan sets out. Needs its own protocol.
-2. Owner's call: a two-stage gate, with cosine finding related pairs and flip ranking them for
-   NLI. v5 only hints at this, after seeing results, so it needs a new rule and fresh data.
-3. Split the flip into its two directions, from saved vectors.
-4. Trim [the v3 draft](docs/preregistration-decomposition-v3-draft.md) and decide what's still
+1. One out-of-domain test on NaN-NLI, as v5's frozen plan sets out.
+   [The v6 draft](docs/preregistration-nan-nli-v6-draft.md) is ready for review. v5's edit fits
+   only 32 of 258 pairs, so it uses a new wrapper edit, which must pass a bridge check first.
+2. Owner's call: [the v7 gate draft](docs/preregistration-negated-gate-v7-draft.md). It tests
+   `negated_cosine` inside cosine's top 5 neighbors and measures what NLI then finds. It replaces
+   the cosine-then-flip idea, which [didn't hold up](reports/exploratory-mutations-v5.md).
+3. Trim [the v3 draft](docs/preregistration-decomposition-v3-draft.md) and decide what's still
    worth running: dilution, context ladder, word removal, deletion-response features.
-5. Later: whether incompatibility can be told from mere difference, which needs a new labeled
+4. Later: whether incompatibility can be told from mere difference, which needs a new labeled
    set, and edits beyond `is` and `was`.
+5. Owner's call: candidate retrieval as its own question. The
+   [third-party ContraDoc benchmark](https://github.com/nstandif/contradiction-bench) reports its
+   top 20 TF-IDF pairs miss the contradiction in 40.5% of documents, and that BM25, dense and hybrid
+   retrievers did no better at that size. Not reproduced here.
 
 **Parked** by the prior-art audit: `asinh` compression, per-token and chunk-level flip, and learned
-projections.
+projections. **Parked** by [the mutation run](reports/exploratory-mutations-v5.md): normalized flip
+and `-cos(da, db)` lost to flip on seen data, and `min(gA, gB)` stays a report-only row. **Parked**
+until a real use needs them: acceleration scores and stance-trained NLI. One pair has no time axis,
+and this repo has no timestamped claims.
 
 ## Smaller open items
 
