@@ -6,6 +6,9 @@ fresh data. No new embeddings were made.
 **Script:** [v2_corner_analysis.py](../scripts/exploratory/v2_corner_analysis.py). It
 reproduced v2's AP exactly: 0.464 to 0.698 on MultiNLI, and 0.214 to 0.334 on WANLI.
 
+**Update:** the placebo and fresh-data questions below were then tested in a frozen run.
+See [flip-placebo-v4.md](flip-placebo-v4.md).
+
 ## Main findings
 
 **1. One untrained number roughly matches the trained models.** The flip score asks whether

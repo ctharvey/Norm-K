@@ -112,7 +112,10 @@ separate from the build plan so no unperformed research looks completed.
 - Exploratory v1 checks in `scripts/exploratory/` and a frozen public-data test in
   [preregistration-public-v2.md](docs/preregistration-public-v2.md),
   run once: [INCONCLUSIVE for K](reports/public-fair-k-v2.md), with transformed sentences clearing the bar.
-- 73 passing unittest cases, including localhost API security and annotation
+- An [exploratory analysis](reports/exploratory-flip-signal-v2.md) of v2 found an untrained
+  flip score, and a [frozen placebo test](reports/flip-placebo-v4.md) on fresh pairs and two
+  encoders got REPLICATES and NEGATION-SPECIFIC. Whether meaning or edit size causes it is open.
+- 85 passing unittest cases, including localhost API security and annotation
   workflow tests.
 
 See [the offline run record](reports/offline-smoke.md) for the exact commands and

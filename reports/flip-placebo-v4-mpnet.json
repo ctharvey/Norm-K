@@ -1,0 +1,269 @@
+{
+  "fresh_mnli_train": {
+    "pairs": 1500,
+    "positives": 491,
+    "floor": 0.3273333333333333,
+    "ap": {
+      "flip_negation": 0.7647691375541578,
+      "flip_in_fact": 0.4577221614245592,
+      "flip_note": 0.6481033293323987,
+      "flip_possibly": 0.6271168461168215,
+      "cosine": 0.2183854321165226,
+      "reversed_cosine": 0.5409672584052363,
+      "net_flip_vs_best_placebo": 0.7135973577304248
+    },
+    "wrong_partner_ap": {
+      "negation": 0.4527071643000761,
+      "note": 0.365710195369752
+    },
+    "best_cosine": "reversed_cosine",
+    "best_placebo": "note",
+    "mean_cosine_distance_moved": {
+      "negation": 0.2093297728668202,
+      "in_fact": 0.04806607871394338,
+      "note": 0.04963064172851682,
+      "possibly": 0.040019074484178394
+    },
+    "replication": {
+      "delta": 0.22380187914892147,
+      "interval": {
+        "ci_lower": 0.18189900849551713,
+        "ci_upper": 0.26011683079921305
+      },
+      "null_p97_5": 0.04954796685011358,
+      "hash_delta": 0.064,
+      "verdict": "REPLICATES"
+    },
+    "negation_vs_placebo": {
+      "delta": 0.11666580822175909,
+      "interval": {
+        "ci_lower": 0.07922003177921563,
+        "ci_upper": 0.1522657466775681
+      },
+      "null_p97_5": 0.03642015156227204,
+      "hash_delta": 0.0415,
+      "verdict": "NEGATION-SPECIFIC"
+    },
+    "no_negation_words": {
+      "pairs": 1190,
+      "positives": 332,
+      "floor": 0.27899159663865547,
+      "flip_negation": 0.6908575373631014,
+      "flip_in_fact": 0.38092243327562925,
+      "flip_note": 0.5829937125728657,
+      "flip_possibly": 0.5787541479783384
+    },
+    "by_genre": {
+      "fiction": {
+        "flip_negation": 0.798237808807531,
+        "flip_in_fact": 0.39196212027728833,
+        "flip_note": 0.6561449413189266,
+        "flip_possibly": 0.6344701746280423
+      },
+      "government": {
+        "flip_negation": 0.7606654245198365,
+        "flip_in_fact": 0.44446735096659895,
+        "flip_note": 0.5795523709185298,
+        "flip_possibly": 0.6560717221278798
+      },
+      "slate": {
+        "flip_negation": 0.775322873898799,
+        "flip_in_fact": 0.5292229453276904,
+        "flip_note": 0.6511633656749312,
+        "flip_possibly": 0.5994883477820576
+      },
+      "telephone": {
+        "flip_negation": 0.7847405908987136,
+        "flip_in_fact": 0.4261190400538285,
+        "flip_note": 0.603672231208945,
+        "flip_possibly": 0.4634394778469921
+      },
+      "travel": {
+        "flip_negation": 0.7531901632540433,
+        "flip_in_fact": 0.5041394240511635,
+        "flip_note": 0.7039336327490843,
+        "flip_possibly": 0.667563586692681
+      }
+    }
+  },
+  "v2_mnli": {
+    "pairs": 582,
+    "positives": 192,
+    "floor": 0.32989690721649484,
+    "ap": {
+      "flip_negation": 0.7518117858660984,
+      "flip_in_fact": 0.4997103360733183,
+      "flip_note": 0.6862422982827944,
+      "flip_possibly": 0.6477444665989959,
+      "cosine": 0.22259572769408453,
+      "reversed_cosine": 0.5673375665149861,
+      "net_flip_vs_best_placebo": 0.7049402198101549
+    },
+    "wrong_partner_ap": {
+      "negation": 0.47510265868451224,
+      "note": 0.40534592291081345
+    },
+    "best_cosine": "reversed_cosine",
+    "best_placebo": "note",
+    "mean_cosine_distance_moved": {
+      "negation": 0.21277783752128993,
+      "in_fact": 0.048119139870677216,
+      "note": 0.04953332661996898,
+      "possibly": 0.04100755316751242
+    },
+    "replication": {
+      "delta": 0.1844742193511123,
+      "interval": {
+        "ci_lower": 0.11534229473920882,
+        "ci_upper": 0.24441351660837046
+      },
+      "null_p97_5": 0.07289938824388963,
+      "hash_delta": 0.071,
+      "verdict": "REPLICATES"
+    },
+    "negation_vs_placebo": {
+      "delta": 0.06556948758330405,
+      "interval": {
+        "ci_lower": 0.014371656893047697,
+        "ci_upper": 0.1143140145190736
+      },
+      "null_p97_5": 0.05165360980852034,
+      "hash_delta": 0.0576,
+      "verdict": "NEGATION-SPECIFIC"
+    },
+    "no_negation_words": {
+      "pairs": 466,
+      "positives": 131,
+      "floor": 0.2811158798283262,
+      "flip_negation": 0.666812104444304,
+      "flip_in_fact": 0.42943407811517215,
+      "flip_note": 0.6204349887372491,
+      "flip_possibly": 0.5852852844629709
+    },
+    "by_genre": {
+      "facetoface": {
+        "flip_negation": 0.9490909090909092,
+        "flip_in_fact": 0.7235930735930737,
+        "flip_note": 0.8511773085302498,
+        "flip_possibly": 0.8543663626667579
+      },
+      "fiction": {
+        "flip_negation": 0.9001623866307196,
+        "flip_in_fact": 0.518500202931789,
+        "flip_note": 0.8288542459227058,
+        "flip_possibly": 0.7902456646378515
+      },
+      "government": {
+        "flip_negation": 0.7217733539924398,
+        "flip_in_fact": 0.34311681660591636,
+        "flip_note": 0.5757512360215029,
+        "flip_possibly": 0.45357182707845767
+      },
+      "letters": {
+        "flip_negation": 0.616074161528707,
+        "flip_in_fact": 0.5723395547506219,
+        "flip_note": 0.4539811155028547,
+        "flip_possibly": 0.4214827730647027
+      },
+      "nineeleven": {
+        "flip_negation": 0.8253245800363687,
+        "flip_in_fact": 0.6121298969519263,
+        "flip_note": 0.7501738341475802,
+        "flip_possibly": 0.725684344507327
+      },
+      "oup": {
+        "flip_negation": 0.5432910839160839,
+        "flip_in_fact": 0.22510448568085867,
+        "flip_note": 0.5924085576259489,
+        "flip_possibly": 0.4465212683565678
+      },
+      "slate": {
+        "flip_negation": 0.7927469186515239,
+        "flip_in_fact": 0.5795128295128296,
+        "flip_note": 0.6995287104777739,
+        "flip_possibly": 0.6700894916317193
+      },
+      "telephone": {
+        "flip_negation": 1.0,
+        "flip_in_fact": 0.9166666666666665,
+        "flip_note": 0.9166666666666665,
+        "flip_possibly": 0.8666666666666667
+      },
+      "travel": {
+        "flip_negation": 0.6601373701077184,
+        "flip_in_fact": 0.46589651168759294,
+        "flip_note": 0.6503509594692916,
+        "flip_possibly": 0.6126086985288204
+      },
+      "verbatim": {
+        "flip_negation": 0.7663350574497445,
+        "flip_in_fact": 0.5196522229911672,
+        "flip_note": 0.7322477694365532,
+        "flip_possibly": 0.7157104111954244
+      }
+    }
+  },
+  "v2_wanli": {
+    "pairs": 725,
+    "positives": 139,
+    "floor": 0.1917241379310345,
+    "ap": {
+      "flip_negation": 0.3767542496502027,
+      "flip_in_fact": 0.22979246773317039,
+      "flip_note": 0.325579119858607,
+      "flip_possibly": 0.30150712909647337,
+      "cosine": 0.24357563839930815,
+      "reversed_cosine": 0.19972486900167394,
+      "net_flip_vs_best_placebo": 0.35756753647990536
+    },
+    "wrong_partner_ap": {
+      "negation": 0.20513540713571424,
+      "note": 0.1779639706162301
+    },
+    "best_cosine": "cosine",
+    "best_placebo": "note",
+    "mean_cosine_distance_moved": {
+      "negation": 0.2125279003381399,
+      "in_fact": 0.05348726420756738,
+      "note": 0.05437593339020395,
+      "possibly": 0.039920620617403466
+    },
+    "replication": {
+      "delta": 0.13317861125089456,
+      "interval": {
+        "ci_lower": 0.041402499627693524,
+        "ci_upper": 0.23931384721438004
+      },
+      "null_p97_5": 0.09566480355985295,
+      "hash_delta": -0.0321,
+      "verdict": "REPLICATES"
+    },
+    "negation_vs_placebo": {
+      "delta": 0.05117512979159572,
+      "interval": {
+        "ci_lower": -0.008369897627397154,
+        "ci_upper": 0.11757252995681729
+      },
+      "null_p97_5": 0.06645677652670379,
+      "hash_delta": 0.0702,
+      "verdict": "UNCLEAR"
+    },
+    "no_negation_words": {
+      "pairs": 566,
+      "positives": 94,
+      "floor": 0.16607773851590105,
+      "flip_negation": 0.26491327409250787,
+      "flip_in_fact": 0.1851579043798729,
+      "flip_note": 0.24716490568438831,
+      "flip_possibly": 0.23837214311730465
+    },
+    "by_genre": {
+      "wanli": {
+        "flip_negation": 0.3767542496502027,
+        "flip_in_fact": 0.22979246773317039,
+        "flip_note": 0.325579119858607,
+        "flip_possibly": 0.30150712909647337
+      }
+    }
+  }
+}
