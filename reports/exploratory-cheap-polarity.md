@@ -56,7 +56,7 @@ different sets. It doesn't replace real edits, though. As a pair score it's clea
 three sets for both encoders, for example 0.519 against 0.696 AP on OpenAI's fresh set.
 
 As a gate it needs no negated embeddings at all, and found 0.566 (OpenAI) and 0.471 (mpnet). That's
-+0.051 (+0.034 to +0.068) and +0.034 (+0.019 to +0.049) over cosine, roughly a third and a fifth of
++0.051 (+0.034 to +0.068) and +0.034 (+0.019 to +0.049) over cosine, about two fifths and a fifth of
 the real edit's gain, and close to hash's own +0.028. It's also below the flag.
 
 **2. Search with the negated version.** Mixed, and only matters where retrieval is hard. WANLI and v7
@@ -89,6 +89,6 @@ there's little left beyond spotting negation. As a gate it found 0.312 and 0.278
 
 - Negation word means the repo's fixed word list, so `unable`, `fails to` and `refused` count as none.
 - Groups follow the words in the original statements, and 62 pairs is a small group.
-- WANLI's contradictions lean on word edits, so these shares may not hold on other text.
+- These shares come from WANLI train only and may not hold on other text.
 - Found counts need NLI to confirm a pair, and NLI itself may treat negation words differently.
 - No novelty is claimed.

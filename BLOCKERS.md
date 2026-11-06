@@ -72,7 +72,7 @@ production Menhir data or code has been touched.
 Unticked items haven't been run. All would be exploratory unless a frozen rule says otherwise.
 
 **Could change how current results read**
-- [x] Negation-mismatch baseline: `negated_cosine` beats the flag, but about 80% of its v7 margin is on
+- [x] Negation-mismatch baseline: `negated_cosine` beats the flag, but 78% to 87% of its v7 margin is on
   pairs where exactly one statement has a negation word. See
   [the report](reports/exploratory-cheap-polarity.md).
 - [ ] A real lexical baseline, such as BM25 or word overlap. Hash alone reached 55% of contradictions

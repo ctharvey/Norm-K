@@ -49,7 +49,7 @@ Contradictions reachable after retrieval at k of 5, 10 and 20: 0.982, 0.990 and 
 
 - **Most of the margin is about negation words.** No simple baseline was in the rule. A
   [later exploratory check](exploratory-cheap-polarity.md) found `negated_cosine` beats a negation
-  flag, but about 80% of its margin comes from pairs where exactly one statement has a negation word.
+  flag, but 78% to 87% of its margin comes from pairs where exactly one statement has a negation word.
   The 62% of contradictions with no negation word gain +0.023 on OpenAI and +0.041 on mpnet.
 - **Word overlap does a lot here.** Hash found 0.550 with cosine and 0.577 with `negated_cosine`,
   above mpnet's cosine and OpenAI's cosine. On this data, embeddings' cosine ranking did no better than
