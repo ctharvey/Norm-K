@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from norm_k.embeddings import EmbeddingCache, HashingEncoder, OpenAIEncoder
 from norm_k.flip_v4 import edited_texts, score_set, select_fresh
-from norm_k.public_v2 import load_public, mnli_pairs
+from norm_k.public_v2 import eligible, load_public, mnli_pairs
 
 TRAIN = "multinli_1.0/multinli_1.0_train.jsonl"
 
@@ -45,7 +45,10 @@ def load_fresh(mnli, ids_tsv):
         wanted = [row["pair_id"] for row in csv.DictReader(stream, delimiter="\t")]
     pairs, _ = mnli_pairs(train_lines(mnli), "mnli_train")
     by_id = {pair.id: pair for pair in pairs}
-    return [by_id[pair_id] for pair_id in wanted]
+    fresh = [by_id[pair_id] for pair_id in wanted]
+    if not all(eligible(pair) for pair in fresh):
+        raise SystemExit("A stored pair ID resolved to an ineligible pair")
+    return fresh
 
 
 def vectors_for(encoder, texts, max_new):

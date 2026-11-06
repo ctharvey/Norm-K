@@ -31,7 +31,8 @@ Same formula, same pairs, same evaluation for every edit. Nothing is trained.
 **Primary, fresh:** 1,500 pairs from MultiNLI's train split, in the same pinned zip as v2,
 listed in [flip-v4-pair-ids.tsv](../data/benchmarks/flip-v4-pair-ids.tsv). They pass v2's
 eligibility rules, share no statement with v2's sets, and use each premise and each
-statement once, because train reuses premises. Pairs are ordered by a seeded hash of their
+statement once, because train reuses premises. IDs that occur more than once in train
+are excluded, because pairs are stored by ID. Pairs are ordered by a seeded hash of their
 ID. Selection uses no labels. Train has one label per pair, so labels are noisier than
 dev's, and it has five genres.
 

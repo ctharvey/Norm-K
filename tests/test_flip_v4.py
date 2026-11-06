@@ -40,6 +40,12 @@ class Selection(unittest.TestCase):
         picked = select_fresh(lines, {"The cow is big."})
         self.assertEqual(sorted(p.text_a for p in picked), ["The cat is here.", "The dog is here."])
 
+    def test_skips_repeated_pair_ids(self):
+        lines = [line("1", "The cat is here.", "The cat is big."),
+                 line("1", "The owl is here.", "The owl is big."),
+                 line("2", "The dog is here.", "The dog is big.")]
+        self.assertEqual([p.id for p in select_fresh(lines, set())], ["mnli-2"])
+
     def test_does_not_depend_on_labels(self):
         rows = [("1", "The cat is here.", "The cat is big."), ("2", "The dog is here.", "The dog is big."),
                 ("3", "The hen is here.", "The hen is big.")]

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+from collections import Counter
 from dataclasses import replace
 from typing import Callable, Iterable, Sequence
 
@@ -72,7 +73,9 @@ def _rank(pair_id: str) -> str:
 def select_fresh(lines: Iterable[str], seen: set[str], count: int = FRESH_PAIRS) -> list[Pair]:
     """Label-blind sample. One pair per premise, since train reuses each premise."""
     pairs, _ = mnli_pairs(lines, "mnli_train")
-    usable = [pair for pair in pairs if eligible(pair)
+    # Train repeats some pair IDs, and selected pairs are stored by ID.
+    uses = Counter(pair.id for pair in pairs)
+    usable = [pair for pair in pairs if uses[pair.id] == 1 and eligible(pair)
               and pair.text_a not in seen and pair.text_b not in seen]
     chosen: dict[str, Pair] = {}
     for pair in sorted(usable, key=lambda item: _rank(item.id)):
