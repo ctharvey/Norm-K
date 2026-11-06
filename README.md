@@ -80,6 +80,8 @@ This project is independent of [Menhir](https://github.com/Archolith/menhir) whi
 The first **two-week gate** covers phases 1–3. Proceed to learned models only if the simple baselines leave room and the mathematical signal survives held-out tests.
 
 ## Read the specs
+- [Source-verified 2026-11-06 prior-art audit and continue/pin decision](docs/literature/prior-art-flip-2026-11-06.md)
+
 
 - [Phased build and test plan](docs/research-plan.md)
 - [Mathematics, visualization experiments, and prior art](docs/research-notes.md)
