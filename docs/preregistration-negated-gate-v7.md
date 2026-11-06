@@ -1,6 +1,8 @@
-# Negated-cosine gate v7: draft protocol
+# Negated-cosine gate v7: frozen protocol
 
-**Status:** draft, not frozen. Owner's decision whether to run it. It doesn't depend on v6.
+**Status:** frozen. The commit that renamed this file from its draft is the freeze point. Changes
+after a real result must be reported as deviations. The owner approved running it. It doesn't depend
+on v6, which stopped at its bridge check.
 
 ## Question
 
@@ -97,4 +99,37 @@ Votes from models that don't count are dropped. A real item is invalid if at lea
 say so. The bar is 90 of 100; under it, stop and go to the owner. The any-dissent count is reported.
 The prompt is v4's negation prompt. If a model can't complete, stop. Don't swap models.
 
-Estimated OpenAI cost is under a cent per the 20,000 texts. NLI runs locally.
+Estimated OpenAI cost is under a cent for the 19,936 texts. NLI runs locally.
+
+## Completed before freezing
+
+**Edit audit: passed, 94 of 100.** All three models caught all 10 known-bad items, so all three
+count. 12 real items drew at least one dissent. Votes are in
+[gate-v7-edit-audit.tsv](../data/benchmarks/gate-v7-edit-audit.tsv). All 18 batches ended complete
+with no tool use.
+
+Two things went differently from a clean run. The driver crashed on HTTP timeouts with 18 sessions
+open, and the six sessions it lost had already answered, so those replies were collected. Four
+batches then came back incomplete, GLM's one short and Nemotron's three with prose or a stall, and
+each used one retry in a fresh session, as in v5, with no hand repair. First attempts weren't used.
+The retry wasn't written into this rule in advance, and the driver's wait was lengthened for it.
+
+**Hash dry run,** frozen in [gate-v7-hash-control.json](../data/benchmarks/gate-v7-hash-control.json):
+margin **+0.0276**, with found at 0.577 for `negated_cosine` and 0.550 for cosine. Hash reaches that
+much with no semantics, so word overlap alone does a lot on this data.
+
+**Seen before freezing:** the set's size and contradiction count (906 of 5,000), the hash scores, and
+NLI's scores on the 2,825 pairs hash passed on. No real-encoder score on any v7 pair.
+
+## Run
+
+Once per encoder, each refusing to replace its result. NLI scores for both encoders go in one file,
+since a pair's score doesn't depend on which encoder retrieved it.
+
+~~~bash
+python scripts/v7_negated_gate.py candidates train.jsonl data/benchmarks/gate-v7-pair-ids.tsv openai openai-pairs.tsv --max-new 21000
+python scripts/v7_negated_gate.py candidates train.jsonl data/benchmarks/gate-v7-pair-ids.tsv mpnet.npz mpnet-pairs.tsv
+python scripts/v7_nli_scores.py all-pairs.tsv all-nli.tsv
+python scripts/v7_negated_gate.py run train.jsonl data/benchmarks/gate-v7-pair-ids.tsv openai all-nli.tsv openai.json data/benchmarks/gate-v7-hash-control.json --max-new 21000
+python scripts/v7_negated_gate.py run train.jsonl data/benchmarks/gate-v7-pair-ids.tsv mpnet.npz all-nli.tsv mpnet.json data/benchmarks/gate-v7-hash-control.json
+~~~

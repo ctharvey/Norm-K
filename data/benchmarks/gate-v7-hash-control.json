@@ -1,0 +1,18 @@
+{
+  "pairs": 5000,
+  "contradictions": 906,
+  "candidates": 24990,
+  "passed_to_nli": 2499,
+  "found": {
+    "cosine": 0.5496688741721855,
+    "negated_cosine": 0.5772626931567328
+  },
+  "margin": {
+    "margin": 0.02759381898454746,
+    "ci_lower": 0.012141280353200883,
+    "ci_upper": 0.04304635761589404
+  },
+  "verdict": "GATE-FAIL",
+  "api_tokens_used": null,
+  "hash_margin": null
+}

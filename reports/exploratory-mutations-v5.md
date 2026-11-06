@@ -91,7 +91,7 @@ statement's five nearest partners by cosine removes the planted cut:
 and 20%, apart from ties at or near full recall on WANLI. Flip wins only at the tightest budget on fresh pairs. This design also leaves room: at
 the setting above, cosine reaches at most 0.540, against ceilings of 0.822 to 1.000. These sets are
 easy, since the true partner is nearly always a top neighbor, so a fresh test should use a larger
-set. [The draft](../docs/preregistration-negated-gate-v7-draft.md) does.
+set. [The draft](../docs/preregistration-negated-gate-v7.md) does.
 
 ## Interval width at NaN-NLI's size
 

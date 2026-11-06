@@ -1,0 +1,111 @@
+id	kind	original	edited	deepseek	glm	nemotron	result
+s62152d84	real	It was not a difficult decision.	It was a difficult decision.	valid	valid	valid	valid
+s6f2f16db	real	The election is only the beginning of the process.	The election is not only the beginning of the process.	invalid	valid	valid	valid
+s8cf94365	real	The group was a gender-balanced group.	The group was not a gender-balanced group.	valid	valid	valid	valid
+sc645f00f	real	The behavior of the residents is motivated by the feeling of having power over the patients.	The behavior of the residents is not motivated by the feeling of having power over the patients.	valid	valid	valid	valid
+s4db147ed	real	The plant is the only plant in the world that produces orange juice.	The plant is not the only plant in the world that produces orange juice.	valid	valid	valid	valid
+sae3a5469	real	The oldest surviving flag in the world is the flag of the Republic of San Marino.	The oldest surviving flag in the world is not the flag of the Republic of San Marino.	valid	valid	valid	valid
+see09ee14	real	This is a present.	This is not a present.	valid	valid	valid	valid
+s487313e7	real	One of the best things about the UK is the availability of English-speaking guides.	One of the best things about the UK is not the availability of English-speaking guides.	valid	valid	valid	valid
+scef11f95	real	"The ""Trading Places"" remake is the best of the three, with Eddie Murphy's best performance in years."	"The ""Trading Places"" remake is not the best of the three, with Eddie Murphy's best performance in years."	valid	valid	valid	valid
+s86fe19ed	real	The public health system is not strong enough to handle an epidemic.	The public health system is strong enough to handle an epidemic.	valid	valid	valid	valid
+sa37a8c08	real	The boy was not acting strange, but his mother thought he was.	The boy was acting strange, but his mother thought he was.	valid	invalid	valid	valid
+s42fe4812	real	The main challenge in the new millennium is the development of new strategies for protecting the world's biodiversity.	The main challenge in the new millennium is not the development of new strategies for protecting the world's biodiversity.	valid	valid	valid	valid
+sc82e7147	real	He was a tall, handsome man, with a ready smile.	He was not a tall, handsome man, with a ready smile.	valid	valid	valid	valid
+se3479df4	real	The update to the model is based on the analysis of more than 20 years of data.	The update to the model is not based on the analysis of more than 20 years of data.	valid	valid	valid	valid
+scd97a9a8	real	It was a matter of money, not principle.	It was not a matter of money, not principle.	invalid	invalid	valid	invalid
+s651c942c	real	On the far side of the bay is the Hala Sultan Tekke, a Turkish-built mosque.	On the far side of the bay is not the Hala Sultan Tekke, a Turkish-built mosque.	valid	valid	invalid	valid
+s0b055637	real	The memorial was placed on the wall of the entrance to the cathedral.	The memorial was not placed on the wall of the entrance to the cathedral.	valid	valid	valid	valid
+sd11a1474	real	He is not a democrat.	He is a democrat.	valid	valid	valid	valid
+sdd6fa15a	real	The average height of the country is 180 cm.	The average height of the country is not 180 cm.	valid	valid	valid	valid
+s374207de	real	One of the most important functions of education is to help students to think for themselves.	One of the most important functions of education is not to help students to think for themselves.	valid	valid	valid	valid
+se0ee18b0	real	This case study is based on a single experience of a non-resident of the country who had not been a member of the national society.	This case study is not based on a single experience of a non-resident of the country who had not been a member of the national society.	valid	valid	valid	valid
+sac479474	real	The high-profile event is a hot ticket.	The high-profile event is not a hot ticket.	valid	valid	valid	valid
+s1a35e4b7	real	Angkor was not the first empire in the world.	Angkor was the first empire in the world.	valid	valid	valid	valid
+s6995256a	real	The most famous of these is the golden-domed Sainte-Chapelle in Paris, which was built in the 13th century and is now a museum.	The most famous of these is not the golden-domed Sainte-Chapelle in Paris, which was built in the 13th century and is now a museum.	valid	valid	valid	valid
+s3b4516e6	real	The new Museum of Contemporary Art in Dublin is an impressive building in the heart of the city.	The new Museum of Contemporary Art in Dublin is not an impressive building in the heart of the city.	valid	valid	valid	valid
+sfab594cd	real	The DOD is responsible for managing the Nation's nuclear weapons.	The DOD is not responsible for managing the Nation's nuclear weapons.	valid	valid	valid	valid
+s88a9d4d5	real	"The name ""Izdubar"" is the original Babylonian name for the planet Venus."	"The name ""Izdubar"" is not the original Babylonian name for the planet Venus."	valid	valid	valid	valid
+sdd09dc2a	real	The blue plaque was erected in honor of the painter in 1956.	The blue plaque was not erected in honor of the painter in 1956.	valid	valid	valid	valid
+sac3112ab	real	It is a very common way to pay for things.	It is not a very common way to pay for things.	valid	valid	valid	valid
+s4c349c58	real	The festival was created in the early 1980s to promote tourism in the city.	The festival was not created in the early 1980s to promote tourism in the city.	valid	valid	valid	valid
+s098196e4	real	She was sure of herself.	She was not sure of herself.	valid	valid	valid	valid
+sde7199fe	real	The federal government is not a Ponzi scheme.	The federal government is a Ponzi scheme.	valid	valid	valid	valid
+s7928e509	real	It was a large area of land.	It was not a large area of land.	valid	valid	valid	valid
+sa7c6a47b	real	The health care system is inequitable and inefficient.	The health care system is not inequitable and inefficient.	valid	valid	valid	valid
+sb99e56ba	real	The group's greatest weakness is its lack of commitment to the protection of the environment.	The group's greatest weakness is not its lack of commitment to the protection of the environment.	valid	valid	valid	valid
+sbf96699a	real	The key to the history of Ireland is the re-emergence of its Celtic past.	The key to the history of Ireland is not the re-emergence of its Celtic past.	valid	valid	valid	valid
+sd11ca0da	real	The Constitution was not ratified until 1787.	The Constitution was ratified until 1787.	invalid	invalid	valid	invalid
+s5c308c84	real	'This is the best' was the general consensus.	'This is not the best' was the general consensus.	invalid	valid	invalid	invalid
+sf45cd3b3	real	He was the most famous politician in the city, and was frequently quoted in the press.	He was not the most famous politician in the city, and was frequently quoted in the press.	valid	valid	valid	valid
+sd2f21d9c	real	A good egg is not necessarily honest.	A good egg is necessarily honest.	valid	valid	valid	valid
+sa96f8dab	real	It is important to make the process of instruction more interesting.	It is not important to make the process of instruction more interesting.	valid	valid	valid	valid
+sa197e15d	real	This is a large area of land.	This is not a large area of land.	valid	valid	valid	valid
+s881deb3b	real	The International Space Station is the largest human-made structure in space.	The International Space Station is not the largest human-made structure in space.	valid	valid	valid	valid
+s7271d6da	real	This is the best place to see the statue of San Gervasio, patron saint of the city.	This is not the best place to see the statue of San Gervasio, patron saint of the city.	valid	valid	valid	valid
+sf6118692	real	The second-highest cause of premature death in the United States is cancer.	The second-highest cause of premature death in the United States is not cancer.	valid	valid	valid	valid
+sc4b458a3	real	The water is dangerous.	The water is not dangerous.	valid	valid	valid	valid
+s4c4c391e	real	The story is about two women.	The story is not about two women.	valid	valid	valid	valid
+s55cafef7	real	The incident was one of the most shocking in the country's recent history.	The incident was not one of the most shocking in the country's recent history.	valid	valid	valid	valid
+s15ae7e31	real	"""Gone with the Wind"" was written by Margaret Mitchell."	"""Gone with the Wind"" was not written by Margaret Mitchell."	valid	valid	valid	valid
+sad61c38b	real	The second stage of the experiment was not more successful than the first.	The second stage of the experiment was more successful than the first.	valid	valid	valid	valid
+s8c3425b2	real	The Englishman was a romantic.	The Englishman was not a romantic.	valid	valid	valid	valid
+s68ff424b	real	This is a popular topic for discussion.	This is not a popular topic for discussion.	valid	valid	valid	valid
+s072b61f7	real	Business research is not often used in medical research.	Business research is often used in medical research.	valid	valid	valid	valid
+s929ff797	real	This is because the role of the chief executive officer is critical to the success of the organization.	This is not because the role of the chief executive officer is critical to the success of the organization.	valid	valid	valid	valid
+sea93d637	real	College education is valuable.	College education is not valuable.	valid	valid	valid	valid
+s166b2cd3	real	The committee was established to develop recommendations for an information technology management reform act.	The committee was not established to develop recommendations for an information technology management reform act.	valid	valid	valid	valid
+se845e6e4	real	The community is friendly.	The community is not friendly.	valid	valid	valid	valid
+s3e95055e	real	This trend is consistent with the idea that the main effect of an event is the change in the belief that it will happen.	This trend is not consistent with the idea that the main effect of an event is the change in the belief that it will happen.	valid	valid	valid	valid
+s8f0586d5	real	This is the third edition of the book, and the fourth edition of the paper.	This is not the third edition of the book, and the fourth edition of the paper.	invalid	invalid	valid	invalid
+s8bfff1b8	real	The city is located on a hill.	The city is not located on a hill.	valid	valid	valid	valid
+sde6f726d	real	"The ""Tropic of Cancer"" is a large area of land in the Caribbean Sea."	"The ""Tropic of Cancer"" is not a large area of land in the Caribbean Sea."	valid	valid	valid	valid
+s5e237545	real	The area was still underpopulated when the first white settlers arrived.	The area was not still underpopulated when the first white settlers arrived.	invalid	valid	valid	valid
+s4958ae71	real	Power is concentrated in the hands of a few people.	Power is not concentrated in the hands of a few people.	valid	valid	valid	valid
+sa2347136	real	She was determined to keep the shop open and her employees employed.	She was not determined to keep the shop open and her employees employed.	valid	valid	valid	valid
+s101887c2	real	The prime minister's wife is very beautiful and young.	The prime minister's wife is not very beautiful and young.	valid	valid	valid	valid
+s987e3d2d	real	The quality of our thinking is determined by the way we use our language.	The quality of our thinking is not determined by the way we use our language.	valid	valid	valid	valid
+s0fbe5f8b	real	He was not your father.	He was your father.	valid	valid	valid	valid
+sfb2b2beb	real	The government is trying to avoid that kind of misunderstanding.	The government is not trying to avoid that kind of misunderstanding.	valid	valid	valid	valid
+sd7869b8d	real	He is not a member of the FDA.	He is a member of the FDA.	valid	valid	valid	valid
+s7b8a2507	real	The European Community is not similar to the structure of the United States.	The European Community is similar to the structure of the United States.	valid	valid	valid	valid
+s4c3f2e82	real	You can see why I was hesitant to go there.	You can see why I was not hesitant to go there.	valid	valid	invalid	valid
+s82224afb	real	It is not difficult to learn to swim.	It is difficult to learn to swim.	valid	valid	valid	valid
+s942c19a8	real	McPherson is not a tool of the anti-abortion movement.	McPherson is a tool of the anti-abortion movement.	valid	valid	valid	valid
+sb67085d3	real	The most famous of these buildings is the Leaning Tower of Pisa.	The most famous of these buildings is not the Leaning Tower of Pisa.	valid	valid	valid	valid
+sac32b73b	real	She was a great lover of books.	She was not a great lover of books.	valid	valid	valid	valid
+s7d74af9b	real	It is a dangerous place to be, with a population of about 20,000, and a major port on the Mediterranean.	It is not a dangerous place to be, with a population of about 20,000, and a major port on the Mediterranean.	valid	valid	valid	valid
+s8840c0f1	real	"The Italian island of Capri is famous for its scenic beauty, and its famous ""blue grotto""."	"The Italian island of Capri is not famous for its scenic beauty, and its famous ""blue grotto""."	valid	valid	valid	valid
+sb0ba9878	real	He was dressed in a black and white checked suit, and his hair was cropped short.	He was not dressed in a black and white checked suit, and his hair was cropped short.	valid	valid	valid	valid
+sab7ea102	real	Housing is a government-sponsored program.	Housing is not a government-sponsored program.	valid	valid	valid	valid
+sfe58d5e4	real	The federal system is rarely seen, it is so formal.	The federal system is not rarely seen, it is so formal.	invalid	valid	valid	valid
+s759264e1	real	The most interesting of the seven is the queen's garden, which is full of flowers and shrubs.	The most interesting of the seven is not the queen's garden, which is full of flowers and shrubs.	valid	valid	valid	valid
+s78c47622	real	The front of the ship was as long as the whole building.	The front of the ship was not as long as the whole building.	valid	valid	valid	valid
+s04ee8517	real	I was reading the morning paper when I noticed a small ad for a conference on the breakfast cereal.	I was not reading the morning paper when I noticed a small ad for a conference on the breakfast cereal.	valid	valid	valid	valid
+s8d23073b	real	The hypothesis is not supported.	The hypothesis is supported.	valid	valid	valid	valid
+s3bc2c643	real	Health care delivery is becoming more flexible.	Health care delivery is not becoming more flexible.	valid	valid	valid	valid
+s43caa258	real	The room is very spacious.	The room is not very spacious.	valid	valid	valid	valid
+sb9b3ffc1	real	It is often the case that the only thing more expensive than buying a house is renting it.	It is not often the case that the only thing more expensive than buying a house is renting it.	valid	valid	valid	valid
+s2aec2c54	real	A significant part of the town's population is composed of students.	A significant part of the town's population is not composed of students.	valid	valid	valid	valid
+scb6ccdd1	real	No one was injured in the accident, but a section of the sidewalk was destroyed.	No one was not injured in the accident, but a section of the sidewalk was destroyed.	invalid	invalid	invalid	invalid
+s9c473e34	real	A temple to a god of war is a Buddhist temple.	A temple to a god of war is not a Buddhist temple.	valid	valid	valid	valid
+s2982df3f	real	The New Deal was a solution to a problem, but the problem was never really there.	The New Deal was not a solution to a problem, but the problem was never really there.	valid	valid	valid	valid
+se4173c3d	real	A professional business plan is a written document that provides a clear and concise description of the company's mission, goals, and objectives.	A professional business plan is not a written document that provides a clear and concise description of the company's mission, goals, and objectives.	valid	valid	valid	valid
+s5881c317	real	The summer of '96 was hotter than the summer of '93.	The summer of '96 was not hotter than the summer of '93.	valid	valid	valid	valid
+s5514a15b	real	She was more like a dragonfly than a butterfly.	She was not more like a dragonfly than a butterfly.	valid	valid	valid	valid
+s30f34f01	real	This is a very important matter.	This is not a very important matter.	valid	valid	valid	valid
+sbd455967	real	The sky is limitless.	The sky is not limitless.	valid	valid	valid	valid
+s91cc16b2	real	I could not understand why the fat man was glaring at me.	I could not understand why the fat man was not glaring at me.	invalid	invalid	invalid	invalid
+sc1566efa	real	The passage is ambiguous.	The passage is not ambiguous.	valid	valid	valid	valid
+s25080c3f	real	"The melody of the ""Moonlight Sonata"" is nostalgic."	"The melody of the ""Moonlight Sonata"" is not nostalgic."	valid	valid	valid	valid
+sdc234cdd	real	The world is full of death.	The world is not full of death.	valid	valid	valid	valid
+sa3a9ac2c	bad_unchanged	Actually the story was close enough to the truth.	Actually the story was close enough to the truth.	invalid	invalid	invalid	invalid
+s45306839	bad_unchanged	The topsoil is neatly set aside, the clay beneath is dug out for brick-making, and the fertile black earth is then replaced.	The topsoil is neatly set aside, the clay beneath is dug out for brick-making, and the fertile black earth is then replaced.	invalid	invalid	invalid	invalid
+s9a2a9bf6	bad_unchanged	it was just unbelievably hot and	it was just unbelievably hot and	invalid	invalid	invalid	invalid
+s378af9ea	bad_unchanged	Your candidate is worthy of you.	Your candidate is worthy of you.	invalid	invalid	invalid	invalid
+s84914b90	bad_unchanged	The easiest way to get to Macau is by jetfoil, operated by TurboJet (Tel.2859-3333).	The easiest way to get to Macau is by jetfoil, operated by TurboJet (Tel.2859-3333).	invalid	invalid	invalid	invalid
+sa8936d5c	bad_grammar	Having the right governance structure is of little importance.	Having the right governance structure not is of little importance.	invalid	invalid	invalid	invalid
+s9db65f8b	bad_grammar	The emperor's name was ridiculously long.	The emperor's name not was ridiculously long.	invalid	invalid	invalid	invalid
+s143044e7	bad_grammar	It was a small mote of happiness for Jon, who had suffered greatly over the last decade.	It not was a small mote of happiness for Jon, who had suffered greatly over the last decade.	invalid	invalid	invalid	invalid
+s84ff11cc	bad_grammar	I was nice talking with you, time for you to leave.	I not was nice talking with you, time for you to leave.	invalid	invalid	invalid	invalid
+s7eca6d47	bad_grammar	i know Arkansas was good i can't believe	i know Arkansas not was good i can't believe	invalid	invalid	invalid	invalid
