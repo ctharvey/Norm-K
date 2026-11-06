@@ -1,0 +1,54 @@
+{
+  "fresh_mnli_train": {
+    "pairs": 1500,
+    "positives": 483,
+    "floor": 0.322,
+    "negation_ap": 0.5705955860605564,
+    "control_ap": 0.3427342014763652,
+    "measure": {
+      "delta": 0.2278613845841912,
+      "interval": {
+        "ci_lower": 0.1953034137433529,
+        "ci_upper": 0.2606899901074475
+      },
+      "null_p97_5": 0.03215047092486018,
+      "hash_delta": null,
+      "verdict": "CARRIES"
+    },
+    "quality": {
+      "statements": 2997,
+      "negation_mean": 0.15343707346811897,
+      "control_mean": 0.07541393513658863,
+      "mean_gap": -0.07802313833153035,
+      "median_abs_gap": 0.07912137121304086
+    },
+    "size_gate": false
+  },
+  "v2_wanli": {
+    "pairs": 725,
+    "positives": 139,
+    "floor": 0.1917241379310345,
+    "negation_ap": 0.3008872840407787,
+    "control_ap": 0.1870106639943751,
+    "measure": {
+      "delta": 0.11387662004640359,
+      "interval": {
+        "ci_lower": 0.07300104871753102,
+        "ci_upper": 0.1675538695916513
+      },
+      "null_p97_5": 0.0367563742602264,
+      "hash_delta": null,
+      "verdict": "CARRIES"
+    },
+    "quality": {
+      "statements": 1450,
+      "negation_mean": 0.16743190380984088,
+      "control_mean": 0.07715690321670883,
+      "mean_gap": -0.09027500059313204,
+      "median_abs_gap": 0.09405334653432079
+    },
+    "size_gate": false
+  },
+  "api_tokens_used": 178063,
+  "passes": false
+}

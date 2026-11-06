@@ -1,6 +1,23 @@
 # Flip score on NaN-NLI v6: draft protocol
 
-**Status:** draft, not frozen. No NaN-NLI statement has reached an encoder or an NLI model.
+**Status:** stopped at the bridge, not frozen. No NaN-NLI statement has reached an encoder or an NLI model.
+
+## Bridge result: failed
+
+The bridge's rule needed the delta, the lower bound and the size gate. The delta passed and the size
+gate didn't, so the rule below sends this back to the owner. The hash control and audit weren't run.
+
+| Seen data | Negation AP | Control AP | Delta | 95% interval | Negation moved | Control moved | Size gate |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| **Fresh, `text-embedding-3-small`** | 0.571 | 0.343 | **+0.228** | +0.195 to +0.261 | 0.153 | 0.075 | **Fail** |
+| Fresh, `all-mpnet-base-v2` | 0.720 | 0.467 | +0.253 | +0.214 to +0.288 | 0.210 | 0.059 | Fail |
+| WANLI, `text-embedding-3-small` | 0.301 | 0.187 | +0.114 | +0.073 to +0.168 | 0.167 | 0.077 | Fail |
+| WANLI, `all-mpnet-base-v2` | 0.328 | 0.208 | +0.120 | +0.061 to +0.189 | 0.216 | 0.059 | Fail |
+
+The wrapper does carry signal, but a one-word control doesn't hold edit size equal, which is the
+confound v5 removed. These deltas can't be read as negation beating a size-matched edit.
+Raw results: [OpenAI](../reports/nan-nli-v6-bridge-openai.json),
+[mpnet](../reports/nan-nli-v6-bridge-mpnet.json). 178,063 OpenAI tokens, under a cent.
 
 ## Question
 

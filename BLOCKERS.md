@@ -50,8 +50,9 @@ production Menhir data or code has been touched.
 ## Next research, in order
 
 1. One out-of-domain test on NaN-NLI, as v5's frozen plan sets out.
-   [The v6 draft](docs/preregistration-nan-nli-v6-draft.md) is ready for review. v5's edit fits
-   only 32 of 258 pairs, so it uses a new wrapper edit, which must pass a bridge check first.
+   [The v6 draft](docs/preregistration-nan-nli-v6-draft.md) stopped at its bridge check, before any
+   NaN-NLI statement was embedded. v5's edit fits only 32 of 258 pairs, and the wrapper edit moved
+   statements 2 to 3.5 times further than its control, failing the size gate. Owner's call.
 2. Owner's call: [the v7 gate draft](docs/preregistration-negated-gate-v7-draft.md). It tests
    `negated_cosine` inside cosine's top 5 neighbors and measures what NLI then finds. It replaces
    the cosine-then-flip idea, which [didn't hold up](reports/exploratory-mutations-v5.md).
