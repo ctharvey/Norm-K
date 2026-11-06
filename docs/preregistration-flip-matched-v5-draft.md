@@ -131,10 +131,11 @@ bar is 90 of 100, and the any-dissent count is reported. Under 90, stop and take
 owner. The prompt counts added framing as valid if the main claim is unchanged.
 
 **Route change, committed before any reviewer sees a statement.** OpenCode's free route hit
-its usage limit before any reviewer returned output, so the audit runs through the OpenCode
-harness on the same three model names hosted by NVIDIA: `z-ai/glm-5.3-flash`,
-`deepseek-ai/deepseek-v4.1-flash` and `nvidia/nemotron-3.5-super-vl-120b-a12b`. The vote rule,
-bar, statements and batches don't change. This differs from v4's route:
+its usage limit before any reviewer returned output, and the same models on NVIDIA returned
+403, so the audit runs through the OpenCode harness on OpenRouter: `z-ai/glm-5.3-flash`,
+`deepseek/deepseek-v4.1-flash` and `nvidia/nemotron-3.5-super-vl:free`. The first two are paid,
+under a $0.25 cap. The vote rule, bar, statements and batches don't change. This differs from
+v4's route:
 
 - A different host, so the weights or settings may not be identical to the free route's.
 - Sessions use `noMcp` with auto-approve off, in an empty folder. Batches go in as direct
