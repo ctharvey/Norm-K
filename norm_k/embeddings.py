@@ -66,6 +66,7 @@ class OpenAIEncoder:
         self.name = model
         self.dimensions = dimensions
         self._api_key = os.environ.get("OPENAI_API_KEY")
+        self.tokens_used = 0  # As reported by the API, for measured cost.
 
     def encode(self, texts: Sequence[str]) -> list[NDArray[np.float64]]:
         if not texts:
@@ -83,6 +84,7 @@ class OpenAIEncoder:
             try:
                 with urllib.request.urlopen(request, timeout=35) as response:
                     payload = json.load(response)
+                self.tokens_used += int(payload.get("usage", {}).get("total_tokens", 0))
                 indexed = sorted(payload["data"], key=lambda record: record["index"])
                 if len(indexed) != len(texts):
                     raise RuntimeError("API returned a different number of embeddings")

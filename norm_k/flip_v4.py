@@ -66,11 +66,12 @@ def flip_score(pair: Pair, edit: Edit, vectors: dict[str, np.ndarray]) -> float:
     return (toward_a + toward_b) / 2 - cosine(a, b)
 
 
-def _rank(pair_id: str) -> str:
-    return hashlib.sha256(f"{SELECTION_SEED}:{pair_id}".encode("utf-8")).hexdigest()
+def _rank(pair_id: str, seed: str = SELECTION_SEED) -> str:
+    return hashlib.sha256(f"{seed}:{pair_id}".encode("utf-8")).hexdigest()
 
 
-def select_fresh(lines: Iterable[str], seen: set[str], count: int = FRESH_PAIRS) -> list[Pair]:
+def select_fresh(lines: Iterable[str], seen: set[str], count: int = FRESH_PAIRS,
+                 seed: str = SELECTION_SEED) -> list[Pair]:
     """Label-blind sample. One pair per premise, since train reuses each premise."""
     pairs, _ = mnli_pairs(lines, "mnli_train")
     # Train repeats some pair IDs, and selected pairs are stored by ID.
@@ -78,10 +79,10 @@ def select_fresh(lines: Iterable[str], seen: set[str], count: int = FRESH_PAIRS)
     usable = [pair for pair in pairs if uses[pair.id] == 1 and eligible(pair)
               and pair.text_a not in seen and pair.text_b not in seen]
     chosen: dict[str, Pair] = {}
-    for pair in sorted(usable, key=lambda item: _rank(item.id)):
+    for pair in sorted(usable, key=lambda item: _rank(item.id, seed)):
         chosen.setdefault(pair.text_a, pair)
     picked, statements = [], set()
-    for pair in sorted(chosen.values(), key=lambda item: _rank(item.id)):
+    for pair in sorted(chosen.values(), key=lambda item: _rank(item.id, seed)):
         if pair.text_b not in statements and pair.text_a not in statements:
             statements.update((pair.text_a, pair.text_b))
             picked.append(pair)
