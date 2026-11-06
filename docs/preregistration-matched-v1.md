@@ -101,7 +101,11 @@ Everything here used the non-semantic hash encoder or no embeddings at all.
 ## Run
 
 ~~~bash
-python -m norm_k.cli k-fair --encoder openai --max-new 600 --output outputs/k-fair-real
+python -m norm_k.cli k-fair --encoder openai --max-new 800 --output outputs/k-fair-real
 ~~~
 
-Run it once. The cap is a safety limit; the set needs fewer new embeddings.
+Run it once. The cap is a safety limit; the set needs 771 new embeddings.
+
+**Correction before any result:** this file first said `--max-new 600`. The
+cap stopped that attempt before any API call, because 771 embeddings are needed
+across both transformations. Only the cap changed.
