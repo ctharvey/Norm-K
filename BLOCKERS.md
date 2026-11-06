@@ -106,8 +106,10 @@ Unticked items haven't been run. All would be exploratory unless a frozen rule s
   embedding models, and direct use of its key needs the owner's approval.
 
 **Tooling**
-- [x] GPU parity: every local-model rerun kept its verdicts, so new local work can use the GPU. Pin the
-  device, batch size and versions in each protocol. See [the v7 report](reports/negated-gate-v7.md).
+- [x] GPU parity: every local-model rerun kept its verdicts. Force 32-bit on local NLI, since the model
+  loads as 16-bit by default. CPU and GPU then match to about 0.00001, so a GPU is optional. CPU runs
+  66 pairs a second. See [the v7 report](reports/negated-gate-v7.md).
+- [ ] Which precision v2's original NLI scores used.
 
 **Parked** by the prior-art audit: `asinh` compression, per-token and chunk-level flip, and learned
 projections. **Parked** by [the mutation run](reports/exploratory-mutations-v5.md): normalized flip

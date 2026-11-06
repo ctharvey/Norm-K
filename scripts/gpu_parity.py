@@ -3,7 +3,7 @@
 vectors:  gpu_parity.py vectors CPU_NPZ OUT_NPZ
 nli:      gpu_parity.py nli PAIRS_TSV OUT_TSV [--batch N] [--max-length N] [--keep-order]
 diagnose: gpu_parity.py diagnose CPU_NLI_TSV
-PAIRS_TSV has columns a and b. Models and revisions match the CPU runs. Full precision throughout.
+PAIRS_TSV has columns a and b. Models and revisions match the CPU runs. NLI loads as 16-bit here. See nli_precision_check.py.
 """
 import csv
 import random

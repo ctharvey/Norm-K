@@ -60,8 +60,10 @@ Contradictions reachable after retrieval at k of 5, 10 and 20: 0.982, 0.990 and 
   mostly pairs about different things, such as two unrelated newspapers, so this looks more like
   false alarms than missed labels. It also flagged 20.7% of labeled neutral pairs. A person hasn't
   reviewed any of these.
-- **The gate may not be needed.** The GPU check below read all 36,294 pairs in 15 seconds. At this
-  scale there's little left to save, and a gate pays only with far more pairs or no free GPU.
+- **What the gate saves depends on hardware.** At 32-bit, NLI on this desktop's CPU would take about
+  6 minutes for all 24,990 candidates, and about 40 seconds for the 10% a gate passes. A GPU reads
+  all of them in under 20 seconds, so the gate matters mainly to anyone without one, or at larger
+  scale. These are estimates from measured speed, and a laptop would be slower.
 - Only `is` and `was` statements can be edited, and WANLI was built from MultiNLI seeds.
 
 ## Audit and process
@@ -80,7 +82,7 @@ it doesn't depend on v6. That was a judgment call and it was disclosed after the
 The owner asked for past local-model work to be rerun on GPU so runs can move there. Frozen results
 stay the record. These are parity checks only. Scripts: [gpu_parity.py](../scripts/gpu_parity.py),
 [gpu_parity_compare.py](../scripts/gpu_parity_compare.py). Runs used an RTX 4070 Ti, PyTorch 2.14.1
-with CUDA 13.0 and full precision, against CPU PyTorch 2.15.0.
+with CUDA 13.0, against CPU PyTorch 2.15.0.
 
 | Rerun | Numbers compared | Largest gap | Verdicts changed |
 | --- | ---: | ---: | ---: |
@@ -99,17 +101,45 @@ with CUDA 13.0 and full precision, against CPU PyTorch 2.15.0.
 v2's AP-based verdicts weren't recomputed, so its row compares scores only.
 
 mpnet's GPU vectors sit within about 2e-7 cosine distance of the CPU ones, at about 3,000 texts a
-second. NLI ran at 700 to 2,400 pairs a second against about 7 on CPU.
+second. The NLI rows above compare 16-bit runs, as explained next.
 
-**The gap isn't specific to the GPU.** On the 150 worst pairs of a 4,000-pair sample, padding alone on
-CPU moved scores by up to 0.0084, the same size as CPU against GPU with no padding at 0.0079. Small
-floating-point differences of that size appear whenever batches change. A pre-set 0.001 tolerance
-stopped GPU scores from being used in v7's canonical run, and that tolerance was tighter than the
-CPU's own repeatability. Canonical v7 ran on CPU only.
+### Correction: NLI ran at 16-bit
 
-**Recommendation: use GPU for new local-model work.** Pin the device, batch size and library versions
-in each frozen protocol, don't mix devices within a run, and treat NLI scores as repeatable to about
-0.02, not exactly. OpenAI runs don't use it.
+An earlier version of this report said these runs used full precision, and blamed the score gaps on
+padding and batching. Both were wrong. The pinned NLI model's weights are stored as 16-bit, and
+transformers 5 keeps that by default, so canonical v7 and the NLI parity runs ran at 16-bit. The
+protocol doesn't state a precision. The saved scores show the 16-bit rounding. Which precision v2's
+original scores used hasn't been checked.
+
+v7 was then rescored with all 36,636 pairs at 32-bit, as a check. The frozen result stands.
+Raw results: [OpenAI](negated-gate-v7-32bit-openai.json), [mpnet](negated-gate-v7-32bit-mpnet.json).
+
+| Comparison | Pairs | Largest gap | Mean gap | Crossed 0.5 |
+| --- | ---: | ---: | ---: | ---: |
+| 32-bit CPU against 32-bit GPU | 1,000 | 0.000011 | 0.0000002 | 0 |
+| Frozen 16-bit CPU against 32-bit GPU | 36,636 | 0.0111 | 0.00014 | 3 |
+| 16-bit CPU against 16-bit GPU | 36,294 | 0.0181 | 0.00016 | 6 |
+
+Every verdict, found rate, margin, ceiling and unlabeled count for OpenAI, mpnet and hash was
+identical at 32-bit. The 3 pairs that crossed 0.5 didn't touch any of them.
+
+**So the gaps came from 16-bit, not the GPU.** At 32-bit, CPU and GPU agree to about 0.00001, even with
+different batch sizes. The 0.001 tolerance that stopped GPU scores from entering v7's canonical run
+was reasonable, and it caught a real precision effect. The padding measurement earlier in this work
+was taken at 16-bit and doesn't describe 32-bit runs.
+
+| NLI speed | Pairs a second |
+| --- | ---: |
+| CPU, 16-bit | about 7 |
+| **CPU, 32-bit (12 threads, 1,000-pair sample)** | **66** |
+| GPU, 16-bit | 700 to 2,400 |
+| GPU, 32-bit | 1,080 to 1,450 |
+
+The first row was slow because of 16-bit on CPU, so it was an unfair baseline for the GPU comparison.
+
+**Recommendation: force 32-bit on every local NLI run.** CPU and GPU can then be swapped without
+changing results, so the GPU is an optional speed-up and nobody needs one. Still state the device and
+library versions in each frozen protocol. OpenAI runs don't use any of this.
 
 ## Cost
 
