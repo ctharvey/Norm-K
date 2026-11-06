@@ -140,9 +140,13 @@ v4's route:
 - A different host, so the weights or settings may not be identical to the free route's.
 - Sessions use `noMcp` with auto-approve off, in an empty folder. Batches go in as direct
   input, since the harness's task delivery needs a file read.
-- The harness adds its coding-agent system prompt, and parent workspace instruction files may
-  load, so reviewers aren't as isolated as under `--pure`. Extra text around the JSON lines is
-  ignored, and only lines matching a known ID and label count.
+- The coding-agent prompt explored the workspace when tested, so sessions use
+  [a reviewer agent](../data/benchmarks/flip-v5-reviewer-agent.md) with all tools off. A canary
+  confirmed it had no read tool.
+- The workspace `AGENTS.md` still loads into context, as general instructions with no labels
+  or test data, so reviewers aren't as isolated as under `--pure`. Extra text and reasoning
+  around the JSON lines are ignored. Only objects with a known ID and label count, and the last
+  one per ID is the vote.
 - A fresh session runs each batch, so no run sees another's answers.
 
 If a model can't complete on this route, stop and take it to the owner. Don't swap models.
