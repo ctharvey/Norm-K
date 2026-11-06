@@ -28,13 +28,13 @@ def _different(rng: random.Random, items: tuple[str, ...], previous: str) -> str
     return rng.choice([v for v in items if v != previous])
 
 
-def _make(label: str, index: int, rng: random.Random) -> Pair:
+def _make(label: str, index: int, rng: random.Random, seed: int = 42) -> Pair:
     name = rng.choice(NAMES)
     # Keep secondary subjects inside the same subject split. Otherwise a
     # 'subject-held-out' test name may appear in a train pair as the second
     # person, leaking identity even if pair.subject itself is disjoint.
     same_group = tuple(candidate for candidate in NAMES
-                       if candidate != name and split_subject(candidate) == split_subject(name))
+                       if candidate != name and split_subject(candidate, seed) == split_subject(name, seed))
     other = rng.choice(same_group)
     city = rng.choice(CITIES)
     city2 = _different(rng, CITIES, city)
@@ -153,7 +153,7 @@ def generate_pairs(per_label: int = 600, seed: int = 42) -> list[Pair]:
         while count < per_label:
             if attempts > per_label * 100:
                 raise RuntimeError(f"Exhausted unique synthetic examples for {label}")
-            pair = _make(label, attempts, rng)
+            pair = _make(label, attempts, rng, seed)
             attempts += 1
             # Contradiction and equivalence are symmetric labels; a reversed
             # pair must not silently appear as a distinct training example.

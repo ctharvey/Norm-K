@@ -52,6 +52,13 @@ class DatasetTests(unittest.TestCase):
                 if re.search(r"\b" + re.escape(name) + r"\b", pair.text_a + " " + pair.text_b):
                     self.assertEqual(split_subject(name), split_subject(pair.subject))
 
+    def test_secondary_people_follow_the_generation_seed(self):
+        for seed in (1, 7, 123):
+            for pair in generate_pairs(100, seed):
+                for name in NAMES:
+                    if re.search(r"\b" + re.escape(name) + r"\b", pair.text_a + " " + pair.text_b):
+                        self.assertEqual(split_subject(name, seed), split_subject(pair.subject, seed))
+
     def test_template_split_holds_out_entire_family(self):
         pairs = generate_pairs(100)
         assignments = {}
