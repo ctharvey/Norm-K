@@ -18,6 +18,8 @@ K(s) = E(s) + E(N(P(s))) - E(N(s)) - E(P(s))
 
 Here E embeds text, N negates a statement, and P applies a controlled transformation such as changing its subject. The residual measures departure from additive independence of those transformations. **A high ‖K‖ is not itself proof of contradiction.** Testing whether it supplies useful signal is one of the central research questions.
 
+**Latest exploratory work:** [Function mutations, momentum/acceleration hypotheses and retrieval bottlenecks](docs/literature/semantic-dynamics-mutations-2026-11-06.md) (math-only sanity check; no new model AP measurements).
+
 ## Status
 
 **Offline research scaffold implemented and tested; no validated semantic results yet.**
