@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from norm_k.embeddings import EmbeddingCache, HashingEncoder, OpenAIEncoder
 from norm_k.flip_v4 import select_fresh
-from norm_k.flip_v5 import pool_texts, score_set
+from norm_k.flip_v5 import gate_verdict, pool_texts, score_set
 from norm_k.public_v2 import eligible, load_public, mnli_pairs
 
 TRAIN = "multinli_1.0/multinli_1.0_train.jsonl"
@@ -80,11 +80,18 @@ def run(mnli, wanli, ids_tsv, encoder, output, hash_json=None, max_new=0):
     deltas = {} if hash_json is None else json.loads(Path(hash_json).read_text(encoding="utf-8"))
     result = {name: score_set(pairs, vectors, hash_delta=deltas.get(name)) for name, pairs in sets.items()}
     result["api_tokens_used"] = tokens
+    fresh_gate, wanli_gate = result["fresh_mnli_train"]["gate"], result["v2_wanli"]["gate"]
+    result["gate_verdict"] = {
+        "flip": gate_verdict(fresh_gate["primary"], wanli_gate["primary"]["margin"],
+                             deltas.get("fresh_mnli_train_gate")),
+        "negated_cosine": gate_verdict(fresh_gate["negated_cosine"], wanli_gate["negated_cosine"]["margin"],
+                                       deltas.get("fresh_mnli_train_gate_negated_cosine"))}
     Path(output).parent.mkdir(parents=True, exist_ok=True)
     Path(output).write_text(json.dumps(result, indent=2), encoding="utf-8")
     print("tokens", tokens)
     for name in sets:
         print(name, result[name]["negation_vs_matched"]["verdict"], "gate", result[name]["gate_passed"])
+    print("cheap gate", result["gate_verdict"], fresh_gate["primary"], fresh_gate["negated_cosine"])
 
 
 if __name__ == "__main__":

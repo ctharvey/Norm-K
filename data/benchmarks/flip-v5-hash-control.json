@@ -1,4 +1,6 @@
 {
  "fresh_mnli_train": 0.0484,
- "v2_wanli": 0.0691
+ "v2_wanli": 0.0691,
+ "fresh_mnli_train_gate": -0.5797,
+ "fresh_mnli_train_gate_negated_cosine": 0.0062
 }

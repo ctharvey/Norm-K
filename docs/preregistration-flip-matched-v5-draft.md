@@ -67,6 +67,60 @@ Every edit's AP and mean distance, match quality and which edits were chosen, `t
 largest fixed edit, pairs with no negation word, and WANLI. Tokens are measured from the
 API's usage reports.
 
+Added after the [prior-art audit](literature/prior-art-flip-2026-11-06.md), before any test
+pair reached a real encoder. These are reported only and don't change the primary measure:
+
+- **Wrong partner:** AP for negation and matched with each B given another pair's A in its
+  genre, and their delta. Matching cancels most of the edit-size term in
+  `F = 0.5*(d_a - d_b)·(b - a) - 0.5*(m_a + m_b)`, so the delta tests direction. It doesn't
+  rule out cues in single statements, which is what this checks.
+- **Statement only:** AP from negation's edit size alone, for both statements and for B alone,
+  in both directions.
+- **Matched at the verb:** the delta on pairs where the matched edit is `in_fact` or
+  `as_it_happens`, on both statements and on either. This set may be small.
+
+## Cheap gate
+
+A separate question from the primary one: could a cheap score decide which pairs go on to an
+NLI model? A gate needs ranking, not a cause, so this has its own rule and doesn't depend on
+the verdict above. The baseline is plain cosine, using whichever direction keeps more.
+
+**Pool:** every real pair in the set, plus random pairs of one pair's A with another's B, until
+contradictions are 1% of the pool. Random pairs stand in for unrelated negatives. A few may
+truly conflict. The 0.1% pool is reported only.
+
+**Scores:** `flip`, the v5 negation flip, and `negated_cosine`, which is
+`0.5*[cos(N(A),B) + cos(A,N(B))]`, or flip plus cosine. Each gets its own verdict. The hash
+run suggested raw flip can fail here by design, because subtracting cosine discards
+relatedness, so `negated_cosine` was declared before any real encoder ran. Two scores are
+tested, so a pass on only one is weaker evidence.
+
+**Margin:** recall minus cosine's recall with the top 5% of the 1% pool passed on, fresh set,
+`text-embedding-3-small`. The interval resamples contradictions 2,000 times with cutoffs held
+fixed, so it ignores cutoff uncertainty.
+
+- **GATE-PASS:** margin at least +0.05, lower bound above 0, above the hash encoder's margin,
+  and a positive margin on WANLI.
+- **GATE-FAIL:** the interval's upper bound is below +0.05.
+- **UNCLEAR:** anything else.
+
+Called general only if `all-mpnet-base-v2` gets the same verdict. Recall at 10%, 20% and 50%
+of each undiluted set, and at 1%, 2%, 5% and 10% of both pools, is reported for flip, matched,
+negated cosine and cosine. No NLI model runs here, so a pass shows ranking only, not time saved
+or end-to-end recall.
+
+## What each result leads to
+
+Set before any real result, adapting the prior-art audit's stop rule.
+
+- **SURVIVES-MATCHING:** one out-of-domain test on NaN-NLI.
+- **SIZE-EXPLAINED:** mechanism claims stop. The gate result is still read on its own.
+- **GATE-PASS on either score:** one end-to-end test with a local NLI model, against cosine
+  followed by NLI.
+- **SIZE-EXPLAINED and GATE-FAIL on both scores:** pin the work with a short negative report
+  and stop, including `asinh`, extra encoders and chunking.
+- **Anything else:** back to the owner.
+
 ## Edit audit
 
 **Rule, committed before any reviewer sees a statement.** As in v4: the same three free
@@ -75,6 +129,22 @@ seed 2030, each with one pool edit assigned at random. A model votes invalid if 
 invalid in either run. A statement is invalid if at least two of three vote invalid. The
 bar is 90 of 100, and the any-dissent count is reported. Under 90, stop and take it to the
 owner. The prompt counts added framing as valid if the main claim is unchanged.
+
+**Route change, committed before any reviewer sees a statement.** OpenCode's free route hit
+its usage limit before any reviewer returned output, so the audit runs through the OpenCode
+harness on the same three model names hosted by NVIDIA: `z-ai/glm-5.3-flash`,
+`deepseek-ai/deepseek-v4.1-flash` and `nvidia/nemotron-3.5-super-vl-120b-a12b`. The vote rule,
+bar, statements and batches don't change. This differs from v4's route:
+
+- A different host, so the weights or settings may not be identical to the free route's.
+- Sessions use `noMcp` with auto-approve off, in an empty folder. Batches go in as direct
+  input, since the harness's task delivery needs a file read.
+- The harness adds its coding-agent system prompt, and parent workspace instruction files may
+  load, so reviewers aren't as isolated as under `--pure`. Extra text around the JSON lines is
+  ignored, and only lines matching a known ID and label count.
+- A fresh session runs each batch, so no run sees another's answers.
+
+If a model can't complete on this route, stop and take it to the owner. Don't swap models.
 
 ## Order of work
 
