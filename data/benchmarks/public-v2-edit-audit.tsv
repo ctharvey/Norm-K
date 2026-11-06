@@ -1,0 +1,101 @@
+id	original	edited	deepseek-v4.1-flash-free_run0	deepseek-v4.1-flash-free_run1	glm-5.3-flash-free_run0	glm-5.3-flash-free_run1	nemotron-3.5-super-vl-free_run0	nemotron-3.5-super-vl-free_run1	result
+sfd2bab65	Lakshmi is Vishnu's wife, and the goddess of good fortune.	Lakshmi is not Vishnu's wife, and the goddess of good fortune.	invalid	invalid	valid	valid	valid	valid	valid
+s1449146d	Thre is nothing left today of the old Roman roads.	Thre is not nothing left today of the old Roman roads.	valid	valid	valid	valid	valid	valid	valid
+s68517573	His proud reserve--a product of 40 years in the spotlight--is refreshing but does not bode well for his capacity to shepherd big ideas through Congress.	His proud reserve--a product of 40 years in the spotlight--is not refreshing but does not bode well for his capacity to shepherd big ideas through Congress.	invalid	invalid	valid	valid	valid	valid	valid
+sdfad6e8b	The precise number of deletions was 71.	The precise number of deletions was not 71.	valid	valid	valid	valid	valid	valid	valid
+sef4ed52f	A symmetrical design with straight streets was visible on his plan.	A symmetrical design with straight streets was not visible on his plan.	valid	valid	valid	valid	valid	valid	valid
+s9bd02ca0	Marilyn Manson was not as dark as Alice Cooper is.	Marilyn Manson was as dark as Alice Cooper is.	valid	valid	valid	valid	valid	valid	valid
+s230ff7d2	Lively at night is Montmartre with all its famous clubs.	Lively at night is not Montmartre with all its famous clubs.	valid	valid	valid	valid	valid	valid	valid
+sccf097b1	It is truly an honor.	It is not truly an honor.	valid	valid	valid	valid	valid	valid	valid
+s9a56e3c6	He was standing in front of a grey backdrop- somewhere that could be anywhere.	He was not standing in front of a grey backdrop- somewhere that could be anywhere.	valid	valid	valid	valid	valid	valid	valid
+s1315f6b6	The monkey on board ship was a lad employed to fetch supplies'powder and so forth'to the guns.	The monkey on board ship was not a lad employed to fetch supplies'powder and so forth'to the guns.	valid	valid	valid	valid	valid	valid	valid
+sa0731ba5	A Stitch in Time is organized into five sections, roughly corresponding to the channel components.	A Stitch in Time is not organized into five sections, roughly corresponding to the channel components.	valid	valid	valid	valid	valid	valid	valid
+s9cb1951f	I was anticipating an ad for cigars in the newspaper.	I was not anticipating an ad for cigars in the newspaper.	valid	valid	valid	valid	valid	valid	valid
+s7170e069	It was passed from here through the [operations] center at the White House, from the [shelter].	It was not passed from here through the [operations] center at the White House, from the [shelter].	valid	valid	valid	valid	valid	valid	valid
+se7bb3528	The hope to find a lake is both included and crucial.	The hope to find a lake is not both included and crucial.	valid	valid	valid	valid	valid	valid	valid
+s35231688	The finest is the huge conical-roofed Tomb/Pillar of Absalom (King David's son).	The finest is not the huge conical-roofed Tomb/Pillar of Absalom (King David's son).	valid	valid	valid	valid	valid	valid	valid
+s677250a2	Lakshmi is the goddess of bad fortune.	Lakshmi is not the goddess of bad fortune.	valid	valid	valid	valid	valid	valid	valid
+scbb07b4e	The Ile Saint-Louis is adored by the poor in Paris.	The Ile Saint-Louis is not adored by the poor in Paris.	valid	valid	valid	valid	valid	valid	valid
+s716aa17d	Hoping to find a lake is included	Hoping to find a lake is not included	valid	valid	valid	valid	valid	valid	valid
+s6b6e9bbb	The biggest barrier was thought to be how to change the culture, however this wasn't the only barrier which was involved.	The biggest barrier was not thought to be how to change the culture, however this wasn't the only barrier which was involved.	valid	valid	valid	valid	valid	valid	valid
+s61c3ed65	The I/S ratio is the single most important metric for measuring inventory.	The I/S ratio is not the single most important metric for measuring inventory.	valid	valid	valid	valid	valid	valid	valid
+sf0b62654	bGross national saving is held constant as a share of GDP at 18.	bGross national saving is not held constant as a share of GDP at 18.	valid	valid	valid	valid	valid	valid	valid
+se6151f1a	The association's mission is to reduce the incidence of fraud and white-collar crime through prevention and education.	The association's mission is not to reduce the incidence of fraud and white-collar crime through prevention and education.	valid	valid	valid	valid	valid	valid	valid
+s09d9aa58	At the top of the hill is the imposing medieval fortress of Kadifekale.	At the top of the hill is not the imposing medieval fortress of Kadifekale.	valid	valid	valid	valid	valid	valid	valid
+se5a850a3	This was determined to be Flight 88 much later.	This was not determined to be Flight 88 much later.	valid	valid	valid	valid	valid	valid	valid
+scacebf81	The first historical mention of Agra is in 1501, when Sultan Sikandar Lodi made it his capital.	The first historical mention of Agra is not in 1501, when Sultan Sikandar Lodi made it his capital.	valid	valid	valid	valid	valid	valid	valid
+s796f5ddd	I was to watch for an advertisement in the Times.	I was not to watch for an advertisement in the Times.	valid	valid	valid	valid	valid	valid	valid
+s71dedb00	A commonsense style book is useful to anyone with education and common sense who doubts something in the English language.	A commonsense style book is not useful to anyone with education and common sense who doubts something in the English language.	valid	valid	valid	valid	valid	valid	valid
+s3148594e	It was utterly mad.	It was not utterly mad.	valid	valid	valid	valid	valid	valid	valid
+s84337314	It was made up to look as much like an old-fashioned steam train as possible.	It was not made up to look as much like an old-fashioned steam train as possible.	valid	valid	valid	valid	valid	valid	valid
+s3510e688	She was in her mid-to late forties.	She was not in her mid-to late forties.	valid	valid	valid	valid	valid	valid	valid
+s1396bb51	The cathedral in particular is impressive after dark.	The cathedral in particular is not impressive after dark.	valid	valid	valid	valid	valid	valid	valid
+s2aebcc7b	Grandfather was a silent man and didn't talk much.	Grandfather was not a silent man and didn't talk much.	invalid	invalid	invalid	invalid	valid	valid	invalid
+se140d64f	It was going to be a hot day.	It was not going to be a hot day.	valid	valid	valid	valid	valid	valid	valid
+s5cd778bb	The museum is not open on Sunday, either in the morning or the afternoon.	The museum is open on Sunday, either in the morning or the afternoon.	valid	valid	valid	valid	valid	valid	valid
+s06847b7b	It is far better for anyone to kill a single American soldier than to squander his efforts on other activities, he said.	It is not far better for anyone to kill a single American soldier than to squander his efforts on other activities, he said.	valid	valid	valid	valid	valid	valid	valid
+s60e3fa3f	Nonsexist language is no universal antidote.	Nonsexist language is not no universal antidote.	invalid	invalid	valid	invalid	invalid	invalid	invalid
+sb675d424	The Carmel market in the Yemenite Quarter is very busy.	The Carmel market in the Yemenite Quarter is not very busy.	valid	valid	valid	valid	valid	valid	valid
+sb475e549	The only drawback is, of course, the large crowds in summer.	The only drawback is not, of course, the large crowds in summer.	valid	valid	valid	valid	valid	valid	valid
+s108ff56b	The hope of finding a lake is excluded.	The hope of finding a lake is not excluded.	valid	valid	valid	valid	valid	valid	valid
+sb07dfd5b	Serge Diaghileff was the most successful time traveler.	Serge Diaghileff was not the most successful time traveler.	valid	valid	valid	valid	valid	valid	valid
+sb813c772	Corroborating evidence is not independent evidence.	Corroborating evidence is independent evidence.	valid	valid	valid	valid	valid	valid	valid
+sad905706	She was a bad mistress.	She was not a bad mistress.	valid	valid	valid	valid	valid	valid	valid
+sd140d327	The top thread is pulled by the leg.	The top thread is not pulled by the leg.	valid	valid	valid	valid	valid	valid	valid
+s6c6b4027	He was still chilly even at 80.	He was not still chilly even at 80.	valid	valid	valid	valid	valid	valid	valid
+s8d06a788	Nobody is standing at the saw, they were all sitting on the floor.	Nobody is not standing at the saw, they were all sitting on the floor.	invalid	invalid	valid	valid	invalid	valid	invalid
+s9fc75d13	Marriage is irrelevant.	Marriage is not irrelevant.	valid	valid	valid	valid	valid	valid	valid
+s2e6c1fec	Jon was sweating from his brow.	Jon was not sweating from his brow.	valid	valid	valid	valid	valid	valid	valid
+s3c3c1251	This breakdown of PA-Israeli cooperation is the basis for Israeli complaints that Arafat is culpable for last weeks Jerusalem bombing.	This breakdown of PA-Israeli cooperation is not the basis for Israeli complaints that Arafat is culpable for last weeks Jerusalem bombing.	valid	valid	valid	valid	valid	valid	valid
+s0cf88fd3	The leader was not in the country.	The leader was in the country.	valid	valid	valid	valid	valid	valid	valid
+sc51ae3c4	It is far less than is available at most law schools including Bloomington spent $279,000 for scholarships during the same time period!	It is not far less than is available at most law schools including Bloomington spent $279,000 for scholarships during the same time period!	valid	invalid	valid	valid	valid	valid	valid
+sc32fe948	King Farouk was exiled to France in 1952, after signing his resignation.	King Farouk was not exiled to France in 1952, after signing his resignation.	valid	valid	valid	valid	valid	valid	valid
+s09eeabff	The beach is rocky and terrible.	The beach is not rocky and terrible.	valid	valid	valid	valid	valid	valid	valid
+se4ede898	eThe number of deletions was negligible.	eThe number of deletions was not negligible.	valid	valid	valid	valid	valid	valid	valid
+s64821f02	The atom was only named once it had been split.	The atom was not only named once it had been split.	invalid	invalid	valid	valid	valid	valid	valid
+s993f85b7	High German is real whereas Low German is not.	High German is real whereas Low German is.	valid	valid	valid	valid	invalid	valid	valid
+s17faf3f9	Marilyn Manson is darker, more serious, and more vicious than Alice Cooper was.	Marilyn Manson is not darker, more serious, and more vicious than Alice Cooper was.	valid	valid	valid	valid	valid	valid	valid
+s870fc94a	It is nice to be reminded that people remember.	It is not nice to be reminded that people remember.	valid	valid	valid	valid	valid	valid	valid
+sb8b642c0	It was a very cold day.	It was not a very cold day.	valid	valid	valid	valid	valid	valid	valid
+s8938bf1b	A list of the schools served during the 1996-97 school year is enclosed.	A list of the schools served during the 1996-97 school year is not enclosed.	valid	valid	valid	valid	valid	valid	valid
+s58b49269	The role reversal concerning democracy is a net positive.	The role reversal concerning democracy is not a net positive.	valid	valid	valid	valid	valid	valid	valid
+s4f755124	Sir James's presence in Manchester was not accidental.	Sir James's presence in Manchester was accidental.	valid	valid	valid	valid	valid	valid	valid
+s5263b501	The operation was not cost  the United States lost two planes.	The operation was cost  the United States lost two planes.	invalid	invalid	invalid	invalid	invalid	valid	invalid
+s1c77371a	This was later determined to have been Flight 77.	This was not later determined to have been Flight 77.	valid	valid	valid	valid	valid	valid	valid
+s7a9e250a	The Ile Saint-Louis is popular with the wealthier citizens of Paris.	The Ile Saint-Louis is not popular with the wealthier citizens of Paris.	valid	valid	valid	valid	valid	valid	valid
+s529f2cb0	She was perfect at her job.	She was not perfect at her job.	valid	valid	valid	valid	valid	valid	valid
+sbe229890	It was freezing and snowing.	It was not freezing and snowing.	valid	valid	valid	valid	valid	valid	valid
+s30b781f2	It is all about waiting.	It is not all about waiting.	valid	valid	valid	valid	valid	valid	valid
+s938e63f1	LASNNY is an old legal services organization.	LASNNY is not an old legal services organization.	valid	valid	valid	valid	valid	valid	valid
+s01e6a641	The problem was solved simply by using an already standard character that had a similar sound to what the Viet called themselves.	The problem was not solved simply by using an already standard character that had a similar sound to what the Viet called themselves.	valid	valid	valid	valid	valid	valid	valid
+s21ffec3e	This is not newsletter.	This is newsletter.	invalid	invalid	valid	invalid	valid	valid	invalid
+s82508418	Susan is who this is.	Susan is not who this is.	valid	valid	valid	valid	valid	valid	valid
+s738501ef	I see everyone is standing at the saw.	I see everyone is not standing at the saw.	valid	valid	invalid	valid	valid	valid	valid
+s87c14664	The central porch is still intact, depicting Jesus's entry into Jerusalem, the Crucifixion, and other scenes from the Bible.	The central porch is not still intact, depicting Jesus's entry into Jerusalem, the Crucifixion, and other scenes from the Bible.	valid	valid	valid	valid	valid	valid	valid
+sce3e46e3	This is an unofficial solution, Liq.	This is not an unofficial solution, Liq.	valid	valid	valid	valid	valid	valid	valid
+s7ea7badf	Scone-pronunciation was further muddled by Sir Ernest Gowers badly research contribution on the subject.	Scone-pronunciation was not further muddled by Sir Ernest Gowers badly research contribution on the subject.	valid	valid	valid	valid	valid	valid	valid
+seb86ade3	The I/S ratio is the ratio of total sales to total good inventories.	The I/S ratio is not the ratio of total sales to total good inventories.	valid	valid	valid	valid	valid	valid	valid
+sdbfe84b7	The Trump Tower is a terrible place to visit for ornate decor.	The Trump Tower is not a terrible place to visit for ornate decor.	valid	valid	valid	valid	valid	valid	valid
+sd16cf578	The monkey was aboard the ship purely for entertainment.	The monkey was not aboard the ship purely for entertainment.	valid	valid	valid	valid	valid	valid	valid
+s678e3295	This was built 15 years earlier by Jahangir's wife, Nur Jahan, for her father, who served as Mughal Prime Minister.	This was not built 15 years earlier by Jahangir's wife, Nur Jahan, for her father, who served as Mughal Prime Minister.	valid	valid	valid	valid	valid	valid	valid
+sa380aa26	The rural route is on average 55 miles.	The rural route is not on average 55 miles.	valid	valid	valid	valid	valid	valid	valid
+sb5245ba6	Daisy is a person's name that comes from the name of a flower.	Daisy is not a person's name that comes from the name of a flower.	valid	valid	valid	valid	valid	valid	valid
+s2d74a458	Azure is a dish of sweet porridge.	Azure is not a dish of sweet porridge.	valid	valid	valid	valid	valid	valid	valid
+s01e99240	The simplest is for one or more of the members to simply donate one million dollars to the IGGS Scholarship Fund.	The simplest is not for one or more of the members to simply donate one million dollars to the IGGS Scholarship Fund.	valid	valid	valid	valid	valid	valid	valid
+s66ed3338	This statement was also incorrect.	This statement was not also incorrect.	invalid	invalid	valid	valid	valid	valid	valid
+s483a38df	This northern beach of magnificent tan sand is most agreeably reached by boat.	This northern beach of magnificent tan sand is not most agreeably reached by boat.	valid	valid	valid	valid	valid	valid	valid
+sbc1e3bdb	The information in the guide is up-to-date.	The information in the guide is not up-to-date.	valid	valid	valid	valid	valid	valid	valid
+sffd9d2b0	The city is the island's governmental and financial centre.	The city is not the island's governmental and financial centre.	valid	valid	valid	valid	valid	valid	valid
+sd0ec0ec3	Inflation is a boon to society and a good way to fix problems.	Inflation is not a boon to society and a good way to fix problems.	invalid	valid	valid	valid	valid	valid	valid
+s1d2400f0	The simplest is to donate one million dollars to the IGGS scholarship fund, but one can also donate to another charity.	The simplest is not to donate one million dollars to the IGGS scholarship fund, but one can also donate to another charity.	valid	valid	valid	valid	valid	valid	valid
+s078b6517	This is illustrated in Table 9.1 for the men's and boys' shirt industry, as well as athletic wear.	This is not illustrated in Table 9.1 for the men's and boys' shirt industry, as well as athletic wear.	valid	valid	valid	valid	valid	valid	valid
+s83771155	It is the story of eccentric and violent ideas sprouting in the fertile ground of political and social turmoil.	It is not the story of eccentric and violent ideas sprouting in the fertile ground of political and social turmoil.	valid	valid	valid	valid	valid	valid	valid
+s2fd340e3	The monkey aboard the ship was there to fetch supplies.	The monkey aboard the ship was not there to fetch supplies.	valid	valid	valid	valid	valid	valid	valid
+s45d3caa7	Monsieur Poirot is a long time enemy of mine; I hate her.	Monsieur Poirot is not a long time enemy of mine; I hate her.	valid	valid	invalid	valid	valid	valid	valid
+s56eb3ce7	Regulation M is not related to any act.	Regulation M is related to any act.	invalid	valid	valid	invalid	valid	valid	invalid
+s1557e89f	This breakdown of PA-Israeli cooperation is not the basis for Israeli complaints that Arafat is culpable for last weeks Jerusalem bombing.	This breakdown of PA-Israeli cooperation is the basis for Israeli complaints that Arafat is culpable for last weeks Jerusalem bombing.	valid	valid	valid	valid	valid	valid	valid
+s78b3d878	The museum is well laid out and the perfect size for relaxing away a couple of hours on a wet day.	The museum is not well laid out and the perfect size for relaxing away a couple of hours on a wet day.	invalid	valid	valid	valid	valid	valid	valid
+s9f7f6981	Making markers is easy even without the help of computers.	Making markers is not easy even without the help of computers.	valid	valid	valid	valid	valid	valid	valid
+sfe26bd41	The traditional opening time for hotels is around Orthodox Easter.	The traditional opening time for hotels is not around Orthodox Easter.	valid	valid	valid	valid	valid	valid	valid
+s515b9f74	He thought the biggest barrier was how to change the culture in the ED so that staff would ask screening questions.	He thought the biggest barrier was not how to change the culture in the ED so that staff would ask screening questions.	valid	invalid	valid	valid	valid	valid	valid
+sf2ed0964	The Legacy Golf Club is just inside city limits.	The Legacy Golf Club is not just inside city limits.	invalid	valid	valid	valid	valid	valid	valid

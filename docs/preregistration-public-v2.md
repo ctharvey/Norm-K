@@ -1,8 +1,8 @@
-# Fair K test v2: public data (DRAFT, NOT FROZEN)
+# Fair K test v2: public data, frozen protocol
 
-**Status:** draft for the project owner's approval. No embeddings exist for this
-data and no K score has been computed on it. The freeze happens only when the
-items under "Before freezing" are done and the owner approves.
+**Frozen:** November 5, 2026, before any real-embedding run on this data. The commit
+that renames this file from its draft is the freeze point. Changes after a real
+result must be reported as deviations, not folded in.
 
 ## Question
 
@@ -38,7 +38,8 @@ the premise, which is looser than this project's same-fact definition.
 
 ## Eligibility
 
-`scripts/v2_eligibility_count.py` applies these rules, none of which use labels:
+`norm_k/public_v2.py` applies these rules, none of which use labels. Selected IDs are in
+[public-v2-pair-ids.tsv](../data/benchmarks/public-v2-pair-ids.tsv):
 
 1. The frozen negation rule changes both statements.
 2. The pair isn't a mirror pair.
@@ -114,28 +115,58 @@ These are reported whatever the primary result is, and can't rescue it.
   of the summary in turn; mismatched genres alone, since the NLI model trained on
   the five matched genres.
 
-## Before freezing
+## Completed before freezing
 
-1. **Audit the edits by multi-model review.** The owner chose this over reading them,
-   so no person checks these statements. The same three free models as the
-   [label review](multi-model-review.md) each see only an original statement, its
-   edited form and the question, for 100 statements from the primary set (seed 2028),
-   twice, in a different order each time. A model votes invalid if it says invalid in
-   either of its runs. A statement counts as invalid if at least two of the three
-   models vote invalid; single dissents are reported. At least 90 of 100 must be
-   valid. If not, tighten rule 4 without labels and repeat once on a fresh sample
-   (seed 2029). A second failure stops this test.
-2. **Build the code:** a loader for the pinned files, random forest and NLI
-   models, the WANLI transfer run, and tests for each.
-3. **Dry-run with the hash encoder** and write its delta into the rule. If it clears
-   the bar, the rule is invalid and must change before any real run.
-4. **Key:** the owner approved Menhir's OpenAI key for the single real run.
+**Edit audit: passed, 94 of 100.** The rule below was committed at 19a2a53, before
+any reviewer saw a statement. The three free models from the
+[label review](multi-model-review.md) each judged 100 statements from the primary
+set (seed 2028), twice, in a different order each time, seeing only the original,
+the edit and the question. A model voted invalid if it said invalid in either run.
+A statement counted as invalid if at least two of three models voted invalid. The
+bar was 90. No person checked these statements, by the owner's choice. Twelve more
+statements drew one dissent, so counting any dissent as invalid would give 82; the
+committed rule did not do that. Votes are in
+[public-v2-edit-audit.tsv](../data/benchmarks/public-v2-edit-audit.tsv).
+
+The 100-item batches and then a 400-second limit timed out on DeepSeek before any
+complete review existed. Batches became three chunks per run with a 900-second
+limit. The statements, orderings and rule did not change.
+
+**Hash dry run: STOP, so the rule is usable.** Condition 4's values, frozen in
+[public-v2-hash-control.json](../data/benchmarks/public-v2-hash-control.json):
+
+| Comparison | Hash delta |
+| --- | ---: |
+| `k_over_full` | +0.0026 |
+| `k_over_rf` | -0.0003 |
+| `k_over_nli_full` | +0.0012 |
+| `corners_over_rf_base_lexical` | +0.0248 |
+
+**Seen before freezing:** the dry run shows every number that doesn't depend on the
+encoder. The NLI model alone reached AP 0.980 on the primary set and 0.744 on
+WANLI, against 0.33 and 0.19 floors. Hash `nli_full` was only 0.916, below `nli` alone. So
+`k_over_nli_full` measures gains over a blended model that is weaker than the NLI
+score itself, and the primary set leaves almost no practical room. No rule was
+changed after seeing this. The practical case for K must also be judged against
+`nli` alone.
+
+**Key:** the owner approved Menhir's OpenAI key for the single real run.
+
+**NLI scores:** model revision `6f5cf0a2b59cabb106aca4c287eed12e357e90eb`, stored in
+[public-v2-nli-scores.tsv](../data/benchmarks/public-v2-nli-scores.tsv).
 
 ## Cost
 
-At most 5,228 embeddings (1,307 pairs x 4 statements) at roughly 20 tokens each is
-about 105,000 tokens. At $0.02 per million tokens, that's about $0.002. The NLI
-model runs locally for free.
+The set has 4,704 unique statements, at roughly 20 tokens each: about 94,000 tokens.
+At $0.02 per million tokens that's about $0.002. The NLI model runs locally for free.
+
+## Run
+
+~~~bash
+python -m norm_k.cli k-public --encoder openai --max-new 4800   --mnli-zip multinli.zip --wanli wanli_test.jsonl   --nli-scores data/benchmarks/public-v2-nli-scores.tsv   --hash-control data/benchmarks/public-v2-hash-control.json   --output outputs/k-public-real
+~~~
+
+Run it once. The command refuses to replace an existing result.
 
 ## Known limits
 
@@ -143,7 +174,7 @@ model runs locally for free.
 - MultiNLI is public and old, so the encoder or NLI model may have seen it.
 - The NLI model trained on MultiNLI's train split, including the five matched
   genres. That favors the baseline, which is acceptable for a harder test.
-- The author has seen label and genre counts for this data, and unlabeled samples of
-  its statements, but no embeddings or K scores.
+- The author has seen label and genre counts, unlabeled statement samples, and the
+  hash dry run, including the NLI model's scores, but no real-embedding or real-K result.
 - Public NLI pairs don't look like Menhir statements. Even a clean PASS would need a
   Menhir-shaped test later.
