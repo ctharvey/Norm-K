@@ -10,7 +10,7 @@
 | v2, K on public pairs | INCONCLUSIVE; v1's PASS didn't replicate | [public-fair-k-v2.md](reports/public-fair-k-v2.md) |
 | Exploratory, v2's transformed-sentence gain | Found the untrained flip score | [exploratory-flip-signal-v2.md](reports/exploratory-flip-signal-v2.md) |
 | v4, flip score vs neutral edits, fresh pairs, two encoders | REPLICATES, NEGATION-SPECIFIC | [flip-placebo-v4.md](reports/flip-placebo-v4.md) |
-| v5, flip score vs size-matched edits | **Not run; blocked below** | [draft protocol](docs/preregistration-flip-matched-v5-draft.md) |
+| v5, flip score vs size-matched edits | **Not run; blocked below** | [draft protocol](docs/preregistration-flip-matched-v5.md) |
 
 The flip score, not K, is the current focus. On unit vectors K's size is a function of
 pairwise scores the fair baseline already holds, so K can add little beyond repackaging.

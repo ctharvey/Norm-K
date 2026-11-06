@@ -1,6 +1,6 @@
-# Flip score size-matched test v5: draft protocol
+# Flip score size-matched test v5: frozen protocol
 
-**Status:** draft. The commit that renames this file from its draft is the freeze point.
+**Status:** frozen. The commit that renamed this file from its draft is the freeze point.
 Changes after a real result must be reported as deviations.
 
 ## Question
@@ -151,12 +151,49 @@ v4's route:
 
 If a model can't complete on this route, stop and take it to the owner. Don't swap models.
 
-## Order of work
+## Completed before freezing
 
-1. Commit this draft and the code.
-2. Run the edit audit and hash dry run, and write the results here.
-3. Freeze by renaming this file.
-4. Run once per encoder, and report whatever it shows.
+**Edit audit: passed, 100 of 100.** The rule was committed at 2925ea2 and the route at 3e3a4ca,
+before any reviewer saw a statement. All 18 runs ended complete with no tool use, and measured
+OpenCode spend rose about $0.01. One Nemotron batch came back with a garbled line and used
+its one retry. Votes are in [flip-v5-edit-audit.tsv](../data/benchmarks/flip-v5-edit-audit.tsv).
+No person read these statements.
+
+**This audit is a weak filter.** GLM and Nemotron called all 100 valid in both runs, so the
+two-of-three rule had no way to fail here, and no known-bad item tested whether they would
+catch a broken edit. DeepSeek dissented on 7, all `as_it_happens`, and changed 7 votes between
+runs. Counting any dissent as invalid gives 93. Those 7 are the edit the matched-at-verb check
+relies on, so read that check with care.
+
+**Hash dry run,** frozen in [flip-v5-hash-control.json](../data/benchmarks/flip-v5-hash-control.json):
+
+| Set | Negation vs matched | Mean gap | Median absolute gap |
+| --- | ---: | ---: | ---: |
+| Fresh | +0.0484 | +0.0276 | 0.0299 |
+| WANLI | +0.0691 | +0.0250 | 0.0272 |
+
+Hash fails the size gate on both sets, so its own verdict is UNCLEAR. Its deltas are still the
+values a real result must beat.
+
+| Gate margin, fresh set | Hash |
+| --- | ---: |
+| `flip` | -0.5797 |
+| `negated_cosine` | +0.0062 |
+
+**Seen before freezing:** the fresh set's size and contradiction count (483 of 1,500), WANLI's
+(139 of 725), and all hash scores. No real-encoder score on any test pair.
+
+**Key:** the owner said embedding needs no further approval. Menhir's OpenAI key is loaded
+into the run's process only. About 971,000 words.
+
+## Run
+
+Once per encoder, each refusing to replace its result:
+
+~~~bash
+python scripts/v5_flip_matched.py run multinli.zip wanli_test.jsonl data/benchmarks/flip-v5-pair-ids.tsv openai outputs/flip-v5/openai.json data/benchmarks/flip-v5-hash-control.json --max-new 60000
+python scripts/v5_flip_matched.py run multinli.zip wanli_test.jsonl data/benchmarks/flip-v5-pair-ids.tsv mpnet.npz outputs/flip-v5/mpnet.json data/benchmarks/flip-v5-hash-control.json
+~~~
 
 ## Known limits
 
@@ -166,3 +203,4 @@ If a model can't complete on this route, stop and take it to the owner. Don't sw
 - Long additions change text length, while negation doesn't.
 - Same sentence limits as v4: short `is` or `was` statements, and MultiNLI.
 - Pool edits were tuned for size on used statements, not for accuracy.
+- The gate pool's random pairs are an approximation of a real, mostly unrelated store.
