@@ -116,15 +116,20 @@ These are reported whatever the primary result is, and can't rescue it.
 
 ## Before freezing
 
-1. **Audit the edits.** Check 100 seeded, label-free transformed statements. At
-   least 90 must be valid negations of the main claim. If not, tighten rule 4 without
-   labels and repeat on a fresh sample. Owner to choose who checks.
+1. **Audit the edits by multi-model review.** The owner chose this over reading them,
+   so no person checks these statements. The same three free models as the
+   [label review](multi-model-review.md) each see only an original statement, its
+   edited form and the question, for 100 statements from the primary set (seed 2028),
+   twice, in a different order each time. A model votes invalid if it says invalid in
+   either of its runs. A statement counts as invalid if at least two of the three
+   models vote invalid; single dissents are reported. At least 90 of 100 must be
+   valid. If not, tighten rule 4 without labels and repeat once on a fresh sample
+   (seed 2029). A second failure stops this test.
 2. **Build the code:** a loader for the pinned files, random forest and NLI
    models, the WANLI transfer run, and tests for each.
 3. **Dry-run with the hash encoder** and write its delta into the rule. If it clears
    the bar, the rule is invalid and must change before any real run.
-4. **Approve the key.** The real run needs an embedding key. v1's approval covered
-   that run only.
+4. **Key:** the owner approved Menhir's OpenAI key for the single real run.
 
 ## Cost
 

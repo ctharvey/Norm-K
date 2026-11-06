@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 from collections import Counter
 from datetime import date
@@ -17,6 +18,7 @@ from .evaluation import (baseline_report, features_for_pairs, plot_dimension_cur
                          plot_k_distribution, plot_pair_k_scatter, plot_scatter, train_linear_probe)
 from .geometry import cosine, difference, k_norm, k_relative
 from .probes import low_rank_probe
+from .public_v2 import COMPARISONS, load_public, run_public_test
 from .ablation import (counterfactual_features, load_matched_benchmark, run_fair_k_test,
                        run_k_ablation)
 from .audit import audit_pairs, purged_indices
@@ -281,6 +283,43 @@ def _k_fair(args: argparse.Namespace) -> None:
     print(f"Fair K test written to {output / 'k_fair.json'}")
 
 
+def _k_public(args: argparse.Namespace) -> None:
+    output = Path(args.output)
+    _require_new_path(output / "k_public.json")  # The frozen test runs once.
+    if args.encoder == "openai" and not args.hash_control:
+        raise ValueError("A real run needs the frozen --hash-control file")
+    hash_deltas = None
+    if args.hash_control:
+        hash_deltas = json.loads(Path(args.hash_control).read_text(encoding="utf-8"))
+        if set(hash_deltas) != set(COMPARISONS):
+            raise ValueError("Hash control must list every comparison")
+    data = load_public(args.mnli_zip, args.wanli)
+    pairs = data.primary + data.replication
+    with Path(args.nli_scores).open("r", encoding="utf-8", newline="") as stream:
+        nli = {row["pair_id"]: float(row["contradiction_probability"])
+               for row in csv.DictReader(stream, delimiter="	")}
+    missing = [pair.id for pair in pairs if pair.id not in nli]
+    if missing:
+        raise ValueError(f"{len(missing)} selected pairs have no NLI score")
+    squares = [counterfactual_square(pair, "negation") for pair in pairs]
+    texts = sorted({text for square in squares for text in (
+        square.base, square.other, square.transformed_base, square.transformed_other)})
+    encoder = _encoder(args)
+    with EmbeddingCache(args.cache) as cache:
+        vectors = dict(zip(texts, cache.embed(encoder, texts, max_new=args.max_new,
+                                              batch_size=args.batch_size)))
+    result = run_public_test(data, vectors, nli, hash_deltas, args.seed,
+                             permutations=args.permutations)
+    _write_json(output / "k_public.json", {
+        "experiment": "public_fair_k_test_v2", "date": date.today().isoformat(),
+        "encoder": encoder.name, "encoder_dimensions": encoder.dimensions, "seed": args.seed,
+        "unique_texts": len(texts), **result})
+    if args.encoder == "hash":
+        _write_json(output / "hash_control.json",
+                    {name: item["delta"] for name, item in result["comparisons"].items()})
+    print(f"Public K test written to {output / 'k_public.json'}")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="norm-k", description="Norm K experimental harness")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -328,7 +367,8 @@ def build_parser() -> argparse.ArgumentParser:
     exporter.add_argument("--output", default="outputs/review_consensus.json")
     exporter.set_defaults(func=_export_reviews)
     for name, handler in (("evaluate", _evaluate), ("k-probe", _k_probe),
-                          ("k-ablate", _k_ablate), ("k-fair", _k_fair)):
+                          ("k-ablate", _k_ablate), ("k-fair", _k_fair),
+                          ("k-public", _k_public)):
         command = sub.add_parser(name)
         command.add_argument("--encoder", choices=("hash", "openai"), default="hash")
         command.add_argument("--dimensions", type=int, default=None)
@@ -351,6 +391,12 @@ def build_parser() -> argparse.ArgumentParser:
             command.add_argument("--benchmark", default="data/benchmarks/matched-2x2-v1.tsv")
             command.add_argument("--operation", choices=("negation", "subject_swap", "both"),
                                  default="both")
+        elif name == "k-public":
+            command.add_argument("--mnli-zip", required=True)
+            command.add_argument("--wanli", required=True)
+            command.add_argument("--nli-scores", required=True)
+            command.add_argument("--hash-control", default=None)
+            command.add_argument("--permutations", type=int, default=200)
         else:
             command.add_argument("--count", type=int, default=100)
     return parser
