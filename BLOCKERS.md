@@ -1,128 +1,80 @@
-# ‖K‖ — blockers and deferred work
+# Norm-K: status and blockers
 
-**Updated:** November 5, 2026. Keep this file current as work is unblocked.
+**Updated:** November 6, 2026. Keep this file current.
 
-The repository's offline scaffold works. These items are deliberately kept
-separate from the build plan so no unperformed research looks completed.
+## Where the research stands
 
-## Blocked by missing access, evidence, or external decisions
+| Test | Result | Report |
+| --- | --- | --- |
+| v1, K on 144 hand-written pairs | Negation PASS, subject swap STOP | [real-fair-k-v1.md](reports/real-fair-k-v1.md) |
+| v2, K on public pairs | INCONCLUSIVE; v1's PASS didn't replicate | [public-fair-k-v2.md](reports/public-fair-k-v2.md) |
+| Exploratory, v2's transformed-sentence gain | Found the untrained flip score | [exploratory-flip-signal-v2.md](reports/exploratory-flip-signal-v2.md) |
+| v4, flip score vs neutral edits, fresh pairs, two encoders | REPLICATES, NEGATION-SPECIFIC | [flip-placebo-v4.md](reports/flip-placebo-v4.md) |
+| v5, flip score vs size-matched edits | **Not run; blocked below** | [draft protocol](docs/preregistration-flip-matched-v5-draft.md) |
 
-### 1. Real frozen text embeddings — **BLOCKED: API credentials not present**
+The flip score, not K, is the current focus. On unit vectors K's size is a function of
+pairwise scores the fair baseline already holds, so K can add little beyond repackaging.
+v4 doesn't show that negation's meaning is the cause, because negation was also the
+largest edit.
 
-- The executor did not have `OPENAI_API_KEY` configured.
-- No paid embedding API calls were made. The opt-in API adapter and SQLite cache
-  are implemented, with `--max-new=0` as the safe default.
-- To unblock: configure the API key in the environment (never commit it), confirm
-  permitted API usage/budget and network access, then run capped calls with
-  `--encoder openai --max-new <explicit_count>`.
-- Re-run both entity/name-only and complete-statement embeddings. Scores from the
-  offline hash-control encoder **do not transfer** to text-embedding-3-small.
+## Blocked now
 
-### 2. Audited labels and realistic holdouts — **BLOCKED: validated data needed**
+**1. v5 edit audit: OpenCode's free usage limit.** All three reviewer models fail with
+"Free usage limit reached", and no reviewer output exists. The owner must choose how to
+proceed. The protocol can't freeze without an audit result, and no test pair has gone
+through a real encoder. Pairs, calibration, code and the hash control are ready.
 
-- The 3,000-pair dataset is synthetically templated and explicitly unaudited.
-  No accuracy, generalization, or novelty claims are supportable from it.
-- To unblock: independent human audit, separate naturally worded examples,
-  contested-label adjudication, and sealed held-out sets by relation, sentence
-  template, subject, and lexical vocabulary.
-- The small Menhir #392 fixture and SemAntoNeg should be used as evaluation
-  references, never as the sole benchmark or as training data.
-- Do not publish genuine user memories or personally identifying test content.
-- **Tooling is now available:** an offline blind-review UI, append-only reviewer
-  log, two-reviewer consensus, pairwise kappa, and a local CSV/TSV/JSONL importer.
-  Actual independent human labeling and source/license checks have not happened.
+## Blocked on outside input
 
-### 3. Menhir belief graph and real conflict distribution — **BLOCKED: safe test data required**
+**2. Human-reviewed labels and edits.** No person has reviewed any label set or edit. Label
+and edit checks are LLM votes, which are a filter and not validation. Public-data labels
+are human, but MultiNLI train has one annotator per pair.
 
-- No Menhir private database or consented non-production assertion snapshot was
-  available in this workspace.
-- To unblock: supply a sanitized test graph or an export of synthetic `:TypedAssertion`
-  records plus schema/valid-time semantics. Then measure same-time ties, A→B→A
-  flips, attribute aliases, and ordinary updates.
-- No production Menhir changes were made, and no assertions were rewritten.
+**3. Realistic text.** Everything so far uses short `is` or `was` statements. Multi-fact
+sentences need a dataset that doesn't exist here yet, and claim-level alignment for it
+would need building and auditing.
 
-### 4. Operational baseline and review budgets — **BLOCKED: measurements needed**
+**4. Novelty.** No claim of a new method is supported yet.
+- Read: Schumann and Marx Gomez 2023. Its edits create training data for a fine-tuned BERT
+  classifier, and it doesn't score pairs with an untrained edit response.
+- Unread: Cui, Zheng and Wang 2020, cited there for assigning NLI labels from cosine ranges
+  on a trained encoder. The other sources in the exploratory report need reading before
+  they're cited, and a broader search is still needed.
 
-- The actual #392 filter and NLI/LLM judge's end-to-end cost, latency, and
-  candidate throughput have not been measured here.
-- To unblock: run a representative replay from the Menhir conflict pipeline,
-  with permitted data and model access. Record review budget and missed conflicts.
+**5. Name and publication.** `Norm K` is a working title. Domain and trademark availability
+are unchecked, and no publication or company work has been authorized.
 
-### 5. Trademark, naming, and publication — **UNVERIFIED**
+**6. Menhir data, if a Menhir-shaped test is ever wanted.** This is research that might
+benefit Menhir, not a Menhir feature. No sanitized assertion export is available, and no
+production Menhir data or code has been touched.
 
-- `‖K‖` / `Norm K` is a working project title. Domain/trademark availability has
-  not been checked and must not be inferred from creating a GitHub repository.
-- No publication or company registration work has been authorized.
+## Next research, in order
 
-## Feasible next, but not completed in this pass
+1. Run v5 once the audit is resolved.
+2. Split the flip into its two directions, from saved vectors.
+3. Compress the flip with `asinh` before averaging, as deferred in the v4 protocol.
+4. Trim [the v3 draft](docs/preregistration-decomposition-v3-draft.md) and decide what's still
+   worth running: dilution, context ladder, word removal, deletion-response features.
+5. Later: whether incompatibility can be told from mere difference, which needs a new labeled
+   set, and edits beyond `is` and `was`.
 
-- [ ] Pre-register a full held-out evaluation protocol and independent label audit.
-- [ ] Add tokenizer/subword and name-only runs with real embeddings.
-- [ ] Add a trained local NLI cross-encoder and measure GPU contention with LLM server.
-- [ ] Add randomized-interaction controls; K has descriptive bootstrap intervals
-      and matched pair-level ablations, but no validated causal counterfactual check.
-- [ ] Add PCA arrow plots and cross-encoder comparisons (dimension-vs-recall
-      graph is implemented for the offline control).
-- [ ] Implement **vocabulary-held-out**, paraphrase-held-out, and external-domain
-      splits (subject/template/relation smoke splits plus exact-text purging work).
-- [ ] Validate the restricted counterfactual grammar with independent human
-      judgments and test more transformation families. Current coverage is
-      incomplete, especially for purchase/negation and different-subject pairs.
-- [ ] Upgrade paired K ablations to preregistered tests using real embeddings,
-      realistic grouped holdouts, and multiple-comparison controls.
-- [ ] Run the local annotation UI on the reviewer's own computer; the interface
-      has been API-tested but not visually checked in a real browser here.
-- [ ] Obtain an appropriately licensed external benchmark file and verify its
-      original label semantics before any canonical mapping. The importer is
-      implemented, but no external dataset has been ingested in this workspace.
-- [ ] Commission independent reviewers and adjudicate ambiguous or disputed
-      cases; no human-reviewed benchmark labels have been collected.
-- [ ] Build read-only typed-belief comparisons and pure ViewKind prototype after
-      safe Menhir data access is arranged.
-- [ ] Add hosted CI once workflow permissions and intended runner use are confirmed;
-      unit tests currently run locally with no external credentials.
+## Smaller open items
 
-## What *is* complete
+- [ ] Tokenizer/subword and name-only embedding runs.
+- [ ] Vocabulary-held-out and paraphrase-held-out splits.
+- [ ] PCA arrow plots.
+- [ ] Check the local annotation UI in a real browser.
+- [ ] Hosted CI, once workflow permissions are confirmed. Tests run locally.
 
-- Python project scaffold, pinned package identity, installation metadata.
-- Frozen-embedding provider interface, deterministic lexical smoke encoder,
-  opt-in capped OpenAI adapter, persistent SQLite cache.
-- Deterministic five-class synthetic pair generation (3,000 examples) and four
-  transformation-square families (100 probe cases).
-- Cosine/difference/distance/Hoyer and K/relative-K numerical primitives.
-- Baseline report, linear-probe smoke comparison, review-budget scoring.
-- SVG pair scatter and K distribution, generated locally.
-- Subject-, template-, and relation-held-out linear baselines, PCA(|Δ|) low-rank logistic
-  probes, dimension-vs-recall SVG, and bootstrap mean intervals for K groups.
-- Pair-level counterfactual K feature extraction (negation/subject swap),
-  matched-cohort with-vs-without-K ablations, subject-cluster bootstrap AP
-  uncertainty, and a pair-level scatter chart.
-- Dataset fingerprint audit, symmetric duplicate detection, subject-safe
-  generation, mechanical split leakage checks, and exact-statement purging.
-- Blind stratified review queues, 127.0.0.1-only review UI, append-only
-  corrections, two-reviewer consensus, Cohen's kappa, and CSV/TSV/JSONL import
-  with explicit mapping and provenance manifest.
-- Fair K test (`k-fair`): a baseline holding K's underlying scores plus lexical
-  features, mirror-pair exclusion, a 144-pair hand-written 2x2 set with
-  provisional author labels, and a [frozen protocol](docs/preregistration-matched-v1.md).
-  The first [real-embedding run](reports/real-fair-k-v1.md) got PASS on negation and
-  STOP on subject swap. A [blind LLM label review](reports/label-review-v1.md) and
-  owner rulings on four flagged pairs changed no labels. It still needs human-reviewed
-  labels and replication before it supports any claim.
-- Exploratory v1 checks in `scripts/exploratory/` and a frozen public-data test in
-  [preregistration-public-v2.md](docs/preregistration-public-v2.md),
-  run once: [INCONCLUSIVE for K](reports/public-fair-k-v2.md), with transformed sentences clearing the bar.
-- An [exploratory analysis](reports/exploratory-flip-signal-v2.md) of v2 found an untrained
-  flip score, and a [frozen placebo test](reports/flip-placebo-v4.md) on fresh pairs and two
-  encoders got REPLICATES and NEGATION-SPECIFIC. Whether meaning or edit size causes it is open.
-- 85 passing unittest cases, including localhost API security and annotation
-  workflow tests.
+## What exists
 
-See [the offline run record](reports/offline-smoke.md) for the exact commands and
-their limits.
+- Encoders: offline hash control, capped opt-in OpenAI adapter with SQLite cache and measured
+  token counts, and a pinned local `all-mpnet-base-v2` script.
+- Data: 3,000-pair synthetic set (unaudited), 144-pair matched set, pinned public selections by
+  ID, and audit votes.
+- Tools: geometry and K functions, fair K tests, public and flip tests, leakage checks, bootstrap
+  and shuffle nulls, blind review UI, consensus and kappa, benchmark importer.
+- Method: frozen protocols, hash controls, and [multi-model review](docs/multi-model-review.md).
+- Tests: 92 passing unittest cases.
 
-See [the pair-level K ablation](reports/offline-ablation.md) for a concrete
-example of why a favorable simple split is not sufficient evidence of transfer.
-
-See [the labeling protocol](docs/annotation-protocol.md) for instructions,
-label definitions, and scientific safeguards.
+See [the labeling protocol](docs/annotation-protocol.md) for label definitions.
