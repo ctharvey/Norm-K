@@ -65,6 +65,31 @@ production Menhir data or code has been touched.
    top 20 TF-IDF pairs miss the contradiction in 40.5% of documents, and that BM25, dense and hybrid
    retrievers did no better at that size. Not reproduced here.
 
+## Still to test on this line
+
+None of these has been run. All would be exploratory unless a frozen rule says otherwise.
+
+**Could change how current results read**
+- [ ] Negation-mismatch baseline: does exactly one statement have a negation word? Test it alone and
+  added to cosine, against flip and `negated_cosine`. `negated_cosine` may partly reward `not` in the
+  edited statement matching `not` in its partner, and v7 has no such comparator.
+- [ ] A real lexical baseline, such as BM25 or word overlap. Hash alone reached 55% of contradictions
+  on v7's data.
+- [ ] A hypothesis-only classifier, to size the single-statement cues that wrong-partner hints at.
+
+**Cheap, from saved vectors**
+- [ ] Split the flip into its two directions.
+- [ ] Remove the shared negation direction from `da` and `db`, then rescore `-cos(da, db)`. Negation
+  moves mostly align, so the opposition idea hasn't had a fair test yet.
+- [ ] Rescore `-cos(da, db)` within cosine bands, to separate it from plain similarity.
+
+**New design needed**
+- [ ] v6 retry: a pool of affirming wrappers matched for distance, as in v5. The wrapper edit kept
+  strong signal without grammar rules, so this could remove the `is`/`was` limit.
+- [ ] Harder audit items: subtle scope errors, not just unchanged text and broken grammar.
+- [ ] Gate value: what a gate saves when retrieval is already about five pairs per statement.
+- [ ] More encoders, including larger ones. "General" rests on two so far.
+
 **Parked** by the prior-art audit: `asinh` compression, per-token and chunk-level flip, and learned
 projections. **Parked** by [the mutation run](reports/exploratory-mutations-v5.md): normalized flip
 and `-cos(da, db)` lost to flip on seen data, and `min(gA, gB)` stays a report-only row. **Parked**

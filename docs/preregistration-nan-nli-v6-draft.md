@@ -37,7 +37,8 @@ said in any comparison with v5.
 | Control | `It is the case that S` |
 
 `S` stays verbatim, including its capital and full stop, in both. The two edits differ by one
-word and sit in the same place, so this control is tighter than v5's matched edit. The wrapper
+word and sit in the same place. This draft expected that to make a tighter control than v5's matched
+edit, and the bridge showed it doesn't: it fails to hold edit size equal. The wrapper
 applies to every statement and always negates the whole clause, so the scope errors the prior-art
 audit warned about can't come from the edit. It's also a blunter edit than a change at the verb,
 and it may carry less signal.
