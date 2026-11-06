@@ -4,6 +4,16 @@
 **Status:** EXPLORATORY / UNFROZEN. This document is not a preregistration and does not revise the frozen v2 or v4 experiment outcomes.  
 **Execution:** `scripts/exploratory/mutation_sanity.py` performs a reproducible math-only test using synthetic vectors, **not** real model embeddings or contradiction labels.
 
+## Update after v5
+
+This note was written before v5's result. Three things have changed:
+
+- **Edit size:** [v5](../../reports/flip-matched-v5.md) ruled it out as the explanation, so Stage 1's size-matched flip is done.
+- **Real-encoder scores now exist.** [The mutation run](../../reports/exploratory-mutations-v5.md) scored these variants on v5's saved vectors, as exploratory work on seen pairs. None beat flip.
+- **The 50.59% figure** follows from the model: with one shared negation axis, `cos(da,db)` can only be +1 or -1. On real encoders no unrelated pair reached 0.99.
+
+The rest of the note stands as written. Its retrieval figures match the [benchmark's README](https://github.com/nstandif/contradiction-bench), which also says BM25, dense and hybrid retrievers did no better than TF-IDF at K=20. They remain unreproduced here.
+
 ## Why explore this?
 
 The v4 negation flip was useful on a narrow NLI subset: [report](../../reports/flip-placebo-v4.md), [frozen protocol](../../docs/preregistration-flip-placebo-v4.md). Its major limitations are an edit-strength confound, strong single-statement/wrong-partner signal, MultiNLI exposure and ~3% grammar eligibility in the earlier public run. NLI alone scored **0.744 AP on WANLI**, versus **0.382** for the OpenAI flip, in [v2](../../reports/public-fair-k-v2.md). The question is whether a simpler, more selective score can flag a strong contradiction **without mistaking semantic distance, temporal change or merely differing values for opposition**.

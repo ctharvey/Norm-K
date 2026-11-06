@@ -1,0 +1,274 @@
+{
+  "openai/fresh": {
+    "topk": {
+      "5": {
+        "candidates": 7500,
+        "stage1_recall": 0.94,
+        "prevalence": 0.061,
+        "0.05": {
+          "cosine": 0.135,
+          "negcos": 0.217,
+          "flip": 0.251
+        },
+        "0.1": {
+          "cosine": 0.348,
+          "negcos": 0.443,
+          "flip": 0.366
+        },
+        "0.2": {
+          "cosine": 0.743,
+          "negcos": 0.803,
+          "flip": 0.48
+        }
+      },
+      "10": {
+        "candidates": 15000,
+        "stage1_recall": 0.969,
+        "prevalence": 0.031,
+        "0.05": {
+          "cosine": 0.348,
+          "negcos": 0.443,
+          "flip": 0.265
+        },
+        "0.1": {
+          "cosine": 0.743,
+          "negcos": 0.805,
+          "flip": 0.375
+        },
+        "0.2": {
+          "cosine": 0.882,
+          "negcos": 0.917,
+          "flip": 0.476
+        }
+      },
+      "20": {
+        "candidates": 30000,
+        "stage1_recall": 0.981,
+        "prevalence": 0.016,
+        "0.05": {
+          "cosine": 0.743,
+          "negcos": 0.803,
+          "flip": 0.269
+        },
+        "0.1": {
+          "cosine": 0.882,
+          "negcos": 0.913,
+          "flip": 0.362
+        },
+        "0.2": {
+          "cosine": 0.932,
+          "negcos": 0.946,
+          "flip": 0.47
+        }
+      }
+    },
+    "width": {
+      "mean_width": 0.162,
+      "delta_sd": 0.031
+    }
+  },
+  "openai/wanli": {
+    "topk": {
+      "5": {
+        "candidates": 3625,
+        "stage1_recall": 1.0,
+        "prevalence": 0.038,
+        "0.05": {
+          "cosine": 0.338,
+          "negcos": 0.439,
+          "flip": 0.194
+        },
+        "0.1": {
+          "cosine": 0.54,
+          "negcos": 0.676,
+          "flip": 0.252
+        },
+        "0.2": {
+          "cosine": 0.921,
+          "negcos": 0.942,
+          "flip": 0.317
+        }
+      },
+      "10": {
+        "candidates": 7250,
+        "stage1_recall": 1.0,
+        "prevalence": 0.019,
+        "0.05": {
+          "cosine": 0.54,
+          "negcos": 0.676,
+          "flip": 0.18
+        },
+        "0.1": {
+          "cosine": 0.921,
+          "negcos": 0.942,
+          "flip": 0.245
+        },
+        "0.2": {
+          "cosine": 0.993,
+          "negcos": 0.993,
+          "flip": 0.309
+        }
+      },
+      "20": {
+        "candidates": 14500,
+        "stage1_recall": 1.0,
+        "prevalence": 0.01,
+        "0.05": {
+          "cosine": 0.921,
+          "negcos": 0.942,
+          "flip": 0.18
+        },
+        "0.1": {
+          "cosine": 0.993,
+          "negcos": 0.993,
+          "flip": 0.237
+        },
+        "0.2": {
+          "cosine": 1.0,
+          "negcos": 1.0,
+          "flip": 0.302
+        }
+      }
+    },
+    "width": {
+      "mean_width": 0.15,
+      "delta_sd": 0.026
+    }
+  },
+  "mpnet/fresh": {
+    "topk": {
+      "5": {
+        "candidates": 7500,
+        "stage1_recall": 0.822,
+        "prevalence": 0.053,
+        "0.05": {
+          "cosine": 0.066,
+          "negcos": 0.238,
+          "flip": 0.325
+        },
+        "0.1": {
+          "cosine": 0.232,
+          "negcos": 0.427,
+          "flip": 0.406
+        },
+        "0.2": {
+          "cosine": 0.497,
+          "negcos": 0.683,
+          "flip": 0.493
+        }
+      },
+      "10": {
+        "candidates": 15000,
+        "stage1_recall": 0.874,
+        "prevalence": 0.028,
+        "0.05": {
+          "cosine": 0.232,
+          "negcos": 0.435,
+          "flip": 0.375
+        },
+        "0.1": {
+          "cosine": 0.495,
+          "negcos": 0.696,
+          "flip": 0.449
+        },
+        "0.2": {
+          "cosine": 0.7,
+          "negcos": 0.812,
+          "flip": 0.536
+        }
+      },
+      "20": {
+        "candidates": 30000,
+        "stage1_recall": 0.903,
+        "prevalence": 0.015,
+        "0.05": {
+          "cosine": 0.495,
+          "negcos": 0.692,
+          "flip": 0.395
+        },
+        "0.1": {
+          "cosine": 0.698,
+          "negcos": 0.822,
+          "flip": 0.468
+        },
+        "0.2": {
+          "cosine": 0.783,
+          "negcos": 0.876,
+          "flip": 0.555
+        }
+      }
+    },
+    "width": {
+      "mean_width": 0.13,
+      "delta_sd": 0.027
+    }
+  },
+  "mpnet/wanli": {
+    "topk": {
+      "5": {
+        "candidates": 3625,
+        "stage1_recall": 0.986,
+        "prevalence": 0.038,
+        "0.05": {
+          "cosine": 0.252,
+          "negcos": 0.432,
+          "flip": 0.223
+        },
+        "0.1": {
+          "cosine": 0.432,
+          "negcos": 0.655,
+          "flip": 0.252
+        },
+        "0.2": {
+          "cosine": 0.82,
+          "negcos": 0.885,
+          "flip": 0.36
+        }
+      },
+      "10": {
+        "candidates": 7250,
+        "stage1_recall": 0.986,
+        "prevalence": 0.019,
+        "0.05": {
+          "cosine": 0.432,
+          "negcos": 0.655,
+          "flip": 0.223
+        },
+        "0.1": {
+          "cosine": 0.82,
+          "negcos": 0.885,
+          "flip": 0.252
+        },
+        "0.2": {
+          "cosine": 0.95,
+          "negcos": 0.971,
+          "flip": 0.338
+        }
+      },
+      "20": {
+        "candidates": 14500,
+        "stage1_recall": 1.0,
+        "prevalence": 0.01,
+        "0.05": {
+          "cosine": 0.82,
+          "negcos": 0.885,
+          "flip": 0.23
+        },
+        "0.1": {
+          "cosine": 0.95,
+          "negcos": 0.971,
+          "flip": 0.259
+        },
+        "0.2": {
+          "cosine": 0.964,
+          "negcos": 0.978,
+          "flip": 0.345
+        }
+      }
+    },
+    "width": {
+      "mean_width": 0.142,
+      "delta_sd": 0.025
+    }
+  }
+}
