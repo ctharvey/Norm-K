@@ -69,7 +69,7 @@ Public datasets aren't included, and most files store pair IDs. The `*-edit-audi
 - [WANLI](https://huggingface.co/datasets/alisawuffles/WANLI) (Liu, Swayamdipta, Smith and Choi, 2022), CC BY 4.0.
 - [MultiNLI](https://huggingface.co/datasets/nyu-mll/multi_nli) (Williams, Nangia and Bowman, 2018), mostly under the OANC license, with other terms for some genres.
 
-Those statements stay under their original terms.
+Those statements stay under their original terms. Everything else is under the [MIT license](LICENSE).
 
 ## Objectives
 
