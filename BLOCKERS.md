@@ -83,6 +83,17 @@ None of these has been run. All would be exploratory unless a frozen rule says o
   moves mostly align, so the opposition idea hasn't had a fair test yet.
 - [ ] Rescore `-cos(da, db)` within cosine bands, to separate it from plain similarity.
 
+**Cheap ways to find contradictions, by comparing positive and negative versions**
+- [ ] Average negation vector: the mean of `E(N(s)) - E(s)` from a sample, with `E(s) + v` standing in
+  for the negated statement. It needs no edits or new embedding calls, and isn't limited to `is`/`was`.
+- [ ] Search with the negated version: neighbors of `E(s) + v` or `E(N(s))`, combined with normal
+  neighbors. v7 only reorders cosine's neighbors, so this could reach pairs cosine never retrieves.
+- [ ] Polarity score: one stored number per statement, `s·v`, flagging related pairs far apart on it.
+- [ ] Small combined score: logistic model on cosine, both negated cosines and the mismatch flag, on
+  held-out splits. Shows how much signal exists, and whether flip adds to the simple flag.
+- [ ] Tiny NLI model as the gate, ahead of the full model. It's the competitor to beat.
+- [ ] Antonym edits in place of `not`, for contradictions with no negation word.
+
 **New design needed**
 - [ ] v6 retry: a pool of affirming wrappers matched for distance, as in v5. The wrapper edit kept
   strong signal without grammar rules, so this could remove the `is`/`was` limit.
