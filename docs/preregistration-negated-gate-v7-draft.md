@@ -75,7 +75,26 @@ cutoff uncertainty. The result is called general only if `all-mpnet-base-v2` get
 - Nothing here covers time, or whether two statements are about the same subject.
 - No person reviews labels or edits. WANLI labels are human.
 
-## Before freezing
+## Details set before any v7 score
 
-Select pairs with labels hidden. Run the hash control, and an edit audit with known-bad items as in
-v6. Pin the model revision. Estimated OpenAI cost is a few cents. NLI runs locally.
+Committed before any reviewer saw a statement and before any encoder read a v7 pair.
+
+- **Data:** `train.jsonl` from `alisawuffles/WANLI` at `61c95318fd71c55b6ba355d76253254615f387ec`, SHA-256
+  `85058cf017a911e89242dc29fa0a4ddaad3664cb923dc0a82145fdda14b694e5`. IDs are in
+  [gate-v7-pair-ids.tsv](../data/benchmarks/gate-v7-pair-ids.tsv), chosen with labels unread.
+- **Duplicates:** selection keeps one pair per pair of statements, by lowest ID, so a retrieved pair
+  can't clash with another real pair's label. Retrieval runs once per distinct A.
+- **NLI:** revision `6f5cf0a2b59cabb106aca4c287eed12e357e90eb`, as in v2, premise as A. The real
+  encoders read every candidate, so ceilings are measured. Hash reads only what its two rankings pass.
+- **Hash margin:** hash encoder, same pipeline, committed before any real encoder reads a v7 pair.
+
+**Edit audit.** 100 selected statements with v5's negation edit, seed 2031, plus 10 known-bad items
+built from seen v5 statements: 5 left unchanged and 5 with `not` placed before the verb, both invalid
+under the prompt. They're mixed in blind. Same three models and route as v5, twice, in different
+orders, in fresh sessions with tools off. A model votes invalid if it says so in either run. A model
+counts only if it flags at least 8 of the 10. If fewer than two count, stop and go to the owner.
+Votes from models that don't count are dropped. A real item is invalid if at least two counted models
+say so. The bar is 90 of 100; under it, stop and go to the owner. The any-dissent count is reported.
+The prompt is v4's negation prompt. If a model can't complete, stop. Don't swap models.
+
+Estimated OpenAI cost is under a cent per the 20,000 texts. NLI runs locally.
