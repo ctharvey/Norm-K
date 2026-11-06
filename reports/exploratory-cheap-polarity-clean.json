@@ -1,0 +1,184 @@
+{
+  "text-embedding-3-small": {
+    "candidates_with_mismatch": 0.15158063225290117,
+    "passed_with_mismatch": {
+      "cosine": 0.08523409363745499,
+      "negated_cosine": 0.20568227290916366,
+      "v_negated_cosine": 0.14325730292116848,
+      "cosine+0.2*mismatch": 0.266906762705082
+    },
+    "found": {
+      "cosine": 0.5154525386313465,
+      "negated_cosine": 0.6467991169977925,
+      "v_negated_cosine": 0.5662251655629139,
+      "cosine+0.01*mismatch": 0.5253863134657837,
+      "negated_cosine+0.01*mismatch": 0.6479028697571744,
+      "cosine+0.02*mismatch": 0.5309050772626932,
+      "negated_cosine+0.02*mismatch": 0.6501103752759382,
+      "cosine+0.03*mismatch": 0.5353200883002207,
+      "negated_cosine+0.03*mismatch": 0.652317880794702,
+      "cosine+0.05*mismatch": 0.5419426048565121,
+      "negated_cosine+0.05*mismatch": 0.6556291390728477,
+      "cosine+0.075*mismatch": 0.5529801324503312,
+      "negated_cosine+0.075*mismatch": 0.6578366445916115,
+      "cosine+0.1*mismatch": 0.5673289183222958,
+      "negated_cosine+0.1*mismatch": 0.6545253863134658,
+      "cosine+0.15*mismatch": 0.5706401766004415,
+      "negated_cosine+0.15*mismatch": 0.6434878587196468,
+      "cosine+0.2*mismatch": 0.5860927152317881,
+      "negated_cosine+0.2*mismatch": 0.6192052980132451,
+      "cosine+0.3*mismatch": 0.565121412803532,
+      "negated_cosine+0.3*mismatch": 0.5441501103752759,
+      "cosine+0.5*mismatch": 0.358719646799117,
+      "negated_cosine+0.5*mismatch": 0.2924944812362031
+    },
+    "best_cosine_blend": "cosine+0.2*mismatch",
+    "best_negated_blend": "negated_cosine+0.075*mismatch",
+    "negated_minus_best_blend": {
+      "margin": 0.06070640176600441,
+      "ci_lower": 0.04083885209713024,
+      "ci_upper": 0.08167770419426049
+    },
+    "best_negated_blend_minus_negated": {
+      "margin": 0.011037527593818985,
+      "ci_lower": -0.002207505518763797,
+      "ci_upper": 0.024282560706401765
+    },
+    "best_blend_minus_cosine": {
+      "margin": 0.0706401766004415,
+      "ci_lower": 0.04415011037527594,
+      "ci_upper": 0.09823399558498896
+    },
+    "v_negated_minus_cosine": {
+      "margin": 0.05077262693156733,
+      "ci_lower": 0.03421633554083885,
+      "ci_upper": 0.0684326710816777
+    },
+    "groups": {
+      "no_negation_word": {
+        "contradictions": 562,
+        "cosine": 0.5818505338078291,
+        "negated_cosine": 0.604982206405694,
+        "best_blend": 0.501779359430605,
+        "negated_minus_cosine": {
+          "margin": 0.023131672597864767,
+          "ci_lower": 0.0,
+          "ci_upper": 0.04448398576512456
+        }
+      },
+      "exactly_one": {
+        "contradictions": 282,
+        "cosine": 0.3333333333333333,
+        "negated_cosine": 0.6985815602836879,
+        "best_blend": 0.7340425531914894,
+        "negated_minus_cosine": {
+          "margin": 0.36524822695035464,
+          "ci_lower": 0.30851063829787234,
+          "ci_upper": 0.4219858156028369
+        }
+      },
+      "both": {
+        "contradictions": 62,
+        "cosine": 0.7419354838709677,
+        "negated_cosine": 0.7903225806451613,
+        "best_blend": 0.6774193548387096,
+        "negated_minus_cosine": {
+          "margin": 0.04838709677419355,
+          "ci_lower": 0.0,
+          "ci_upper": 0.11290322580645161
+        }
+      }
+    }
+  },
+  "all-mpnet-base-v2": {
+    "candidates_with_mismatch": 0.18631452581032412,
+    "passed_with_mismatch": {
+      "cosine": 0.09643857543017206,
+      "negated_cosine": 0.24289715886354543,
+      "v_negated_cosine": 0.132452981192477,
+      "cosine+0.2*mismatch": 0.3161264505802321
+    },
+    "found": {
+      "cosine": 0.4370860927152318,
+      "negated_cosine": 0.5949227373068433,
+      "v_negated_cosine": 0.47130242825607066,
+      "cosine+0.01*mismatch": 0.4392935982339956,
+      "negated_cosine+0.01*mismatch": 0.5960264900662252,
+      "cosine+0.02*mismatch": 0.44260485651214126,
+      "negated_cosine+0.02*mismatch": 0.5949227373068433,
+      "cosine+0.03*mismatch": 0.4448123620309051,
+      "negated_cosine+0.03*mismatch": 0.5960264900662252,
+      "cosine+0.05*mismatch": 0.445916114790287,
+      "negated_cosine+0.05*mismatch": 0.5993377483443708,
+      "cosine+0.075*mismatch": 0.4624724061810154,
+      "negated_cosine+0.075*mismatch": 0.5971302428256071,
+      "cosine+0.1*mismatch": 0.46909492273730685,
+      "negated_cosine+0.1*mismatch": 0.5938189845474614,
+      "cosine+0.15*mismatch": 0.4845474613686534,
+      "negated_cosine+0.15*mismatch": 0.5750551876379691,
+      "cosine+0.2*mismatch": 0.4878587196467991,
+      "negated_cosine+0.2*mismatch": 0.5408388520971302,
+      "cosine+0.3*mismatch": 0.44370860927152317,
+      "negated_cosine+0.3*mismatch": 0.47130242825607066,
+      "cosine+0.5*mismatch": 0.24613686534216336,
+      "negated_cosine+0.5*mismatch": 0.26379690949227375
+    },
+    "best_cosine_blend": "cosine+0.2*mismatch",
+    "best_negated_blend": "negated_cosine+0.05*mismatch",
+    "negated_minus_best_blend": {
+      "margin": 0.10706401766004416,
+      "ci_lower": 0.07836644591611479,
+      "ci_upper": 0.1368653421633554
+    },
+    "best_negated_blend_minus_negated": {
+      "margin": 0.004415011037527594,
+      "ci_lower": -0.006622516556291391,
+      "ci_upper": 0.01545253863134658
+    },
+    "best_blend_minus_cosine": {
+      "margin": 0.05077262693156733,
+      "ci_lower": 0.024282560706401765,
+      "ci_upper": 0.076158940397351
+    },
+    "v_negated_minus_cosine": {
+      "margin": 0.03421633554083885,
+      "ci_lower": 0.018763796909492272,
+      "ci_upper": 0.04856512141280353
+    },
+    "groups": {
+      "no_negation_word": {
+        "contradictions": 562,
+        "cosine": 0.49110320284697506,
+        "negated_cosine": 0.5320284697508897,
+        "best_blend": 0.41459074733096085,
+        "negated_minus_cosine": {
+          "margin": 0.04092526690391459,
+          "ci_lower": 0.005338078291814947,
+          "ci_upper": 0.07651245551601424
+        }
+      },
+      "exactly_one": {
+        "contradictions": 282,
+        "cosine": 0.28368794326241137,
+        "negated_cosine": 0.6808510638297872,
+        "best_blend": 0.624113475177305,
+        "negated_minus_cosine": {
+          "margin": 0.3971631205673759,
+          "ci_lower": 0.3404255319148936,
+          "ci_upper": 0.4574468085106383
+        }
+      },
+      "both": {
+        "contradictions": 62,
+        "cosine": 0.6451612903225806,
+        "negated_cosine": 0.7741935483870968,
+        "best_blend": 0.532258064516129,
+        "negated_minus_cosine": {
+          "margin": 0.12903225806451613,
+          "ci_lower": 0.04838709677419355,
+          "ci_upper": 0.22580645161290322
+        }
+      }
+    }
+  }
+}

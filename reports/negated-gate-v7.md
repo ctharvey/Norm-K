@@ -47,9 +47,10 @@ Contradictions reachable after retrieval at k of 5, 10 and 20: 0.982, 0.990 and 
 
 ## What it doesn't show
 
-- **No simple baseline was in the rule.** `negated_cosine` may partly reward `not` in the edited
-  statement matching `not` in a partner. Hash's +0.028 suggests a small effect, but a plain negation
-  mismatch check hasn't been run, so the margin can't yet be credited to meaning.
+- **Most of the margin is about negation words.** No simple baseline was in the rule. A
+  [later exploratory check](exploratory-cheap-polarity.md) found `negated_cosine` beats a negation
+  flag, but about 80% of its margin comes from pairs where exactly one statement has a negation word.
+  The 62% of contradictions with no negation word gain +0.023 on OpenAI and +0.041 on mpnet.
 - **Word overlap does a lot here.** Hash found 0.550 with cosine and 0.577 with `negated_cosine`,
   above mpnet's cosine and OpenAI's cosine. On this data, embeddings' cosine ranking did no better than
   hashed words.
@@ -118,5 +119,4 @@ in each frozen protocol, don't mix devices within a run, and treat NLI scores as
 
 By the frozen plan, GATE-PASS on both encoders means a cheap ranker has shown value on this kind of
 text only, and the next step would be realistic text, which needs a dataset that doesn't exist here.
-Before that, the negation-mismatch baseline should run, since it could explain much of this margin.
-No novelty is claimed.
+The negation split above narrows what that value is. No novelty is claimed.

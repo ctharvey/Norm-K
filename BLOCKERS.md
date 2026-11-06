@@ -56,8 +56,8 @@ production Menhir data or code has been touched.
    NaN-NLI statement was embedded. v5's edit fits only 32 of 258 pairs, and the wrapper edit moved
    statements 2 to 3.5 times further than its control, failing the size gate. Owner's call.
 2. [v7](reports/negated-gate-v7.md) passed: `negated_cosine` found more contradictions than cosine at
-   the same NLI budget. Run the negation-mismatch baseline before crediting that to meaning. Its
-   frozen next step is realistic text, which needs a dataset that doesn't exist here.
+   the same NLI budget, but [most of that gain](reports/exploratory-cheap-polarity.md) is on pairs
+   where exactly one statement has a negation word. Its frozen next step is realistic text, which needs a dataset that doesn't exist here.
 3. Trim [the v3 draft](docs/preregistration-decomposition-v3-draft.md) and decide what's still
    worth running: dilution, context ladder, word removal, deletion-response features.
 4. Later: whether incompatibility can be told from mere difference, which needs a new labeled
@@ -69,12 +69,12 @@ production Menhir data or code has been touched.
 
 ## Still to test on this line
 
-None of these has been run. All would be exploratory unless a frozen rule says otherwise.
+Unticked items haven't been run. All would be exploratory unless a frozen rule says otherwise.
 
 **Could change how current results read**
-- [ ] Negation-mismatch baseline: does exactly one statement have a negation word? Test it alone and
-  added to cosine, against flip and `negated_cosine`. `negated_cosine` may partly reward `not` in the
-  edited statement matching `not` in its partner, and v7 has no such comparator.
+- [x] Negation-mismatch baseline: `negated_cosine` beats the flag, but about 80% of its v7 margin is on
+  pairs where exactly one statement has a negation word. See
+  [the report](reports/exploratory-cheap-polarity.md).
 - [ ] A real lexical baseline, such as BM25 or word overlap. Hash alone reached 55% of contradictions
   on v7's data.
 - [ ] A hypothesis-only classifier, to size the single-statement cues that wrong-partner hints at.
@@ -86,15 +86,16 @@ None of these has been run. All would be exploratory unless a frozen rule says o
 - [ ] Rescore `-cos(da, db)` within cosine bands, to separate it from plain similarity.
 
 **Cheap ways to find contradictions, by comparing positive and negative versions**
-- [ ] Average negation vector: the mean of `E(N(s)) - E(s)` from a sample, with `E(s) + v` standing in
-  for the negated statement. It needs no edits or new embedding calls, and isn't limited to `is`/`was`.
-- [ ] Search with the negated version: neighbors of `E(s) + v` or `E(N(s))`, combined with normal
-  neighbors. v7 only reorders cosine's neighbors, so this could reach pairs cosine never retrieves.
-- [ ] Polarity score: one stored number per statement, `s·v`, flagging related pairs far apart on it.
+- [x] Average negation vector: stable across sets, but below flip as a score. As a gate it recovers
+  only a fifth to two fifths of the real edit's gain, and is below the plain flag.
+- [x] Search with the negated version: a lead on mpnet's fresh set only, where the real negated query
+  reached more with fewer candidates. No gain on OpenAI, and WANLI's retrieval is already near full.
+- [x] Polarity score: little beyond spotting negation words, and below cosine as a gate.
 - [ ] Small combined score: logistic model on cosine, both negated cosines and the mismatch flag, on
   held-out splits. Shows how much signal exists, and whether flip adds to the simple flag.
 - [ ] Tiny NLI model as the gate, ahead of the full model. It's the competitor to beat.
-- [ ] Antonym edits in place of `not`, for contradictions with no negation word.
+- [ ] Antonym edits in place of `not`, for contradictions with no negation word. This is now the main
+  open question: 62% of v7's contradictions have none, and `negated_cosine` barely helps them.
 
 **New design needed**
 - [ ] v6 retry: a pool of affirming wrappers matched for distance, as in v5. The wrapper edit kept

@@ -1,0 +1,646 @@
+{
+  "text-embedding-3-small": {
+    "v_norm": 0.30084135387160554,
+    "v_cosine_across_sets": 0.9916923519289826,
+    "fresh": {
+      "pairs": {
+        "pairs": 1500,
+        "positives": 483,
+        "floor": 0.322,
+        "clean_pairs": 1207,
+        "clean_floor": 0.28086164043082024,
+        "scores": {
+          "cosine": {
+            "ap": 0.2508379988109314,
+            "clean_ap": 0.219497148608072
+          },
+          "reversed_cosine": {
+            "ap": 0.4035592508756941,
+            "clean_ap": 0.3571747747007269
+          },
+          "flip": {
+            "ap": 0.6964433190799022,
+            "clean_ap": 0.6600463018172207,
+            "wrong_partner_ap": 0.4263186885328931
+          },
+          "negated_cosine": {
+            "ap": 0.3208437320828055,
+            "clean_ap": 0.2659363157451814
+          },
+          "mismatch": {
+            "ap": 0.379687159335784,
+            "clean_ap": 0.28086164043082024
+          },
+          "mismatch_then_cosine": {
+            "ap": 0.358346789054428,
+            "clean_ap": 0.219497148608072,
+            "minus_flip_interval": [
+              -0.37773994559404034,
+              -0.2938705676591355
+            ]
+          },
+          "mismatch_then_reversed_cosine": {
+            "ap": 0.47308654306819575,
+            "clean_ap": 0.3571747747007269,
+            "minus_flip_interval": [
+              -0.2583102785613876,
+              -0.18137807290683888
+            ]
+          },
+          "v_flip": {
+            "ap": 0.5190082816907842,
+            "clean_ap": 0.41152283076681395,
+            "minus_flip_interval": [
+              -0.20823586602869992,
+              -0.14659024496750236
+            ],
+            "wrong_partner_ap": 0.4199970761032805
+          },
+          "v_negated_cosine": {
+            "ap": 0.2640382514324606,
+            "clean_ap": 0.22144439509824615
+          },
+          "v_flip_unsigned": {
+            "ap": 0.4792808179195862,
+            "clean_ap": 0.41152283076681395
+          },
+          "polarity_gap": {
+            "ap": 0.5617167966836019,
+            "clean_ap": 0.5074394263045588,
+            "minus_flip_interval": [
+              -0.16207900264704878,
+              -0.10445920338899682
+            ],
+            "wrong_partner_ap": 0.4185489153736494
+          },
+          "polarity_gap_times_cosine": {
+            "ap": 0.5450292031005933,
+            "clean_ap": 0.4989986597647544
+          }
+        }
+      },
+      "retrieval": {
+        "contradictions": 483,
+        "reach": {
+          "cosine_top5": 0.9399585921325052,
+          "cosine_top10": 0.968944099378882,
+          "negated_query_top5": 0.9503105590062112,
+          "v_query_top5": 0.9316770186335404,
+          "cosine5_plus_negated5": 0.9585921325051759,
+          "cosine5_plus_v5": 0.9440993788819876
+        },
+        "candidates": {
+          "cosine_top10": 15000,
+          "cosine5_plus_negated5": 10215,
+          "cosine5_plus_v5": 9731
+        },
+        "recall_at_10_percent": {
+          "cosine": 0.34782608695652173,
+          "negated_cosine": 0.44306418219461696,
+          "flip": 0.36645962732919257,
+          "mismatch_then_cosine": 0.2567287784679089,
+          "v_flip": 0.20082815734989648,
+          "v_negated_cosine": 0.36853002070393376,
+          "polarity_gap_times_cosine": 0.37060041407867494
+        }
+      }
+    },
+    "wanli": {
+      "pairs": {
+        "pairs": 725,
+        "positives": 139,
+        "floor": 0.1917241379310345,
+        "clean_pairs": 566,
+        "clean_floor": 0.16607773851590105,
+        "scores": {
+          "cosine": {
+            "ap": 0.26255458972159756,
+            "clean_ap": 0.26565307369294455
+          },
+          "reversed_cosine": {
+            "ap": 0.16398640374047557,
+            "clean_ap": 0.1378374613518146
+          },
+          "flip": {
+            "ap": 0.3819928396309372,
+            "clean_ap": 0.3301486792548682,
+            "wrong_partner_ap": 0.22215059290010006
+          },
+          "negated_cosine": {
+            "ap": 0.39671789238466126,
+            "clean_ap": 0.35020512907362156
+          },
+          "mismatch": {
+            "ap": 0.2214389806433767,
+            "clean_ap": 0.16607773851590105
+          },
+          "mismatch_then_cosine": {
+            "ap": 0.2946830629856071,
+            "clean_ap": 0.26565307369294455,
+            "minus_flip_interval": [
+              -0.15521380403475682,
+              -0.01917698215065136
+            ]
+          },
+          "mismatch_then_reversed_cosine": {
+            "ap": 0.2080892821050907,
+            "clean_ap": 0.1378374613518146,
+            "minus_flip_interval": [
+              -0.2269398554615034,
+              -0.12492623116116708
+            ]
+          },
+          "v_flip": {
+            "ap": 0.27798653124593836,
+            "clean_ap": 0.15133810307375423,
+            "minus_flip_interval": [
+              -0.14494278423548076,
+              -0.06234110566145935
+            ],
+            "wrong_partner_ap": 0.2357154199814991
+          },
+          "v_negated_cosine": {
+            "ap": 0.2913530961244808,
+            "clean_ap": 0.26740057296173514
+          },
+          "v_flip_unsigned": {
+            "ap": 0.21141221548608752,
+            "clean_ap": 0.15133810307375423
+          },
+          "polarity_gap": {
+            "ap": 0.29422875822047323,
+            "clean_ap": 0.17419474146377523,
+            "minus_flip_interval": [
+              -0.1308136688863117,
+              -0.049391059549260256
+            ],
+            "wrong_partner_ap": 0.22536791949177343
+          },
+          "polarity_gap_times_cosine": {
+            "ap": 0.3189648991494074,
+            "clean_ap": 0.19130820657368192
+          }
+        }
+      },
+      "retrieval": {
+        "contradictions": 139,
+        "reach": {
+          "cosine_top5": 1.0,
+          "cosine_top10": 1.0,
+          "negated_query_top5": 1.0,
+          "v_query_top5": 1.0,
+          "cosine5_plus_negated5": 1.0,
+          "cosine5_plus_v5": 1.0
+        },
+        "candidates": {
+          "cosine_top10": 7250,
+          "cosine5_plus_negated5": 5003,
+          "cosine5_plus_v5": 4599
+        },
+        "recall_at_10_percent": {
+          "cosine": 0.539568345323741,
+          "negated_cosine": 0.6762589928057554,
+          "flip": 0.2517985611510791,
+          "mismatch_then_cosine": 0.2517985611510791,
+          "v_flip": 0.17985611510791366,
+          "v_negated_cosine": 0.60431654676259,
+          "polarity_gap_times_cosine": 0.31654676258992803
+        }
+      }
+    },
+    "v7": {
+      "pairs": {
+        "pairs": 5000,
+        "positives": 906,
+        "floor": 0.1812,
+        "clean_pairs": 3821,
+        "clean_floor": 0.14708191572886678,
+        "scores": {
+          "cosine": {
+            "ap": 0.23884613578785682,
+            "clean_ap": 0.2291725903536658
+          },
+          "reversed_cosine": {
+            "ap": 0.14823924242538472,
+            "clean_ap": 0.11222537205546913
+          },
+          "flip": {
+            "ap": 0.37463527281865194,
+            "clean_ap": 0.255447549609078,
+            "wrong_partner_ap": 0.2039611649519089
+          },
+          "negated_cosine": {
+            "ap": 0.41498462927919133,
+            "clean_ap": 0.3372075764201624
+          },
+          "mismatch": {
+            "ap": 0.2291696009953461,
+            "clean_ap": 0.14708191572886678
+          },
+          "mismatch_then_cosine": {
+            "ap": 0.317542006851552,
+            "clean_ap": 0.2291725903536658,
+            "minus_flip_interval": [
+              -0.08576240177386951,
+              -0.028132094285212322
+            ]
+          },
+          "mismatch_then_reversed_cosine": {
+            "ap": 0.20741943904656573,
+            "clean_ap": 0.11222537205546913,
+            "minus_flip_interval": [
+              -0.18868013373574752,
+              -0.14622142176452724
+            ]
+          },
+          "v_flip": {
+            "ap": 0.27411202748959723,
+            "clean_ap": 0.1310987194791257,
+            "minus_flip_interval": [
+              -0.11726149979069751,
+              -0.08396890004045789
+            ],
+            "wrong_partner_ap": 0.2105005623766913
+          },
+          "v_negated_cosine": {
+            "ap": 0.26720580379820724,
+            "clean_ap": 0.2319684775796109
+          },
+          "v_flip_unsigned": {
+            "ap": 0.20113607410999568,
+            "clean_ap": 0.1310987194791257
+          },
+          "polarity_gap": {
+            "ap": 0.28998937353565846,
+            "clean_ap": 0.1743402787121116,
+            "minus_flip_interval": [
+              -0.10011981235036398,
+              -0.06876663317717319
+            ],
+            "wrong_partner_ap": 0.20783652516682313
+          },
+          "polarity_gap_times_cosine": {
+            "ap": 0.33075867559792027,
+            "clean_ap": 0.20194439152634125
+          }
+        }
+      },
+      "retrieval": {
+        "contradictions": 906,
+        "reach": {
+          "cosine_top5": 0.9823399558498896,
+          "cosine_top10": 0.9900662251655629,
+          "negated_query_top5": 0.9845474613686535,
+          "v_query_top5": 0.9856512141280354,
+          "cosine5_plus_negated5": 0.9878587196467992,
+          "cosine5_plus_v5": 0.9867549668874173
+        },
+        "candidates": {
+          "cosine_top10": 49980,
+          "cosine5_plus_negated5": 35931,
+          "cosine5_plus_v5": 32184
+        },
+        "recall_at_10_percent": {
+          "cosine": 0.5916114790286976,
+          "negated_cosine": 0.7284768211920529,
+          "flip": 0.2891832229580574,
+          "mismatch_then_cosine": 0.30242825607064017,
+          "v_flip": 0.24061810154525387,
+          "v_negated_cosine": 0.6412803532008831,
+          "polarity_gap_times_cosine": 0.3333333333333333
+        },
+        "found_after_nli": {
+          "cosine": 0.5154525386313465,
+          "negated_cosine": 0.6467991169977925,
+          "flip": 0.2704194260485651,
+          "mismatch_then_cosine": 0.27593818984547464,
+          "v_flip": 0.2240618101545254,
+          "v_negated_cosine": 0.5662251655629139,
+          "polarity_gap_times_cosine": 0.31236203090507725
+        }
+      }
+    }
+  },
+  "all-mpnet-base-v2": {
+    "v_norm": 0.30427751988430185,
+    "v_cosine_across_sets": 0.9838146087251545,
+    "fresh": {
+      "pairs": {
+        "pairs": 1500,
+        "positives": 483,
+        "floor": 0.322,
+        "clean_pairs": 1207,
+        "clean_floor": 0.28086164043082024,
+        "scores": {
+          "cosine": {
+            "ap": 0.21650696930354452,
+            "clean_ap": 0.18950831051505246
+          },
+          "reversed_cosine": {
+            "ap": 0.5419058442942781,
+            "clean_ap": 0.48291013929391396
+          },
+          "flip": {
+            "ap": 0.747684842199099,
+            "clean_ap": 0.6839070709698651,
+            "wrong_partner_ap": 0.44198726722905246
+          },
+          "negated_cosine": {
+            "ap": 0.32573677179370664,
+            "clean_ap": 0.2770077276647451
+          },
+          "mismatch": {
+            "ap": 0.379687159335784,
+            "clean_ap": 0.28086164043082024
+          },
+          "mismatch_then_cosine": {
+            "ap": 0.3110275744636022,
+            "clean_ap": 0.18950831051505246,
+            "minus_flip_interval": [
+              -0.47279069943259516,
+              -0.39608093328835875
+            ]
+          },
+          "mismatch_then_reversed_cosine": {
+            "ap": 0.5580464823190611,
+            "clean_ap": 0.48291013929391396,
+            "minus_flip_interval": [
+              -0.22790853910712744,
+              -0.14649065137219328
+            ]
+          },
+          "v_flip": {
+            "ap": 0.587468456879826,
+            "clean_ap": 0.5099052483179524,
+            "minus_flip_interval": [
+              -0.19688676856355686,
+              -0.12578040696718185
+            ],
+            "wrong_partner_ap": 0.46018559010675614
+          },
+          "v_negated_cosine": {
+            "ap": 0.22089133712587825,
+            "clean_ap": 0.19077489102460868
+          },
+          "v_flip_unsigned": {
+            "ap": 0.5858113621610616,
+            "clean_ap": 0.5099052483179524
+          },
+          "polarity_gap": {
+            "ap": 0.6079101333942336,
+            "clean_ap": 0.52136342137282,
+            "minus_flip_interval": [
+              -0.17208725942901126,
+              -0.10698175885446634
+            ],
+            "wrong_partner_ap": 0.4578465254341517
+          },
+          "polarity_gap_times_cosine": {
+            "ap": 0.5079557510075621,
+            "clean_ap": 0.42706010277409784
+          }
+        }
+      },
+      "retrieval": {
+        "contradictions": 483,
+        "reach": {
+          "cosine_top5": 0.8219461697722568,
+          "cosine_top10": 0.8737060041407867,
+          "negated_query_top5": 0.8674948240165632,
+          "v_query_top5": 0.8612836438923396,
+          "cosine5_plus_negated5": 0.9130434782608695,
+          "cosine5_plus_v5": 0.8757763975155279
+        },
+        "candidates": {
+          "cosine_top10": 15000,
+          "cosine5_plus_negated5": 11460,
+          "cosine5_plus_v5": 9401
+        },
+        "recall_at_10_percent": {
+          "cosine": 0.2318840579710145,
+          "negated_cosine": 0.42650103519668736,
+          "flip": 0.4057971014492754,
+          "mismatch_then_cosine": 0.20082815734989648,
+          "v_flip": 0.15734989648033126,
+          "v_negated_cosine": 0.2443064182194617,
+          "polarity_gap_times_cosine": 0.3416149068322981
+        }
+      }
+    },
+    "wanli": {
+      "pairs": {
+        "pairs": 725,
+        "positives": 139,
+        "floor": 0.1917241379310345,
+        "clean_pairs": 566,
+        "clean_floor": 0.16607773851590105,
+        "scores": {
+          "cosine": {
+            "ap": 0.24357563839930815,
+            "clean_ap": 0.25462260040221807
+          },
+          "reversed_cosine": {
+            "ap": 0.19972486900167394,
+            "clean_ap": 0.16879132989500872
+          },
+          "flip": {
+            "ap": 0.3767542496502027,
+            "clean_ap": 0.26491327409250787,
+            "wrong_partner_ap": 0.20513540713571424
+          },
+          "negated_cosine": {
+            "ap": 0.3584602368012242,
+            "clean_ap": 0.30175754204806926
+          },
+          "mismatch": {
+            "ap": 0.2214389806433767,
+            "clean_ap": 0.16607773851590105
+          },
+          "mismatch_then_cosine": {
+            "ap": 0.24876046089704512,
+            "clean_ap": 0.25462260040221807,
+            "minus_flip_interval": [
+              -0.20388168278071805,
+              -0.059600923714028725
+            ]
+          },
+          "mismatch_then_reversed_cosine": {
+            "ap": 0.239678090356498,
+            "clean_ap": 0.16879132989500872,
+            "minus_flip_interval": [
+              -0.19462995962781493,
+              -0.08737815990475824
+            ]
+          },
+          "v_flip": {
+            "ap": 0.29239145228138264,
+            "clean_ap": 0.18430540464744186,
+            "minus_flip_interval": [
+              -0.14657473915912883,
+              -0.03225886302985357
+            ],
+            "wrong_partner_ap": 0.24579997748037083
+          },
+          "v_negated_cosine": {
+            "ap": 0.25114550768139726,
+            "clean_ap": 0.2545299285161518
+          },
+          "v_flip_unsigned": {
+            "ap": 0.2413831361594069,
+            "clean_ap": 0.18430540464744186
+          },
+          "polarity_gap": {
+            "ap": 0.2929817968275445,
+            "clean_ap": 0.1898955076124831,
+            "minus_flip_interval": [
+              -0.14241372193605953,
+              -0.03174394325974542
+            ],
+            "wrong_partner_ap": 0.22955949151303398
+          },
+          "polarity_gap_times_cosine": {
+            "ap": 0.2899197282842412,
+            "clean_ap": 0.17182931999574586
+          }
+        }
+      },
+      "retrieval": {
+        "contradictions": 139,
+        "reach": {
+          "cosine_top5": 0.9856115107913669,
+          "cosine_top10": 0.9856115107913669,
+          "negated_query_top5": 0.9856115107913669,
+          "v_query_top5": 0.9784172661870504,
+          "cosine5_plus_negated5": 1.0,
+          "cosine5_plus_v5": 0.9856115107913669
+        },
+        "candidates": {
+          "cosine_top10": 7250,
+          "cosine5_plus_negated5": 5256,
+          "cosine5_plus_v5": 4480
+        },
+        "recall_at_10_percent": {
+          "cosine": 0.4316546762589928,
+          "negated_cosine": 0.6546762589928058,
+          "flip": 0.2517985611510791,
+          "mismatch_then_cosine": 0.23741007194244604,
+          "v_flip": 0.12949640287769784,
+          "v_negated_cosine": 0.4748201438848921,
+          "polarity_gap_times_cosine": 0.2517985611510791
+        }
+      }
+    },
+    "v7": {
+      "pairs": {
+        "pairs": 5000,
+        "positives": 906,
+        "floor": 0.1812,
+        "clean_pairs": 3821,
+        "clean_floor": 0.14708191572886678,
+        "scores": {
+          "cosine": {
+            "ap": 0.2191675135048457,
+            "clean_ap": 0.2100919038449296
+          },
+          "reversed_cosine": {
+            "ap": 0.16522263848210247,
+            "clean_ap": 0.12654969619254314
+          },
+          "flip": {
+            "ap": 0.332874891228337,
+            "clean_ap": 0.23601802008899525,
+            "wrong_partner_ap": 0.18925595871223147
+          },
+          "negated_cosine": {
+            "ap": 0.3968188645588768,
+            "clean_ap": 0.30810384019157055
+          },
+          "mismatch": {
+            "ap": 0.2291696009953461,
+            "clean_ap": 0.14708191572886678
+          },
+          "mismatch_then_cosine": {
+            "ap": 0.29315866108233735,
+            "clean_ap": 0.2100919038449296,
+            "minus_flip_interval": [
+              -0.07092580325610057,
+              -0.009192398540412256
+            ]
+          },
+          "mismatch_then_reversed_cosine": {
+            "ap": 0.2252303235795613,
+            "clean_ap": 0.12654969619254314,
+            "minus_flip_interval": [
+              -0.12819234891478506,
+              -0.0882510999516888
+            ]
+          },
+          "v_flip": {
+            "ap": 0.26403696193438425,
+            "clean_ap": 0.15218412023232344,
+            "minus_flip_interval": [
+              -0.0888400743767524,
+              -0.04844538638965748
+            ],
+            "wrong_partner_ap": 0.20642889963641936
+          },
+          "v_negated_cosine": {
+            "ap": 0.2352978620307657,
+            "clean_ap": 0.21055152392395596
+          },
+          "v_flip_unsigned": {
+            "ap": 0.21153491917856704,
+            "clean_ap": 0.15218412023232344
+          },
+          "polarity_gap": {
+            "ap": 0.25610304237588477,
+            "clean_ap": 0.15474727068393146,
+            "minus_flip_interval": [
+              -0.09576883224189561,
+              -0.05745190397294896
+            ],
+            "wrong_partner_ap": 0.19814374749794628
+          },
+          "polarity_gap_times_cosine": {
+            "ap": 0.2910580818663193,
+            "clean_ap": 0.17119274435518705
+          }
+        }
+      },
+      "retrieval": {
+        "contradictions": 906,
+        "reach": {
+          "cosine_top5": 0.9558498896247241,
+          "cosine_top10": 0.9768211920529801,
+          "negated_query_top5": 0.9392935982339956,
+          "v_query_top5": 0.9613686534216336,
+          "cosine5_plus_negated5": 0.9801324503311258,
+          "cosine5_plus_v5": 0.9713024282560706
+        },
+        "candidates": {
+          "cosine_top10": 49980,
+          "cosine5_plus_negated5": 37770,
+          "cosine5_plus_v5": 30874
+        },
+        "recall_at_10_percent": {
+          "cosine": 0.5154525386313465,
+          "negated_cosine": 0.673289183222958,
+          "flip": 0.2836644591611479,
+          "mismatch_then_cosine": 0.2704194260485651,
+          "v_flip": 0.18322295805739514,
+          "v_negated_cosine": 0.5474613686534217,
+          "polarity_gap_times_cosine": 0.30022075055187636
+        },
+        "found_after_nli": {
+          "cosine": 0.4370860927152318,
+          "negated_cosine": 0.5949227373068433,
+          "flip": 0.26490066225165565,
+          "mismatch_then_cosine": 0.24613686534216336,
+          "v_flip": 0.17108167770419427,
+          "v_negated_cosine": 0.47130242825607066,
+          "polarity_gap_times_cosine": 0.2781456953642384
+        }
+      }
+    }
+  }
+}
