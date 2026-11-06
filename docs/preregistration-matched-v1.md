@@ -98,6 +98,34 @@ Everything here used the non-semantic hash encoder or no embeddings at all.
 - No NLI baseline is included. One is required before any practical claim, but
   it does not gate this K decision.
 
+## Label review method
+
+Added after the first real run and before any reviewer labels existed. This
+is an **LLM review, not a human review**. Its aim is to find wrong or unclear
+author labels.
+
+- **Reviewers:** three free OpenCode models from separate families:
+  `opencode/deepseek-v4.1-flash-free`, `opencode/glm-5.3-flash-free`,
+  `opencode/nemotron-3.5-super-vl-free`. The study's author model, Claude, is not
+  a reviewer.
+- **Blinding:** each model sees only the label definitions from
+  [annotation-protocol.md](annotation-protocol.md), opaque IDs, and the two
+  statements, in shuffled batches of 36. It does not see author labels, cells,
+  families, K, or the hypothesis.
+- **Isolation:** runs start from an empty directory. Any run that uses a tool is
+  rejected and that model's review is void.
+- **Retries:** one retry, only for malformed or incomplete output.
+- **Flagging:** a pair is flagged if any reviewer differs from the author on
+  contradiction vs not contradiction, or answers ambiguous. Other label
+  differences are reported but don't affect the binary target.
+- **Settling:** unflagged labels stand as provisional. The project owner decides
+  every flagged pair. Neither the author nor any model settles them.
+- **Rerun:** after settling, the frozen test is rerun once from cached embeddings
+  with no other changes. Pairs ruled ambiguous are dropped. The result is reported
+  beside the original, whatever it is.
+- **Later baselines:** these three models can't serve as LLM-judge baselines on
+  this set, because they took part in labeling it.
+
 ## Run
 
 ~~~bash
