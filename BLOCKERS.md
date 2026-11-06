@@ -110,7 +110,7 @@ separate from the build plan so no unperformed research looks completed.
   owner rulings on four flagged pairs changed no labels. It still needs human-reviewed
   labels and replication before it supports any claim.
 - Exploratory v1 checks in `scripts/exploratory/` and a frozen public-data test in
-  [preregistration-public-v2.md](docs/preregistration-public-v2-draft.md),
+  [preregistration-public-v2.md](docs/preregistration-public-v2.md),
   run once: [INCONCLUSIVE for K](reports/public-fair-k-v2.md), with transformed sentences clearing the bar.
 - 73 passing unittest cases, including localhost API security and annotation
   workflow tests.
