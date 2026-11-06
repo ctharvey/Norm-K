@@ -1,0 +1,205 @@
+{
+  "comparisons": {
+    "corners_over_rf_base_lexical": {
+      "baseline_ap": 0.46390804605876534,
+      "candidate_ap": 0.6982753124286816,
+      "clears_bar": true,
+      "delta": 0.23436726636991623,
+      "hash_delta": 0.02484816711309612,
+      "interval": {
+        "ci_lower": 0.1898106487446276,
+        "ci_upper": 0.27670329942181243,
+        "clusters": 10,
+        "resamples_accepted": 2000
+      },
+      "model": "rf",
+      "null_mean": -0.006718005172511848,
+      "null_p97_5": 0.03336992388316055
+    },
+    "k_over_full": {
+      "baseline_ap": 0.7147337700974735,
+      "candidate_ap": 0.7267175682827174,
+      "clears_bar": false,
+      "delta": 0.011983798185243866,
+      "hash_delta": 0.002577675850535477,
+      "interval": {
+        "ci_lower": -0.009260423003531948,
+        "ci_upper": 0.03196472551941969,
+        "clusters": 10,
+        "resamples_accepted": 2000
+      },
+      "model": "lr",
+      "null_mean": -0.0022281755902193463,
+      "null_p97_5": 0.006725351242141231
+    },
+    "k_over_nli_full": {
+      "baseline_ap": 0.9332151954749557,
+      "candidate_ap": 0.9419380168827531,
+      "clears_bar": false,
+      "delta": 0.008722821407797454,
+      "hash_delta": 0.001154830252530159,
+      "interval": {
+        "ci_lower": -0.0006046643789673286,
+        "ci_upper": 0.021169304055820844,
+        "clusters": 10,
+        "resamples_accepted": 2000
+      },
+      "model": "lr",
+      "null_mean": 0.00033222379436127937,
+      "null_p97_5": 0.013555146086772756
+    },
+    "k_over_rf": {
+      "baseline_ap": 0.6966976196543251,
+      "candidate_ap": 0.7102211974731609,
+      "clears_bar": false,
+      "delta": 0.013523577818835841,
+      "hash_delta": -0.0002597004995913421,
+      "interval": {
+        "ci_lower": -0.014915684289833323,
+        "ci_upper": 0.04935541266566338,
+        "clusters": 10,
+        "resamples_accepted": 2000
+      },
+      "model": "rf",
+      "null_mean": -0.006762684648289335,
+      "null_p97_5": 0.012112568800596957
+    }
+  },
+  "date": "2026-11-05",
+  "decision": "INCONCLUSIVE",
+  "encoder": "text-embedding-3-small",
+  "encoder_dimensions": 1536,
+  "experiment": "public_fair_k_test_v2",
+  "genre_counts": {
+    "facetoface": 34,
+    "fiction": 82,
+    "government": 60,
+    "letters": 49,
+    "nineeleven": 69,
+    "oup": 30,
+    "slate": 50,
+    "telephone": 12,
+    "travel": 112,
+    "verbatim": 84
+  },
+  "genres": 10,
+  "hash_dry_run_decision": null,
+  "pairs": 582,
+  "positives": 192,
+  "prevalence_ap_floor": 0.32989690721649484,
+  "reference_ap": {
+    "base_lr": 0.4400602692672729,
+    "hypothesis_only": 0.38944677018515783,
+    "lexical_lr": 0.4210954064885537,
+    "nli_alone": 0.9796682218952429
+  },
+  "replication": {
+    "corners_over_rf_base_lexical": {
+      "baseline_ap": 0.21362514350326578,
+      "candidate_ap": 0.3336691027396854,
+      "delta": 0.12004395923641964,
+      "interval": {
+        "ci_lower": 0.0753613483967835,
+        "ci_upper": 0.1743909430778218
+      }
+    },
+    "k_over_full": {
+      "baseline_ap": 0.337557119147897,
+      "candidate_ap": 0.3387345111502346,
+      "delta": 0.0011773920023376294,
+      "interval": {
+        "ci_lower": -0.016371288440505977,
+        "ci_upper": 0.020714273147257357
+      }
+    },
+    "k_over_nli_full": {
+      "baseline_ap": 0.7040298303426645,
+      "candidate_ap": 0.689332448513667,
+      "delta": -0.014697381828997491,
+      "interval": {
+        "ci_lower": -0.041352279198673195,
+        "ci_upper": 0.008611347669599588
+      }
+    },
+    "k_over_rf": {
+      "baseline_ap": 0.329895525900134,
+      "candidate_ap": 0.3307701063972612,
+      "delta": 0.0008745804971271864,
+      "interval": {
+        "ci_lower": -0.03579955030256939,
+        "ci_upper": 0.03252103574176312
+      }
+    }
+  },
+  "replication_nli_alone_ap": 0.7437577751052593,
+  "replication_pairs": 725,
+  "replication_positives": 139,
+  "robustness": {
+    "corners_over_rf_base_lexical": {
+      "agreement_4_of_5": 0.24206530333211845,
+      "mismatched_genres": 0.203396451249012,
+      "without_genre": {
+        "facetoface": 0.22772513961200613,
+        "fiction": 0.23151823954684025,
+        "government": 0.23098764580028297,
+        "letters": 0.23052118632792185,
+        "nineeleven": 0.23323921771163686,
+        "oup": 0.24806035204448468,
+        "slate": 0.2289448247372473,
+        "telephone": 0.22390996973167654,
+        "travel": 0.24134427815442921,
+        "verbatim": 0.2427457158650494
+      }
+    },
+    "k_over_full": {
+      "agreement_4_of_5": 0.010911714045480858,
+      "mismatched_genres": 0.027505909743357204,
+      "without_genre": {
+        "facetoface": 0.010435831126647144,
+        "fiction": 0.019158355297594687,
+        "government": 0.013486215902225984,
+        "letters": 0.012253106848334028,
+        "nineeleven": 0.00878599848237549,
+        "oup": 0.011161488702528088,
+        "slate": 0.009369497515613556,
+        "telephone": 0.01008167483055944,
+        "travel": 0.018208258892998264,
+        "verbatim": 0.004840995888025779
+      }
+    },
+    "k_over_nli_full": {
+      "agreement_4_of_5": 0.006158196613268885,
+      "mismatched_genres": -0.001223073771475014,
+      "without_genre": {
+        "facetoface": 0.009069566912469518,
+        "fiction": 0.0052390042366203815,
+        "government": 0.00994120408698873,
+        "letters": 0.008674268131240614,
+        "nineeleven": 0.009999271138840804,
+        "oup": 0.008507559344987592,
+        "slate": 0.005344249904253862,
+        "telephone": 0.008960591704699539,
+        "travel": 0.011212918887152368,
+        "verbatim": 0.010500733221663894
+      }
+    },
+    "k_over_rf": {
+      "agreement_4_of_5": -0.003965322655188452,
+      "mismatched_genres": 0.04115433621261533,
+      "without_genre": {
+        "facetoface": 0.011946438357112954,
+        "fiction": 0.016293428107049257,
+        "government": 0.01244509262327731,
+        "letters": 0.017726758539439724,
+        "nineeleven": 0.014575781314383307,
+        "oup": -0.0004095333297304826,
+        "slate": 0.02001766834147367,
+        "telephone": 0.015335145953505602,
+        "travel": 0.019281808755338137,
+        "verbatim": 0.00772970586738142
+      }
+    }
+  },
+  "seed": 42,
+  "unique_texts": 4704
+}
