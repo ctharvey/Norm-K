@@ -114,6 +114,9 @@ author labels.
   families, K, or the hypothesis.
 - **Isolation:** runs start from an empty directory. Any run that uses a tool is
   rejected and that model's review is void.
+- **Reasoning effort:** `low` for all three. At the default setting, a DeepSeek
+  batch spent its full 32,000-token output limit on reasoning and returned no
+  labels, so this was set before any reviewer labels existed.
 - **Retries:** one retry, only for malformed or incomplete output.
 - **Flagging:** a pair is flagged if any reviewer differs from the author on
   contradiction vs not contradiction, or answers ambiguous. Other label
