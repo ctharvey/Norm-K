@@ -106,8 +106,9 @@ separate from the build plan so no unperformed research looks completed.
   features, mirror-pair exclusion, a 144-pair hand-written 2x2 set with
   provisional author labels, and a [frozen protocol](docs/preregistration-matched-v1.md).
   The first [real-embedding run](reports/real-fair-k-v1.md) got PASS on negation and
-  STOP on subject swap. It needs independent labels and replication before it
-  supports any claim.
+  STOP on subject swap. A [blind LLM label review](reports/label-review-v1.md) and
+  owner rulings on four flagged pairs changed no labels. It still needs human-reviewed
+  labels and replication before it supports any claim.
 - 59 passing unittest cases, including localhost API security and annotation
   workflow tests.
 

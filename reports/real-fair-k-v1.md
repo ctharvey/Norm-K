@@ -4,6 +4,7 @@
 **Protocol:** [preregistration-matched-v1.md](../docs/preregistration-matched-v1.md), frozen at ce2b1e7, cap corrected at 17777b1 before any result
 **Encoder:** text-embedding-3-small, 1536 dimensions, 771 embeddings, one run
 **Data:** 144 hand-written pairs, 12 relation families, labels assigned by Claude and **not independently reviewed**
+**Later label review:** [label-review-v1.md](label-review-v1.md) changed no labels, and the rerun matched this result exactly. That review was by LLMs, plus owner rulings on four pairs.
 
 ## Frozen result
 

@@ -8,8 +8,8 @@ This is an **LLM review, not a human review**. Agreement here means three other
 models read the pairs the same way as the author. It doesn't show the labels are
 right, and models can share the same blind spots.
 
-**Status:** four flagged pairs are waiting for the project owner. The frozen test
-has not been rerun.
+**Status:** complete. The project owner settled all four flagged pairs, no label
+changed, and the frozen test's rerun matched the original exactly.
 
 ## Result
 
@@ -54,4 +54,33 @@ on these pairs. Two of the changes affect flagging:
 
 Neither pair is flagged under the rule, which uses the rerun. Had the first run
 been valid, both would have been. Only batch 1 was run twice, so other batches
-may hide the same instability.
+may hide the same instability. The owner was shown both pairs and offered a ruling,
+and gave none, so both keep the author's label under the rule.
+
+## Owner rulings and rerun
+
+| Row | Owner ruling | Author label | Change |
+| ---: | --- | --- | --- |
+| 17 | not a contradiction | compatible | none |
+| 57 | contradiction | contradiction | none |
+| 66 | not a contradiction | compatible | none |
+| 85 | contradiction, given no other information | contradiction | none |
+
+The frozen test was rerun once from cached embeddings, with no new embeddings and
+no other changes. No pair was dropped. `outputs/k-fair-reviewed/k_fair.json` is
+identical to `outputs/k-fair-real/k_fair.json`, as expected with unchanged labels:
+
+| Transformation | Delta AP, K over `full` | 95% interval | Decision |
+| --- | ---: | ---: | --- |
+| Negation (primary) | +0.0598 | +0.0157 to +0.0902 | PASS |
+| Subject swap (secondary) | +0.0079 | -0.0029 to +0.0259 | STOP |
+
+## Limits
+
+- The rerun adds no new evidence about K. It confirms only that this review did
+  not change the labels the result depends on.
+- The owner's rulings were not blind: the owner saw the author's label and the
+  dissent for each pair.
+- 140 labels were read by no human. They stand as provisional author labels that
+  three LLMs did not dispute.
+- One author wrote all 144 pairs, so this review can't address how they were built.
