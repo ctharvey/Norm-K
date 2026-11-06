@@ -76,7 +76,6 @@ When B is the toggled negation of A, T(A)=B and T(B)=A, so K = 2(A-B). That give
 - **Coverage:** the 12-pattern grammar reaches 75% of templated pairs. Coverage on real extracted statements is unknown, and a production design needs a rule for uncovered pairs.
 - **Cost:** two extra embeddings per pair per transformation, which `pair-level-k.md` already notes.
 - **Baseline status:** the plan calls the #392 floor "existing", but PR #392 is open and unmerged. Its own text says the fixture pins behaviour rather than measuring accuracy.
-- **Priority:** Menhir memory records owner direction on 2026-11-05 that recall comes before Counterfactual Residual Geometry and #511. That memory doesn't name Norm-K, so linking the two is an inference.
 
 ### 7. Reproducibility and engineering (mostly low)
 

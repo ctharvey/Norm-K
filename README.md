@@ -2,7 +2,7 @@
 
 **Experimental geometry for contradiction detection in text embeddings.**
 
-**Start here:** [Full research rationale, decisions, present evidence, and phased engineering handoff](docs/handoff.md).
+**Start here:** [Findings](FINDINGS.md), the short version of what worked and what didn't. Then the [full research rationale, decisions, present evidence, and phased engineering handoff](docs/handoff.md).
 
 ‖K‖ (“Norm K”) is a research project exploring whether vector arithmetic, local geometric transformations, and lightweight learned projections can distinguish contradictions from paraphrases, compatible facts, unrelated statements, and ordinary changes over time.
 
@@ -22,9 +22,9 @@ Here E embeds text, N negates a statement, and P applies a controlled transforma
 
 ## Status
 
-**Paused November 6, 2026.** See [BLOCKERS.md](BLOCKERS.md) for what was found and what would reopen it.
+**Paused November 6, 2026.** Negation gives a real, repeatable signal in frozen embeddings, but it isn't a general contradiction detector. See [FINDINGS.md](FINDINGS.md), and [BLOCKERS.md](BLOCKERS.md) for every result and what would reopen this.
 
-**Offline research scaffold implemented and tested; no validated semantic results yet.**
+The code below is the offline research scaffold. Its smoke tests check the engineering and aren't evidence about meaning.
 
 The first implementation includes a five-class synthetic dataset generator, frozen-embedding geometry functions, four-point K experiments, a capped opt-in API adapter, SQLite cache, review-budget scoring, a small linear-probe control, SVG charts, subject-, template-, and relation-held-out low-rank probes, explicit pair-level counterfactual K ablations, dataset leakage auditing, bootstrap intervals, a blind local annotation UI, provenance-preserving benchmark intake, two-reviewer consensus, and 99 passing tests.
 
@@ -61,6 +61,15 @@ The browser UI runs only at `http://127.0.0.1:8765` **on the same computer as th
 - [Annotation/import engineering smoke test](reports/offline-labeling-smoke.md)
 
 This project is independent of [Menhir](https://github.com/Archolith/menhir) while the hypotheses are tested. Potential downstream integration belongs to [Menhir issue #511](https://github.com/Archolith/menhir/issues/511) (belief-shaped contradiction detection) and is contingent on evidence from reproducible experiments.
+
+## Data and attribution
+
+Public datasets aren't included, and most files store pair IDs. The `*-edit-audit.tsv` files in `data/benchmarks/` quote short statements from:
+
+- [WANLI](https://huggingface.co/datasets/alisawuffles/WANLI) (Liu, Swayamdipta, Smith and Choi, 2022), CC BY 4.0.
+- [MultiNLI](https://huggingface.co/datasets/nyu-mll/multi_nli) (Williams, Nangia and Bowman, 2018), mostly under the OANC license, with other terms for some genres.
+
+Those statements stay under their original terms.
 
 ## Objectives
 

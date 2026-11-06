@@ -12,6 +12,8 @@ as they were, for anyone reopening this.
 where exactly one statement has a negation word, so it isn't a general contradiction signal. All of
 it runs on a CPU, as long as NLI is forced to 32-bit.
 
+**Summary for readers:** [FINDINGS.md](FINDINGS.md).
+
 **Why it stopped:** the owner asked whether this should ship with Menhir, and the answer for now is
 no. Menhir has little conflict review volume for a gate to save, no human-labeled conflicts to test
 against, and its real conflicts look more like facts going stale than logical contradictions.
@@ -62,11 +64,13 @@ preempted, and found no exact prior publication of this formula, which isn't pro
   abstract-only. Zhu 2018 and Faltings 2025 should be read in full before any novelty wording.
 
 **4. Name and publication.** `Norm K` is a working title. Domain and trademark availability
-are unchecked, and no publication or company work has been authorized.
+are unchecked. The owner approved a short write-up, [FINDINGS.md](FINDINGS.md), but no paper or
+company work.
 
 **5. Menhir data, if a Menhir-shaped test is ever wanted.** This is research that might
-benefit Menhir, not a Menhir feature. No sanitized assertion export is available, and no
-production Menhir data or code has been touched.
+benefit Menhir, not a Menhir feature. No sanitized assertion export is available. No Menhir code
+changed, and no memory content was used in any experiment. Conflict counts were read once, read-only,
+to decide whether a test was possible.
 
 ## Next research, in order
 
