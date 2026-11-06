@@ -12,6 +12,8 @@
 | v4, flip score vs neutral edits, fresh pairs, two encoders | REPLICATES, NEGATION-SPECIFIC | [flip-placebo-v4.md](reports/flip-placebo-v4.md) |
 | v5, flip score vs size-matched edits, two encoders | SURVIVES-MATCHING; cheap gate fails | [flip-matched-v5.md](reports/flip-matched-v5.md) |
 | Exploratory, score mutations on v5's saved vectors | No mutation beats flip | [exploratory-mutations-v5.md](reports/exploratory-mutations-v5.md) |
+| v6, flip on NaN-NLI | Stopped at bridge check; not run | [draft](docs/preregistration-nan-nli-v6-draft.md) |
+| v7, `negated_cosine` gate before NLI, two encoders | GATE-PASS on both | [negated-gate-v7.md](reports/negated-gate-v7.md) |
 
 The flip score, not K, is the current focus. On unit vectors K's size is a function of
 pairwise scores the fair baseline already holds, so K can add little beyond repackaging.
@@ -53,9 +55,9 @@ production Menhir data or code has been touched.
    [The v6 draft](docs/preregistration-nan-nli-v6-draft.md) stopped at its bridge check, before any
    NaN-NLI statement was embedded. v5's edit fits only 32 of 258 pairs, and the wrapper edit moved
    statements 2 to 3.5 times further than its control, failing the size gate. Owner's call.
-2. Owner's call: [the v7 gate draft](docs/preregistration-negated-gate-v7.md). It tests
-   `negated_cosine` inside cosine's top 5 neighbors and measures what NLI then finds. It replaces
-   the cosine-then-flip idea, which [didn't hold up](reports/exploratory-mutations-v5.md).
+2. [v7](reports/negated-gate-v7.md) passed: `negated_cosine` found more contradictions than cosine at
+   the same NLI budget. Run the negation-mismatch baseline before crediting that to meaning. Its
+   frozen next step is realistic text, which needs a dataset that doesn't exist here.
 3. Trim [the v3 draft](docs/preregistration-decomposition-v3-draft.md) and decide what's still
    worth running: dilution, context ladder, word removal, deletion-response features.
 4. Later: whether incompatibility can be told from mere difference, which needs a new labeled
@@ -99,7 +101,12 @@ None of these has been run. All would be exploratory unless a frozen rule says o
   strong signal without grammar rules, so this could remove the `is`/`was` limit.
 - [ ] Harder audit items: subtle scope errors, not just unchanged text and broken grammar.
 - [ ] Gate value: what a gate saves when retrieval is already about five pairs per statement.
-- [ ] More encoders, including larger ones. "General" rests on two so far.
+- [ ] More encoders, including larger ones. "General" rests on two so far. OpenRouter lists about 40
+  embedding models, and direct use of its key needs the owner's approval.
+
+**Tooling**
+- [x] GPU parity: every local-model rerun kept its verdicts, so new local work can use the GPU. Pin the
+  device, batch size and versions in each protocol. See [the v7 report](reports/negated-gate-v7.md).
 
 **Parked** by the prior-art audit: `asinh` compression, per-token and chunk-level flip, and learned
 projections. **Parked** by [the mutation run](reports/exploratory-mutations-v5.md): normalized flip
@@ -124,6 +131,6 @@ and this repo has no timestamped claims.
 - Tools: geometry and K functions, fair K tests, public and flip tests, leakage checks, bootstrap
   and shuffle nulls, blind review UI, consensus and kappa, benchmark importer.
 - Method: frozen protocols, hash controls, and [multi-model review](docs/multi-model-review.md).
-- Tests: 99 passing unittest cases.
+- Tests: 123 passing unittest cases.
 
 See [the labeling protocol](docs/annotation-protocol.md) for label definitions.
