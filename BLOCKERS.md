@@ -2,17 +2,16 @@
 
 **Updated:** November 6, 2026. Keep this file current.
 
-## Paused
+## Research closed; experiments paused
 
-**Paused by the owner on November 6, 2026.** No test is running or planned. The lists below are kept
-as they were, for anyone reopening this.
+**The owner closed this research phase on November 6, 2026.** The repository, frozen protocols, raw results, scripts, and unresolved questions are retained as an archival research record. No test is running or planned; no Norm-K integration into Menhir is approved. The lists below are preserved for anyone reopening the work.
 
 **What it found:** the flip score separates negation from size-matched edits, and v7 showed
 `negated_cosine` can rank contradictions ahead of NLI on WANLI text. Most of that gain is on pairs
 where exactly one statement has a negation word, so it isn't a general contradiction signal. All of
 it runs on a CPU, as long as NLI is forced to 32-bit.
 
-**Summary for readers:** [FINDINGS.md](FINDINGS.md).
+**Summary for readers:** [FINDINGS.md](FINDINGS.md). **Related work remains open:** [Menhir #511](https://github.com/Archolith/menhir/issues/511) on typed-belief and temporal conflict handling, including local NLI evaluation. That issue is not closed by this decision.
 
 **Why it stopped:** the owner asked whether this should ship with Menhir, and the answer for now is
 no. Menhir has little conflict review volume for a gate to save, no human-labeled conflicts to test

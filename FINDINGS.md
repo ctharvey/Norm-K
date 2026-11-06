@@ -1,11 +1,8 @@
 # Norm-K findings: can embedding geometry find contradictions?
 
-**Short answer: not in general.** With frozen text embeddings, negating a statement gives a real and
-repeatable signal, but it's mostly a signal about negation. It helped find contradictions worded with
-negation and barely helped the rest.
+**Short answer: not demonstrated as a general-purpose contradiction detector.** With frozen text embeddings, negating a statement produced a repeatable ranking signal in restricted tests, but most of the measured retrieval gain concentrated on pairs with an explicit negation mismatch. Generalization to other sentence structures and real conflicts remains untested.
 
-This is a small independent project by ctharvey, carried out with AI assistance, and it's paused. It
-isn't peer reviewed. It's shared so others can skip the same work or check it. No novelty is claimed.
+This is a small independent project by ctharvey, carried out with AI assistance. **The research phase closed on November 6, 2026**, with experiments paused and the source/results preserved. It isn't peer reviewed. It's shared so others can skip the same work or check it. No novelty is claimed.
 
 ## What was tested
 
@@ -82,6 +79,12 @@ only as abstracts.
 - The negation split and the variants are exploratory, run on data already seen.
 - A negation word means a word on a fixed list, so `unable` or `refused` count as none.
 - Nothing was tested on realistic documents or long text.
+
+## Closure and downstream disposition
+
+**Decision: stop further Norm-K experimentation for now; do not integrate the flip or negated-cosine gate into Menhir.** The frozen v7 gate passed on selected WANLI text, but the post-hoc polarity split, restricted grammar, missing human audit, and absent realistic Menhir benchmark do not justify deployment. There are no additional Norm-K experiments scheduled.
+
+The related [Menhir belief-shaped contradiction issue #511](https://github.com/Archolith/menhir/issues/511) remains a separate, open engineering question. Its typed assertions, valid-time reasoning, and potential small local NLI baseline do not depend on this geometry research. Reopen Norm-K only if representative human-reviewed conflicts, meaningful review volume, or a new intervention that helps non-negation contradictions changes the cost/benefit case. See [BLOCKERS.md](BLOCKERS.md).
 
 ## Reproduce it
 

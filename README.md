@@ -22,11 +22,11 @@ Here E embeds text, N negates a statement, and P applies a controlled transforma
 
 ## Status
 
-**Paused November 6, 2026.** Negation gives a real, repeatable signal in frozen embeddings, but it isn't a general contradiction detector. See [FINDINGS.md](FINDINGS.md), and [BLOCKERS.md](BLOCKERS.md) for every result and what would reopen this.
+**Research phase closed November 6, 2026; repository retained and experiments paused.** Controlled negation yielded a repeatable ranking signal on restricted benchmark sentences, but a general-purpose contradiction detector and practical Menhir integration were not demonstrated. The [final findings](FINDINGS.md) summarize the evidence, while [BLOCKERS.md](BLOCKERS.md) records the stop decision and explicit conditions for reopening. No further experiments are scheduled.
 
 The code below is the offline research scaffold. Its smoke tests check the engineering and aren't evidence about meaning.
 
-The first implementation includes a five-class synthetic dataset generator, frozen-embedding geometry functions, four-point K experiments, a capped opt-in API adapter, SQLite cache, review-budget scoring, a small linear-probe control, SVG charts, subject-, template-, and relation-held-out low-rank probes, explicit pair-level counterfactual K ablations, dataset leakage auditing, bootstrap intervals, a blind local annotation UI, provenance-preserving benchmark intake, two-reviewer consensus, and 99 passing tests.
+The first implementation includes a five-class synthetic dataset generator, frozen-embedding geometry functions, four-point K experiments, a capped opt-in API adapter, SQLite cache, review-budget scoring, a small linear-probe control, SVG charts, subject-, template-, and relation-held-out low-rank probes, explicit pair-level counterfactual K ablations, dataset leakage auditing, bootstrap intervals, a blind local annotation UI, provenance-preserving benchmark intake, two-reviewer consensus, and 123 passing unit tests (as reported in [BLOCKERS.md](BLOCKERS.md) at closure).
 
 ### Run the offline smoke test
 
@@ -60,7 +60,7 @@ The browser UI runs only at `http://127.0.0.1:8765` **on the same computer as th
 - [Blind annotation protocol and CLI](docs/annotation-protocol.md)
 - [Annotation/import engineering smoke test](reports/offline-labeling-smoke.md)
 
-This project is independent of [Menhir](https://github.com/Archolith/menhir) while the hypotheses are tested. Potential downstream integration belongs to [Menhir issue #511](https://github.com/Archolith/menhir/issues/511) (belief-shaped contradiction detection) and is contingent on evidence from reproducible experiments.
+The Norm-K research phase is closed without a Menhir integration recommendation. **[Menhir issue #511](https://github.com/Archolith/menhir/issues/511) remains open independently** for typed beliefs, temporal conflict handling, and evaluation of local NLI on real Menhir-shaped facts.
 
 ## Data and attribution
 
@@ -115,4 +115,4 @@ The first **two-week gate** covers phases 1–3. Proceed to learned models only 
 
 ---
 
-*Research plan established November 5, 2026. No experimental scores in this repository should be interpreted as measured until a reproducible run is linked.*
+*Research plan established November 5, 2026; research phase closed November 6, 2026. Reported scores are linked to recorded protocols and results. They are not claims of generalization to real-world conflict detection.*
