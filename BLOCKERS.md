@@ -2,6 +2,25 @@
 
 **Updated:** November 6, 2026. Keep this file current.
 
+## Paused
+
+**Paused by the owner on November 6, 2026.** No test is running or planned. The lists below are kept
+as they were, for anyone reopening this.
+
+**What it found:** the flip score separates negation from size-matched edits, and v7 showed
+`negated_cosine` can rank contradictions ahead of NLI on WANLI text. Most of that gain is on pairs
+where exactly one statement has a negation word, so it isn't a general contradiction signal. All of
+it runs on a CPU, as long as NLI is forced to 32-bit.
+
+**Why it stopped:** the owner asked whether this should ship with Menhir, and the answer for now is
+no. Menhir has little conflict review volume for a gate to save, no human-labeled conflicts to test
+against, and its real conflicts look more like facts going stale than logical contradictions.
+
+**What would reopen it:**
+- A labeled set of real conflicts on realistic text, which v7's frozen next step already needs.
+- Enough review volume that a cheap gate saves real work.
+- An antonym-edit result showing help for contradictions with no negation word.
+
 ## Where the research stands
 
 | Test | Result | Report |
