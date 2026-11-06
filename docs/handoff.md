@@ -394,17 +394,22 @@ room for improvement remains.
   counterbalanced transformation order, and grouped uncertainty estimates.
 - Check whether the effect survives held-out **relations**, not just familiar
   syntactic templates.
+- Compare K against a baseline holding every pairwise score K is built from,
+  plus lexical features. Exclude mirror pairs, where T swaps A and B and K
+  reduces to 2(A−B). See the
+  [frozen protocol](preregistration-matched-v1.md).
 
-**Exit:** A K feature shows repeatable information beyond simple vector
-features, **or** the negative result is recorded and K-specific development
-stops.
+**Exit:** A K feature shows repeatable information beyond that baseline, **or**
+the negative result is recorded and K-specific development stops.
 
 ### Phase D — Learned projections and marginal contribution
 
 - Fit regularized low-rank WΔ / pairwise embedding features only on train.
 - Test dimensions 2–128 and compare a global transformation with per-relation
   ones; try nonlinear models only after simple baselines.
-- Run explicit **with/without K** ablations on the same eligible rows.
+- Run explicit **with/without K** ablations on the same eligible rows, using
+  the Phase C baseline. Plain with/without-K comparisons can credit K for what
+  the two extra embedded sentences contribute.
 - Verify transfer to unseen subject/template/relation/source families, with
   grouped confidence intervals and multiple-comparison discipline.
 - Inspect false positives and misses, not just one aggregate metric.

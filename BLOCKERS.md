@@ -102,7 +102,11 @@ separate from the build plan so no unperformed research looks completed.
 - Blind stratified review queues, 127.0.0.1-only review UI, append-only
   corrections, two-reviewer consensus, Cohen's kappa, and CSV/TSV/JSONL import
   with explicit mapping and provenance manifest.
-- 50 passing unittest cases, including localhost API security and annotation
+- Fair K test (`k-fair`): a baseline holding K's underlying scores plus lexical
+  features, mirror-pair exclusion, a 144-pair hand-written 2x2 set with
+  provisional author labels, and a [frozen protocol](docs/preregistration-matched-v1.md).
+  The real-embedding run has not happened; it needs item 1 above.
+- 59 passing unittest cases, including localhost API security and annotation
   workflow tests.
 
 See [the offline run record](reports/offline-smoke.md) for the exact commands and

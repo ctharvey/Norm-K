@@ -17,7 +17,8 @@ from .evaluation import (baseline_report, features_for_pairs, plot_dimension_cur
                          plot_k_distribution, plot_pair_k_scatter, plot_scatter, train_linear_probe)
 from .geometry import cosine, difference, k_norm, k_relative
 from .probes import low_rank_probe
-from .ablation import counterfactual_features, run_k_ablation
+from .ablation import (counterfactual_features, load_matched_benchmark, run_fair_k_test,
+                       run_k_ablation)
 from .audit import audit_pairs, purged_indices
 from .review import (AnnotationLog, consensus_report, load_items, queue_from_pairs,
                      save_items)
@@ -250,6 +251,36 @@ def _k_ablate(args: argparse.Namespace) -> None:
     print(f"Pair-level K ablation written to {output / 'k_ablation.json'} (research scaffold only)")
 
 
+def _k_fair(args: argparse.Namespace) -> None:
+    pairs = load_matched_benchmark(args.benchmark)
+    operations = ("negation", "subject_swap") if args.operation == "both" else (args.operation,)
+    cohorts, texts = {}, set()
+    for op in operations:
+        eligible = [(pair, square) for pair in pairs
+                    if (square := counterfactual_square(pair, op)) is not None]
+        cohorts[op] = eligible
+        for _, square in eligible:
+            texts.update((square.base, square.other, square.transformed_base,
+                          square.transformed_other))
+    encoder = _encoder(args)
+    ordered_texts = sorted(texts)
+    with EmbeddingCache(args.cache) as cache:
+        vectors = dict(zip(ordered_texts, cache.embed(encoder, ordered_texts, max_new=args.max_new,
+                                                      batch_size=args.batch_size)))
+    results = {}
+    for op, examples in cohorts.items():
+        results[op] = {"eligible": len(examples), **run_fair_k_test(
+            [pair for pair, _ in examples], [square for _, square in examples], vectors, args.seed)}
+    output = Path(args.output)
+    output.mkdir(parents=True, exist_ok=True)
+    _write_json(output / "k_fair.json", {
+        "experiment": "matched_2x2_fair_k_test", "date": date.today().isoformat(),
+        "encoder": encoder.name, "encoder_dimensions": encoder.dimensions,
+        "benchmark": str(args.benchmark), "pair_count": len(pairs), "seed": args.seed,
+        "labels": "author-assigned, not independently reviewed", "operations": results})
+    print(f"Fair K test written to {output / 'k_fair.json'}")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="norm-k", description="Norm K experimental harness")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -297,7 +328,7 @@ def build_parser() -> argparse.ArgumentParser:
     exporter.add_argument("--output", default="outputs/review_consensus.json")
     exporter.set_defaults(func=_export_reviews)
     for name, handler in (("evaluate", _evaluate), ("k-probe", _k_probe),
-                          ("k-ablate", _k_ablate)):
+                          ("k-ablate", _k_ablate), ("k-fair", _k_fair)):
         command = sub.add_parser(name)
         command.add_argument("--encoder", choices=("hash", "openai"), default="hash")
         command.add_argument("--dimensions", type=int, default=None)
@@ -316,6 +347,10 @@ def build_parser() -> argparse.ArgumentParser:
                                      default="both")
                 command.add_argument("--limit", type=int, default=0,
                                      help="Optional cap on input pairs (0 = all)")
+        elif name == "k-fair":
+            command.add_argument("--benchmark", default="data/benchmarks/matched-2x2-v1.tsv")
+            command.add_argument("--operation", choices=("negation", "subject_swap", "both"),
+                                 default="both")
         else:
             command.add_argument("--count", type=int, default=100)
     return parser

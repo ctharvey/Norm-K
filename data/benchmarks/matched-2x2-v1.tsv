@@ -1,0 +1,145 @@
+family	cell	label	subject	text_a	text_b
+residence	HC	contradiction	Anna	Anna lives only in Lisbon this year.	Anna lives only in Madrid this year.
+residence	HC	contradiction	Ben	Ben's only home is in Oslo.	Ben's only home is in Bergen.
+residence	HC	contradiction	Carla	Carla resides full time in Quito.	Carla resides full time in Lima.
+residence	HN	compatible	Anna	Anna lives near the river in Lisbon.	Anna lives near the park in Lisbon.
+residence	HN	compatible	Ben	Ben's summer home is in Oslo.	Ben's winter home is in Bergen.
+residence	HN	compatible	Carla	Carla does not live in Quito.	Carla does not live in Lima.
+residence	LC	contradiction	Dana	Dana lives in Toronto all year.	Dana is a permanent Sydney resident who never leaves Australia.
+residence	LC	contradiction	Eli	Eli resides solely in a Cairo flat.	Eli is based in Nairobi, his one and only address.
+residence	LC	contradiction	Fay	Fay is a lifelong Dublin local who has never moved.	Fay lives in Vienna, where she has spent her entire life.
+residence	LN	compatible	Dana	Dana lives in Toronto all year.	Dana is learning the cello from a private tutor.
+residence	LN	equivalent	Eli	Eli resides solely in a Cairo flat.	Eli is a tenant whose single dwelling sits in Egypt's capital.
+residence	LN	compatible	Fay	Fay is a lifelong Dublin local who has never moved.	Fay works weekends repairing old bicycles for neighbours.
+employment	HC	contradiction	Gia	Gia works only at Northwind this month.	Gia works only at Southgate this month.
+employment	HC	contradiction	Hugo	Hugo is a full-time employee of Acme.	Hugo is a full-time employee of Globex.
+employment	HC	contradiction	Ines	Ines was the sole founder of Brightly.	Ines was not a founder of Brightly at all.
+employment	HN	temporal_update	Gia	In 2023 Gia was a nurse at Mercy.	In 2025 Gia was a teacher at Mercy.
+employment	HN	compatible	Hugo	Hugo is a part-time employee of Acme.	Hugo is a part-time employee of Globex.
+employment	HN	compatible	Ines	Ines was not a founder of Brightly.	Ines was not a founder of Sparkly.
+employment	LC	contradiction	Jon	Jon works as a surgeon every weekday.	Jon is unemployed and has no job of any kind.
+employment	LC	contradiction	Kay	Kay is retired and no longer takes paid work.	Kay works forty hours a week at a shipping firm.
+employment	LC	contradiction	Lena	Lena works from the Boston office every day.	Lena is fully remote and has never set foot in any office.
+employment	LN	compatible	Jon	Jon works as a surgeon every weekday.	Jon is an amateur beekeeper with three small hives.
+employment	LN	equivalent	Kay	Kay is retired and no longer takes paid work.	Kay was done with her career and now lives on a pension.
+employment	LN	compatible	Lena	Lena works from the Boston office every day.	Lena owns a small sailboat moored on the Cape.
+marital	HC	contradiction	Mara	Mara is married to Tom.	Mara is divorced from Tom.
+marital	HC	contradiction	Nico	Nico is single and has never married.	Nico is widowed after a long marriage.
+marital	HC	contradiction	Omar	Omar was engaged to Lily on New Year's Day 2024.	Omar was married to Lily on New Year's Day 2024.
+marital	HN	compatible	Mara	Mara is friends with Tom.	Mara is neighbours with Tom.
+marital	HN	temporal_update	Nico	In 2015 Nico was single.	In 2022 Nico was married.
+marital	HN	compatible	Omar	Omar is not married to Lily.	Omar is not married to Rose.
+marital	LC	contradiction	Pia	Pia is a bachelorette with no partner at all.	Pia was wed last spring and her husband lives with her today.
+marital	LC	contradiction	Quentin	Quentin is the husband of a Denver dentist.	Quentin lives alone, having never had a spouse.
+marital	LC	contradiction	Rhea	Rhea is happily wed to her college sweetheart.	Rhea is an unmarried woman without any romantic partner.
+marital	LN	compatible	Pia	Pia is a bachelorette with no partner at all.	Pia owns three cats and a very loud parrot.
+marital	LN	equivalent	Quentin	Quentin is the husband of a Denver dentist.	Quentin's wife is a Colorado woman who fixes teeth for a living.
+marital	LN	compatible	Rhea	Rhea is happily wed to her college sweetheart.	Rhea works as a translator for a publishing house.
+age	HC	contradiction	Sol	On May 1, 2026, Sol is 41 years old.	On May 1, 2026, Sol is 47 years old.
+age	HC	contradiction	Tia	Tia was born in 1980.	Tia was born in 1992.
+age	HC	contradiction	Uri	Uri is the older of the two twins.	Uri is the younger of the two twins.
+age	HN	temporal_update	Sol	On May 1, 2020, Sol is 35 years old.	On May 1, 2026, Sol is 41 years old.
+age	HN	compatible	Tia	Tia was not born in 1980.	Tia was not born in 1992.
+age	HN	compatible	Uri	Uri is the tallest of the two twins.	Uri is the youngest of the three cousins.
+age	LC	contradiction	Vera	Vera is a nine-year-old in fourth grade.	Vera is a grandmother collecting her pension.
+age	LC	contradiction	Wes	Wes is too young to drive legally.	Wes was licensed thirty years ago and is about to retire.
+age	LC	contradiction	Xena	Xena is an infant who cannot walk yet.	Xena is a teenager preparing for college exams.
+age	LN	compatible	Vera	Vera is a nine-year-old in fourth grade.	Vera is scared of thunder and large dogs.
+age	LN	equivalent	Wes	Wes is too young to drive legally.	Wes is below the minimum age for a licence.
+age	LN	compatible	Xena	Xena is an infant who cannot walk yet.	Xena lives with both parents near a quiet lake.
+ownership	HC	contradiction	Yuki	Yuki owns the only copy of the manuscript.	Yuki does not own the only copy, and never held it.
+ownership	HC	contradiction	Zane	Zane is the sole owner of the red truck.	Zane is a co-owner of the red truck.
+ownership	HC	contradiction	Abby	Abby owns exactly one car.	Abby owns exactly three cars.
+ownership	HN	compatible	Yuki	Yuki owns a copy of the manuscript.	Yuki owns a copy of the screenplay.
+ownership	HN	compatible	Zane	Zane does not own the red truck.	Zane does not own the blue truck.
+ownership	HN	temporal_update	Abby	In 2021 Abby owns one car.	In 2025 Abby owns three cars.
+ownership	LC	contradiction	Bram	Bram owns the Elm Street house outright.	Bram is merely a renter there, and the landlord holds the deed.
+ownership	LC	contradiction	Cleo	Cleo is pet-free and always has been.	Cleo owns a golden retriever she raised from a puppy.
+ownership	LC	contradiction	Dev	Dev owns no vehicles of any type.	Dev is the registered keeper of a motorcycle and a van.
+ownership	LN	compatible	Bram	Bram owns the Elm Street house outright.	Bram is training for a marathon in the autumn.
+ownership	LN	equivalent	Cleo	Cleo is pet-free and always has been.	Cleo was never the keeper of any animal in her life.
+ownership	LN	compatible	Dev	Dev owns no vehicles of any type.	Dev lives close enough to walk to the station.
+location	HC	contradiction	Elle	At noon today Elle is in Rome.	At noon today Elle is in Tokyo.
+location	HC	contradiction	Finn	Finn is inside the building right now.	Finn is outside the building right now.
+location	HC	contradiction	Gwen	At 3 PM Friday, Gwen was at the Paris office.	At 3 PM Friday, Gwen was not in France.
+location	HN	temporal_update	Elle	At noon on Monday Elle is in Rome.	At noon on Friday Elle is in Tokyo.
+location	HN	compatible	Finn	Finn is not inside the bank right now.	Finn is not inside the cafe right now.
+location	HN	compatible	Gwen	At 3 PM Friday, Gwen was near the Paris office.	At 3 PM Friday, Gwen was near the Paris station.
+location	LC	contradiction	Hana	Hana is on a beach in Bali this morning.	Hana is stuck at her Chicago desk all morning long.
+location	LC	contradiction	Ivan	Ivan was home in bed all of Tuesday night.	Ivan was seen on a Berlin stage performing throughout Tuesday night.
+location	LC	contradiction	Jade	Jade is at the summit of the mountain now.	Jade is currently waiting in the village at its base.
+location	LN	compatible	Hana	Hana is on a beach in Bali this morning.	Hana works as a freelance illustrator of children's books.
+location	LN	equivalent	Ivan	Ivan was home in bed all of Tuesday night.	Ivan was asleep at his own place for the whole of that evening.
+location	LN	compatible	Jade	Jade is at the summit of the mountain now.	Jade owns a very old pair of leather boots.
+diet	HC	contradiction	Kian	Kian is a strict vegan.	Kian is a strict carnivore.
+diet	HC	contradiction	Lola	Lola is allergic to peanuts.	Lola is not allergic to peanuts in any way.
+diet	HC	contradiction	Milo	Milo is teetotal and has never had alcohol.	Milo is a heavy drinker and always has alcohol.
+diet	HN	compatible	Kian	Kian is a strict vegan on weekdays.	Kian is a keen baker on weekends.
+diet	HN	compatible	Lola	Lola is not allergic to peanuts.	Lola is not allergic to shellfish.
+diet	HN	temporal_update	Milo	In 2019 Milo was a heavy drinker.	In 2024 Milo was teetotal.
+diet	LC	contradiction	Nell	Nell is a vegetarian who refuses all animal flesh.	Nell is having steak for dinner, as she does nightly by choice.
+diet	LC	contradiction	Otis	Otis is gluten-free for medical reasons.	Otis lives on fresh bread and wheat pasta at every meal.
+diet	LC	contradiction	Pam	Pam is a lifelong non-smoker.	Pam was on two packs of cigarettes a day for decades.
+diet	LN	compatible	Nell	Nell is a vegetarian who refuses all animal flesh.	Nell is fond of hiking along coastal trails.
+diet	LN	equivalent	Otis	Otis is gluten-free for medical reasons.	Otis is under a doctor's orders to avoid wheat protein.
+diet	LN	compatible	Pam	Pam is a lifelong non-smoker.	Pam works night shifts at the county hospital.
+event	HC	contradiction	Reza	Reza's wedding is on June 4, 2027.	Reza's wedding is on July 9, 2027.
+event	HC	contradiction	Sana	Sana's flight to Oslo is at 8 AM tomorrow.	Sana's flight to Oslo is at 6 PM tomorrow.
+event	HC	contradiction	Theo	Theo's talk was in Hall A at the 2025 summit.	Theo's talk was in Hall C at the 2025 summit.
+event	HN	compatible	Reza	Reza's wedding is on June 4, 2027.	Reza's graduation is on July 9, 2027.
+event	HN	compatible	Sana	Sana's flight is not at 8 AM tomorrow.	Sana's flight is not at 6 PM tomorrow.
+event	HN	temporal_update	Theo	Theo's talk was in Hall A at the 2023 summit.	Theo's talk was in Hall C at the 2025 summit.
+event	LC	contradiction	Uma	Uma's party is this Saturday evening.	Uma is cancelling everything, so no party of hers is happening at all.
+event	LC	contradiction	Vik	Vik's exam is tomorrow morning.	Vik was done with that exam three weeks ago and it is over.
+event	LC	contradiction	Wren	Wren's concert was a sold-out triumph last night.	Wren was home sick, and the show never took place.
+event	LN	compatible	Uma	Uma's party is this Saturday evening.	Uma is repainting her garden fence in pale green.
+event	LN	equivalent	Vik	Vik's exam is tomorrow morning.	Vik is sitting that test before noon the next day.
+event	LN	compatible	Wren	Wren's concert was a sold-out triumph last night.	Wren owns two guitars and an upright piano.
+nationality	HC	contradiction	Ada	Ada is a citizen of Japan only.	Ada is a citizen of Brazil only.
+nationality	HC	contradiction	Bo	Bo was born in Peru and nowhere else.	Bo was born in Chile and nowhere else.
+nationality	HC	contradiction	Cy	Cy is a native speaker of Finnish alone.	Cy is not a speaker of Finnish at all.
+nationality	HN	compatible	Ada	Ada is a citizen of Japan.	Ada is a citizen of Brazil.
+nationality	HN	compatible	Bo	Bo was not born in Peru.	Bo was not born in Chile.
+nationality	HN	compatible	Cy	Cy is a fluent speaker of Finnish.	Cy is a fluent speaker of Swedish.
+nationality	LC	contradiction	Dex	Dex is purely Canadian, with one passport.	Dex is a Portuguese national who holds no other citizenship.
+nationality	LC	contradiction	Eva	Eva is monolingual and knows only English.	Eva is at ease chatting in Korean with her relatives.
+nationality	LC	contradiction	Gus	Gus is stateless under the law.	Gus is a passport-holding Irish national.
+nationality	LN	compatible	Dex	Dex is purely Canadian, with one passport.	Dex lives above a bakery with his two brothers.
+nationality	LN	equivalent	Eva	Eva is monolingual and knows only English.	Eva is unable to speak any tongue besides her native English.
+nationality	LN	compatible	Gus	Gus is stateless under the law.	Gus works as a deckhand on cargo ships.
+education	HC	contradiction	Hal	Hal is a graduate of Yale, his only university.	Hal is a graduate of Duke, his only university.
+education	HC	contradiction	Ivy	Ivy was first in her class of 2024.	Ivy was last in her class of 2024.
+education	HC	contradiction	Joss	Joss is enrolled full time at Rice this term.	Joss is not enrolled at Rice this term.
+education	HN	compatible	Hal	Hal is a graduate of Yale.	Hal is a graduate of Duke.
+education	HN	temporal_update	Ivy	In 2022 Ivy was first in her class.	In 2024 Ivy was last in her class.
+education	HN	compatible	Joss	Joss is not enrolled at Rice.	Joss is not enrolled at Tulane.
+education	LC	contradiction	Kit	Kit is a high school dropout with no degree.	Kit is a doctor of physics from Caltech.
+education	LC	contradiction	Liv	Liv is homeschooled and has never attended class in a school.	Liv is a pupil at Oakridge Primary, in Room 12 every weekday.
+education	LC	contradiction	Max	Max was expelled in his first semester.	Max was awarded a diploma after four uninterrupted years.
+education	LN	compatible	Kit	Kit is a high school dropout with no degree.	Kit is the fastest typist at the call centre.
+education	LN	equivalent	Liv	Liv is homeschooled and has never attended class in a school.	Liv is taught entirely by her parents at the kitchen table.
+education	LN	compatible	Max	Max was expelled in his first semester.	Max lives with an uncle who runs a hardware store.
+health	HC	contradiction	Nina	Nina is fully vaccinated against measles.	Nina is entirely unvaccinated against measles.
+health	HC	contradiction	Oren	Oren's left arm is broken today.	Oren's left arm is not injured today.
+health	HC	contradiction	Pax	Pax is blind in both eyes.	Pax is sighted in both eyes.
+health	HN	temporal_update	Nina	In 2020 Nina was unvaccinated.	In 2022 Nina was vaccinated.
+health	HN	compatible	Oren	Oren's left arm is not broken today.	Oren's right leg is not broken today.
+health	HN	compatible	Pax	Pax is blind in the left eye.	Pax is deaf in the right ear.
+health	LC	contradiction	Remy	Remy is in perfect health, with no illnesses.	Remy is in intensive care with severe pneumonia.
+health	LC	contradiction	Sia	Sia is completely deaf.	Sia is a piano tuner with exceptional hearing who catches every faint note.
+health	LC	contradiction	Tess	Tess is alive and teaching in Leeds.	Tess was buried last winter after a sudden death.
+health	LN	compatible	Remy	Remy is in perfect health, with no illnesses.	Remy owns a vintage record shop in the old town.
+health	LN	equivalent	Sia	Sia is completely deaf.	Sia is unable to hear any sound whatsoever.
+health	LN	compatible	Tess	Tess is alive and teaching in Leeds.	Tess is writing a novel about Victorian lighthouses.
+status	HC	contradiction	Ulla	At noon, Ulla's shop is open.	At noon, Ulla's shop is closed.
+status	HC	contradiction	Vito	Vito's invoice is paid in full.	Vito's invoice is entirely unpaid.
+status	HC	contradiction	Wilma	Wilma's account was active on March 1, 2026.	Wilma's account was deleted before March 1, 2026.
+status	HN	temporal_update	Ulla	At 8 AM, Ulla's shop is closed.	At noon, Ulla's shop is open.
+status	HN	compatible	Vito	Vito's invoice is not paid in full.	Vito's receipt is not printed in full.
+status	HN	compatible	Wilma	Wilma's account was active on March 1, 2026.	Wilma's account was verified on March 1, 2026.
+status	LC	contradiction	Yara	Yara's bakery is trading as usual this week.	Yara is bankrupt, and the premises were boarded up for good last month.
+status	LC	contradiction	Zeke	Zeke's visa is valid until next spring.	Zeke is in the country illegally, his permit having lapsed years ago.
+status	LC	contradiction	Alma	Alma's laptop is working perfectly.	Alma is holding a dead machine that refuses to power on at all.
+status	LN	compatible	Yara	Yara's bakery is trading as usual this week.	Yara is planning a cycling trip across Portugal.
+status	LN	equivalent	Zeke	Zeke's visa is valid until next spring.	Zeke is legally allowed to remain for several more months.
+status	LN	compatible	Alma	Alma's laptop is working perfectly.	Alma lives on the fourth floor of a brick building.

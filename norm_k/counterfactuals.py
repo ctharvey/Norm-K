@@ -68,6 +68,11 @@ def _new_subject(pair: Pair) -> str:
     return candidates[int.from_bytes(digest[:8], "big") % len(candidates)]
 
 
+def is_mirror(square: CounterfactualSquare) -> bool:
+    """True when T swaps the pair, so K = 2(A - B) for any encoder."""
+    return square.transformed_base == square.other and square.transformed_other == square.base
+
+
 def counterfactual_square(pair: Pair, operation: str) -> CounterfactualSquare | None:
     """Construct A, B, T(A), T(B) for a valid *syntactic* counterfactual.
 
