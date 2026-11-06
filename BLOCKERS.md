@@ -109,7 +109,10 @@ separate from the build plan so no unperformed research looks completed.
   STOP on subject swap. A [blind LLM label review](reports/label-review-v1.md) and
   owner rulings on four flagged pairs changed no labels. It still needs human-reviewed
   labels and replication before it supports any claim.
-- 59 passing unittest cases, including localhost API security and annotation
+- Exploratory v1 checks in `scripts/exploratory/` and a draft public-data test in
+  [preregistration-public-v2-draft.md](docs/preregistration-public-v2-draft.md),
+  not yet frozen or run.
+- 60 passing unittest cases, including localhost API security and annotation
   workflow tests.
 
 See [the offline run record](reports/offline-smoke.md) for the exact commands and
