@@ -1,0 +1,14 @@
+{
+ "fresh_mnli_train": {
+  "replication": 0.064,
+  "negation_vs_placebo": 0.0415
+ },
+ "v2_mnli": {
+  "replication": 0.071,
+  "negation_vs_placebo": 0.0576
+ },
+ "v2_wanli": {
+  "replication": -0.0321,
+  "negation_vs_placebo": 0.0702
+ }
+}

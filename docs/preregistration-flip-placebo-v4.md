@@ -1,7 +1,8 @@
-# Flip score placebo test v4: draft protocol
+# Flip score placebo test v4: frozen protocol
 
-**Status:** draft. The commit that renames this file from its draft is the freeze point.
-Changes after a real result must be reported as deviations.
+**Frozen:** November 6, 2026, before any real-embedding score on the fresh set. The commit
+that renames this file from its draft is the freeze point. Changes after a real result
+must be reported as deviations.
 
 ## Question
 
@@ -86,13 +87,46 @@ is 90 valid of 100. The any-dissent count is also reported. Under 90, stop and t
 the owner. `note` isn't audited, since it adds a label without touching the sentence.
 Fresh-set negation edits use v2's rule and aren't re-audited.
 
-## Order of work
+## Completed before freezing
 
-1. Commit this draft and the code.
-2. Run the edit audit, and write the result here.
-3. Run the hash dry run, and write its deltas here.
-4. Freeze by renaming this file.
-5. Run once per encoder, and report whatever it shows.
+**Edit audit: passed, 99 of 100.** The rule was committed at de7e9d1, before any reviewer
+saw a statement. All 18 runs returned complete output with no tool use. One statement failed
+on all three models, and one more drew a single dissent, so counting any dissent as invalid
+gives 98. No person read these statements. Results are in
+[flip-v4-edit-audit.tsv](../data/benchmarks/flip-v4-edit-audit.tsv).
+
+**Selection fix:** train repeats 6,988 pair IDs, and 74 selected IDs could have resolved to
+different pairs. Those IDs were excluded at 91b020f, before any reviewer or score saw the
+selection.
+
+**Hash dry run.** Condition 4's values, frozen in
+[flip-v4-hash-control.json](../data/benchmarks/flip-v4-hash-control.json):
+
+| Set | Replication | Negation vs placebo |
+| --- | ---: | ---: |
+| Fresh | +0.0640 | +0.0415 |
+| v2 MultiNLI | +0.0710 | +0.0576 |
+| v2 WANLI | -0.0321 | +0.0702 |
+
+**The hash control itself clears the other conditions** on the fresh set, unlike in v2. A
+word-only encoder can reach F_negation AP 0.400 against neutral edits' 0.358, probably
+through the word `not`. So condition 4 is what makes this rule meaningful: a real result
+must beat these deltas. No rule was changed after seeing this.
+
+**Seen before freezing:** the fresh set's size, contradiction count (491 of 1,500), and all
+hash scores. No real-encoder score on fresh or secondary sets with these neutral edits.
+
+**Key:** the owner said embedding needs no further approval. Menhir's OpenAI key is loaded
+into the run's process only. About 340,000 words, roughly $0.01.
+
+## Run
+
+Once per encoder, each refusing to replace its result:
+
+~~~bash
+python scripts/v4_flip_placebo.py run multinli.zip wanli_test.jsonl data/benchmarks/flip-v4-pair-ids.tsv openai outputs/flip-v4/openai.json data/benchmarks/flip-v4-hash-control.json --max-new 27000
+python scripts/v4_flip_placebo.py run multinli.zip wanli_test.jsonl data/benchmarks/flip-v4-pair-ids.tsv mpnet.npz outputs/flip-v4/mpnet.json data/benchmarks/flip-v4-hash-control.json
+~~~
 
 ## Known limits
 
